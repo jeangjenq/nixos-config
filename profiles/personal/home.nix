@@ -4,6 +4,7 @@
 
   imports = [
     ../work/home.nix
+    ../../user/app/editor/joplin.nix
   ];
 
   home.packages = with pkgs; [
