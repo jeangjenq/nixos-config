@@ -5,6 +5,7 @@
   enable = true;
   displayManager.gdm.enable = true;
   desktopManager.gnome.enable = true;
+  excludePackages = [ pkgs.xterm ];
   };
 
   environment.gnome.excludePackages = ( with pkgs; [
@@ -12,6 +13,8 @@
     gnome-maps
     gnome-music
     gnome-tour
+    gnome-weather
+    gnome-clocks
     cheese # old camera app
     snapshot # new camera app
     totem # video player

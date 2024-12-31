@@ -8,6 +8,7 @@
     (./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
+    ../../user/app/editor/libreoffice.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,7 +21,37 @@
 
 
   home.packages = with pkgs; [
-    python311
+    # core
+    adwaita-icon-theme
+    nautilus
+    gnome-calendar
+    seahorse
+    speedcrunch
+    mission-center
+
+    # create
+    gimp
+    krita
+    inkscape
+    obs-studio
+    tenacity
+    davinci-resolve
+    kdenlive
+
+    # media
+    mpv
+    yt-dlp
+    ffmpeg
+
+    # dev
+    remmina
+    gparted
+    rpi-imager
+    isoimagewriter
+    veracrypt
+
+    # eww
+    teams-for-linux
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
