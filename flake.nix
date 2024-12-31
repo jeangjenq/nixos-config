@@ -13,7 +13,7 @@
     systemSettings = {
       system = "x86_64-linux";
       hostname = "nixvm";
-      profile = "work";
+      profile = "personal";
       timezone = "Pacific/Auckland";
     };
     # user variables
