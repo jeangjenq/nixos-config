@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ( ./. + "../../../user/wm" + ( "/" + systemSettings.wm + ".nix") )
     ../../user/app/git/git.nix
     (./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
     ../../user/shell/sh.nix

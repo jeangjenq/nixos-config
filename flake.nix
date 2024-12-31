@@ -12,9 +12,11 @@
     # ---------- VARIABLES ---------- #
     systemSettings = {
       system = "x86_64-linux";
-      hostname = "nixvm";
+      hostname = "padd";
       profile = "personal";
+      wm = "gnome";
       timezone = "Pacific/Auckland";
+      locale = "en_US.UTF-8";
     };
     # user variables
     userSettings = {
