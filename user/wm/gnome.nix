@@ -30,6 +30,9 @@
     "org/gnome/shell/app-switcher" = {
       current-workspace-only = true;
     };
-  
+     
+    "org/gnome/shell" = {
+      enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com" ];
+    }; 
   };
 }

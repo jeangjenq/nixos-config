@@ -27,6 +27,9 @@
   environment.systemPackages = with pkgs; [
     gnomeExtensions.appindicator
   ];
+  services.udev.packages = with pkgs; [
+    gnome-settings-daemon
+  ];
 
   programs.dconf.enable = true;
 }
