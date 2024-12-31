@@ -4,7 +4,6 @@
 
   imports = [
     ../work/home.nix
-    ../../user/app/player/music.nix
   ];
 
   home.packages = with pkgs; [
