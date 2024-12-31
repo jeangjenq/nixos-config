@@ -12,6 +12,7 @@
     # ---------- VARIABLES ---------- #
     systemSettings = {
       system = "x86_64-linux";
+      hostname = "nixvm";
       profile = "work";
       timezone = "Pacific/Auckland";
     };
