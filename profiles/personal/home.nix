@@ -16,6 +16,10 @@
     tidal-hifi
     strawberry
     jellyfin-media-player
+
+    # photography
+    rapid-photo-downloader
+    darktable
   ];
 
 }
