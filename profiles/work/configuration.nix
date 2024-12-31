@@ -10,6 +10,7 @@
      ../../system/hardware-configuration.nix
      ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
      ../../system/app/docker.nix
+     ../../system/virtualization/virtualization.nix
     ];
 
   # Bootloader.
