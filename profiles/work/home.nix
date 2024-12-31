@@ -5,6 +5,7 @@
   imports = [
     ../../user/app/git/git.nix
     (./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
+    ../../user/shell/sh.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
