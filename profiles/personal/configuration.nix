@@ -4,6 +4,9 @@
   imports = [
     ../work/configuration.nix
     ../../system/hardware-configuration.nix
+    ../../system/game/steam.nix
+    ../../system/game/heroic.nix
+    ../../system/game/gamemode.nix
 
     # sshd for setting up nixos in vm
     (import ../../system/network/sshd.nix {

@@ -8,10 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
      ../../system/hardware-configuration.nix
+     ../../system/hardware/opengl.nix
      ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
      ../../system/app/docker.nix
      ../../system/virtualization/virtualization.nix
     ];
+
+  nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   # boot.loader.grub.enable = true;
