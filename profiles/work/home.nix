@@ -9,6 +9,7 @@
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
     ../../user/app/editor/libreoffice.nix
+    ../../themes/stylix.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
