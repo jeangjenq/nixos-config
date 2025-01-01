@@ -6,9 +6,12 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ # hardwares
      ../../system/hardware-configuration.nix
      ../../system/hardware/opengl.nix
+     ../../system/hardware/bluetooth.nix
+     ../../system/hardware/printing.nix
+
      ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
      ../../system/app/docker.nix
      ../../system/virtualization/virtualization.nix
