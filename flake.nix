@@ -7,7 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, ... }:
   let
     # ---------- VARIABLES ---------- #
     systemSettings = {
@@ -27,8 +27,9 @@
     };
     # ---------- VARIABLES ---------- #
     
-    lib = nixpkgs.lib;
+    lib = inputs.nixpkgs.lib;
     # pkgs = nixpkgs.legacyPackages.${system};
+    home-manager = inputs.home-manager;
     pkgs = import inputs.nixpkgs {
       system = systemSettings.system;
       config = {
