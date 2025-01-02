@@ -4,6 +4,7 @@
   imports = [
     ../work/configuration.nix
     ../../system/hardware-configuration.nix
+    ../../system/hardware/automount.nix
     ../../system/game/steam.nix
     ../../system/game/heroic.nix
     ../../system/game/gamemode.nix
