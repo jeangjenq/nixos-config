@@ -11,7 +11,7 @@
 
     # sshd for setting up nixos in vm
     (import ../../system/network/sshd.nix {
-      authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlJlA2WwrobWq0eq1UKfiJd/+e7HyTp13mzl0fP/e/b jeangjenq@worf"];
+      authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEQnJVdL98B5voLeFHF9pGhNBW6mudDPJM2By159a/6 jeangjenq@worf"];
       inherit userSettings; })
     
     # enable flatpak for something like discord
