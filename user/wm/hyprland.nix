@@ -164,8 +164,8 @@
       ];
 
       general = {
-        gaps_in = 2;
-	gaps_out = 4;
+        gaps_in = 4;
+	gaps_out = 8;
 	border_size = 1;
 
 	# don't resize window on accidental border click
@@ -176,7 +176,7 @@
       };
 
       decoration = {
-        rounding = 4;
+        rounding = 6;
 	shadow = {
 	  enabled = true;
 	  range = 4;
@@ -184,7 +184,7 @@
 	};
 	blur = {
 	  enabled = true;
-	  size = 3;
+	  size = 8;
 	  passes = 1;
 	};
       };
