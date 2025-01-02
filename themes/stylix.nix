@@ -2,6 +2,6 @@
 
 {
   stylix.enable = true;
-  stylix.image = ./wallpaper/gwen_closeup.png;
+  stylix.image = ./wallpaper/shoulder_touch.jpg;
   stylix.polarity = "dark";
 }
