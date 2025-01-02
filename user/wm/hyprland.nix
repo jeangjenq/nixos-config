@@ -63,10 +63,11 @@
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, M, exit,"
         ("$mainMod, E, exec," + fileManager)
-        "$mainMod, V, togglefloating,"
+        "$mainMod, space, togglefloating,"
+        "$mainMod, f, fullscreen,"
         ("$mainMod, R, exec," + menu)
         "$mainMod, P, pseudo," # dwindle
-        "$mainMod, J, togglesplit," # dwindle
+        "$mainMod, e, togglesplit," # dwindle
         
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
