@@ -40,8 +40,13 @@
       
       "$mainMod" = mod; # choosing a mod key
 
-      monitor = ",preferred,auto,auto";
-      
+      monitor = [
+        "DP-1, highrr, 0x0, 1, vrr, 1"
+        "HDMI-A-1, preferred , 3840x-960 , 1, transform, 1"
+	"eDP-1, highrr, auto-down, 1.5"
+	", preferred, auto, 1"
+      ];
+
       # initial startups
       exec-once = [
         "waybar"
@@ -50,6 +55,7 @@
 	"systemctl --user start hyprpolkitagent"
       ];
 
+      
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         ("$mainMod, Q, exec," + terminal)
