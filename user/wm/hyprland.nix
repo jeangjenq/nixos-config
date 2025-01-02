@@ -213,7 +213,7 @@
       input = {
         kb_layout = "us";
 	kb_options = [
-	  "capslock:super"
+	  "caps:super"
 	];
         follow_mouse = 1;
         
