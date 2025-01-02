@@ -245,6 +245,23 @@
         workspace_swipe = true;
       };
 
+      windowrulev2 = [
+        # steam
+        "float, class:steam, title:(^Friends List$)"
+        "workspace 5, class:steam, title:(^Friends List$)"
+        "workspace 5, class:steam, title:Steam"
+
+	# games
+	"fullscreen, class:gamescope"
+	"fullscreen, class:steam_app_.+"
+	"immediate, class:steam_app_.+" # allow tearing for games
+
+	# comms
+        "workspace 6, class:discord"
+	"workspace 7, class:signal, title:Signal"
+
+      ];
+
     };
   };
 
