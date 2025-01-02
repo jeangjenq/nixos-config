@@ -8,6 +8,7 @@
     (./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
+    ../../system/hardware/rnnoise.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/media/mpv.nix
     ../../themes/stylix.nix
