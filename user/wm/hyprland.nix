@@ -50,6 +50,7 @@
       # initial startups
       exec-once = [
         "waybar"
+	"hyprpaper"
         "nm-applet --indicator"
         "blueman-applet"
 	"systemctl --user start hyprpolkitagent"
