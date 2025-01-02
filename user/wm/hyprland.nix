@@ -66,15 +66,14 @@
       
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        ("$mainMod, Q, exec," + terminal)
+        ("$mainMod, RETURN, exec," + terminal)
+        ("$mainMod, R, exec," + menu)
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, M, exit,"
-        ("$mainMod, E, exec," + fileManager)
-        "$mainMod, space, togglefloating,"
-        "$mainMod, f, fullscreen,"
-        ("$mainMod, R, exec," + menu)
+        "$mainMod, SPACE, togglefloating,"
+        "$mainMod, F, fullscreen,"
         "$mainMod, P, pseudo," # dwindle
-        "$mainMod, e, togglesplit," # dwindle
+        "$mainMod, E, togglesplit," # dwindle
         
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -83,10 +82,22 @@
         "$mainMod, down, movefocus, d"
         
         # Move focus with mainMod + vim keys
-	"$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, j, movefocus, u"
-        "$mainMod, k, movefocus, d"
+	"$mainMod, H, movefocus, l"
+        "$mainMod, L, movefocus, r"
+        "$mainMod, J, movefocus, u"
+        "$mainMod, K, movefocus, d"
+        
+	# Move window with mainMod + arrow keys
+        "$mainMod SHIFT, left, movewindow, l"
+        "$mainMod SHIFT, right, movewindow, r"
+        "$mainMod SHIFT, up, movewindow, u"
+        "$mainMod SHIFT, down, movewindow, d"
+        
+        # Move window with mainMod + vim keys
+	"$mainMod SHIFT, H, movewindow, l"
+        "$mainMod SHIFT, L, movewindow, r"
+        "$mainMod SHIFT, J, movewindow, u"
+        "$mainMod SHIFT, K, movewindow, d"
         
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
@@ -179,34 +190,26 @@
       };
 
       animations = {
-        enabled = true;
-
-        # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-        bezier = [
-	  "easeOutQuint,0.23,1,0.32,1"
-          "easeInOutCubic,0.65,0.05,0.36,1"
-          "linear,0,0,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "quick,0.15,0,0.1,1"
-        ];
+        enabled = "yes";
+        
+	bezier = [
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.0"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
+          "linear, 0.0, 0.0, 1.0, 1.0"
+	];
 
         animation = [
-	  "global, 1, 10, default"
-          "global,border, 1, 5.39, easeOutQuint"
-          "global,windows, 1, 4.79, easeOutQuint"
-          "global,windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "global,windowsOut, 1, 1.49, linear, popin 87%"
-          "global,fadeIn, 1, 1.73, almostLinear"
-          "global,fadeOut, 1, 1.46, almostLinear"
-          "global,fade, 1, 3.03, quick"
-          "global,layers, 1, 3.81, easeOutQuint"
-          "global,layersIn, 1, 4, easeOutQuint, fade"
-          "global,layersOut, 1, 1.5, linear, fade"
-          "global,fadeLayersIn, 1, 1.79, almostLinear"
-          "global,fadeLayersOut, 1, 1.39, almostLinear"
-          "global,workspaces, 1, 1.94, almostLinear, fade"
-          "global,workspacesIn, 1, 1.21, almostLinear, fade"
-          "global,workspacesOut, 1, 1.94, almostLinear, fade"
+          "windowsIn, 1, 6, winIn, popin"
+          "windowsOut, 1, 5, winOut, popin"
+          "windowsMove, 1, 5, wind, slide"
+          "border, 1, 10, default"
+          "borderangle, 1, 100, linear, loop"
+          "fade, 1, 10, default"
+          "workspaces, 1, 5, wind"
+          "windows, 1, 6, wind, slide"
+          "specialWorkspace, 1, 6, default, slidefadevert -50%"
 	];
       };
       
