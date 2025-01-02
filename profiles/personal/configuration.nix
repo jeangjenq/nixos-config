@@ -13,8 +13,8 @@
     (import ../../system/network/sshd.nix {
       authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEQnJVdL98B5voLeFHF9pGhNBW6mudDPJM2By159a/6 jeangjenq@worf"];
       inherit userSettings; })
-    
-    # enable flatpak for something like discord
-    services.flatpak.enable = true;
   ];
+    
+  # enable flatpak for something like discord
+  services.flatpak.enable = true;
 }
