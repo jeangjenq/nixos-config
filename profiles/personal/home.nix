@@ -12,6 +12,7 @@
     # comms
     discord
     signal-desktop
+    thunderbird
 
     # players
     tidal-hifi
