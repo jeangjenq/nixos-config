@@ -49,11 +49,18 @@
 
       # initial startups
       exec-once = [
+        # essentials
         "waybar"
 	"hyprpaper"
         "nm-applet --indicator"
         "blueman-applet"
 	"systemctl --user start hyprpolkitagent"
+
+	# preferences
+	"steam -silent"
+	"thunderbird"
+	"flatpak run com.discordapp.Discord"
+	"signal-desktop"
       ];
 
       
