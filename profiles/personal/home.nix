@@ -10,7 +10,6 @@
 
   home.packages = with pkgs; [
     # comms
-    discord
     signal-desktop
     thunderbird
 
