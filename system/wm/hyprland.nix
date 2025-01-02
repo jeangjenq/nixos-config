@@ -3,6 +3,7 @@
 {
   imports = [
     ./pipewire.nix
+    ./fonts.nix
   ];
 
   programs.hyprland = {
@@ -21,6 +22,10 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+  };
+
+  services.gnome = {
+    gnome-keyring.enable = true;
   };
 
   services.displayManager.ly = {
