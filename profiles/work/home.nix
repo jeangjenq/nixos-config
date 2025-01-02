@@ -9,6 +9,7 @@
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
     ../../user/app/editor/libreoffice.nix
+    ../../user/app/media/mpv.nix
     ../../themes/stylix.nix
   ];
 
@@ -40,7 +41,7 @@
     kdenlive
 
     # media
-    mpv
+    nomacs
     yt-dlp
     ffmpeg
 
