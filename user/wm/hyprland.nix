@@ -4,6 +4,7 @@
   imports = [
     ../app/terminal/alacritty.nix
     ../app/terminal/kitty.nix
+    ./waybar.nix
   ];
 
   home.packages = with pkgs; [
@@ -12,7 +13,6 @@
     mako # notification
     rofi-wayland # app launcher
     hyprpaper # hyprland bg
-    waybar # statusbar
     hyprpolkitagent # authentication agent
     brightnessctl # control screen brightness
     playerctl # control media playback
@@ -60,7 +60,7 @@
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         ("$mainMod, Q, exec," + terminal)
-        "$mainMod, C, killactive,"
+        "$mainMod SHIFT, Q, killactive,"
         "$mainMod, M, exit,"
         ("$mainMod, E, exec," + fileManager)
         "$mainMod, V, togglefloating,"
@@ -112,10 +112,11 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-	# media control on mouse
+	# media control on specific mkb 
 	",mouse:276, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
 	",mouse:275, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
 	",mouse:278, exec, playerctl play-pause"
+        "$mainMod, C, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         
       ];
 
@@ -235,4 +236,5 @@
 
     };
   };
+
 }
