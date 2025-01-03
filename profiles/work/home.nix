@@ -10,6 +10,7 @@
     ../../user/virtualization/virtualization.nix
     ../../system/hardware/rnnoise.nix
     ../../user/app/editor/libreoffice.nix
+    ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix
     ../../themes/stylix.nix
   ];

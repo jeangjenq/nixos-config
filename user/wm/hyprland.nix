@@ -4,6 +4,8 @@
   imports = [
     ../app/terminal/alacritty.nix
     ../app/terminal/kitty.nix
+    ./hyprlock.nix
+    ./hypridle.nix
     ./inputmethod.nix
     ./mako.nix
     ./waybar.nix
@@ -64,6 +66,7 @@
         # essentials
         "waybar"
         "hyprpaper"
+        "hypridle"
         "nm-applet --indicator"
         "blueman-applet"
         "systemctl --user start hyprpolkitagent"
@@ -269,7 +272,7 @@
       
       # window identifiers
       ## steam
-      "$steamnotifications" = "title:^(notificationtoasts.*)";
+      "$steamnotifications" = "title:notificationtoasts.*";
 
       ## popups
       "$filedialog" = "title:((Open|Save) (File|Folder|As))";
@@ -277,6 +280,7 @@
       windowrulev2 = [
         # steam
         "float, class:^(steam), title:[^(Steam)]"
+        "noinitialfocus, class:^(steam), $steamnotifications"
         "suppressevent activate activatefocus, class:^(steam), $steamnotifications"
         "pin, class:^(steam), $steamnotifications"
         "opacity 0.6, class:steam, $steamnotifications"
