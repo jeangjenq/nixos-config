@@ -1,4 +1,4 @@
-{ config, pkgs, systemSettings, userSettings, ... }:
+{ config, pkgs, ... }:
 
 {
   i18n.inputMethod = {
@@ -8,6 +8,7 @@
       fcitx5-chinese-addons # simplified chinese
       # we don't need themes we have stylix
     ];
+    fcitx5.waylandFrontend = true;
   };
 
   # hyprland specific startup and rule
