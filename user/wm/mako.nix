@@ -10,4 +10,10 @@
       ignore-timeout=1
     '';
   };
+
+  wayland.windowManager.hyprland.settings = {
+    bind = [
+      "$mainMod, Q, exec, makoctl dismiss"
+    ];
+  };
 }

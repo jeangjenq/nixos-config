@@ -7,7 +7,7 @@
     ./hyprlock.nix
     ./hypridle.nix
     ./inputmethod.nix
-    ./mako.nix
+    ./swaync.nix
     ./waybar.nix
   ];
 
@@ -32,7 +32,6 @@
     # additionals
     gnome-calculator # like this calculator
   ];
-  # services.blueman-applet.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -87,7 +86,6 @@
         "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"
         "$mainMod, F, fullscreen,"
-        "$mainMod, Q, exec, makoctl dismiss"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, E, togglesplit," # dwindle
 
