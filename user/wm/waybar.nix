@@ -3,9 +3,9 @@
 let
   workspaces = (systemSettings.wm + "/workspaces");
   window = (systemSettings.wm + "/window");
-  mode = if (systemSettings.wm == "hyprland" )
-           then "hyprland/submap"
-         else "sway/mode";
+  mode =  if (systemSettings.wm == "hyprland" )
+            then "hyprland/submap"
+          else "sway/mode";
 in
 {
   programs.waybar = {
@@ -31,7 +31,7 @@ in
           "memory"
           "battery"
           "backlight"
-	  "network"
+          "network"
           "tray"
         ];
 
@@ -40,16 +40,16 @@ in
           "format-icons" = {
             "default" = "";
             "active" = "";
-	  };
-	  "persistent-workspaces" = {
-	    "*" = 4;
+          };
+          "persistent-workspaces" = {
+            "*" = 4;
           };
         };
 
         ${window} = {
           "icon" = true;
-	  "icon-size" = 12;
-	  "separate-outputs"= true;
+          "icon-size" = 12;
+          "separate-outputs"= true;
         };
 
         "clock" = {
@@ -131,9 +131,9 @@ in
 
     style = ''
       * {
-	  border: none;
-	  border-radius: 6px;
-	  padding: 1 3px;
+          border: none;
+          border-radius: 6px;
+          padding: 1 3px;
           font-size: 12px;
           font-family: "Roboto Mono Medium";
       }
@@ -149,15 +149,15 @@ in
       
       .modules-right {
           margin: 10px 10px 0 0;
-	  background-color: rgba(255,222,242,0.2);
+          background-color: rgba(255,222,242,0.2);
       }
       .modules-center {
           margin: 10px 0 0 0;
-	  background-color: rgba(242,226,255,0.2);
+          background-color: rgba(242,226,255,0.2);
       }
       .modules-left {
           margin: 10px 0 0 10px;
-	  background-color: rgba(226,238,255,0.2);
+          background-color: rgba(226,238,255,0.2);
       }
 
       #battery.critical:not(.charging) {
