@@ -33,11 +33,14 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+
     settings = let
       terminal = userSettings.term;
       fileManager = "nautilus";
       menu = "rofi -show drun -show-icons";
       mod = "SUPER";
+      screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
+      screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
 
       # monitors
       lguw = "DP-1";
@@ -82,6 +85,10 @@
 	"$mainMod, Q, exec, makoctl dismiss"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, E, togglesplit," # dwindle
+
+	# screenshots
+	",print, exec, ${screengrab}"
+	"ALT,print, exec, ${screenshot}"
         
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -303,6 +310,8 @@
 	"float, class:firefox, title:(Picture-in-Picture)"
 	"float, class:(^org\.speedcrunch\.$), title: ^SpeedCrunch$"
 	"float, class:org\.gnome\.Calculator"
+	"float, class:(^com\.gabm\.satty$)"
+	"fullscreenstate 0, class:(^com\.gabm\.satty$)"
 
 	# specific apps ricing
 	"opacity 0.85, class:^(org\.gnome\.Nautilus)$"
