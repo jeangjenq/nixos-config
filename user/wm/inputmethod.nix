@@ -16,12 +16,15 @@
 
   home.file = {
     # make sure stylix is being used as a them
-    ".config/fcitx5/conf/classicui.conf".text = ''
+    ".config/fcitx5/conf/classicui.conf" = {
+      text = ''
       Theme=stylix
-    '';
-    
+      '';
+    };
+
     # add pinyin input method right away
-    ".config/fcitx5/profile".text = ''
+    ".config/fcitx5/profile" = {
+      text = ''
       [Groups/0]
       # Group Name
       Name=Default
@@ -44,15 +47,19 @@
       
       [GroupOrder]
       0=Default
-    '';
+      '';
+      force = true; # this file keeps getting replaced
+    };
 
     # change to preferred hotkey
-    ".config/fcitx5/config".text = ''
+    ".config/fcitx5/config" = {
+      text = ''
       [Hotkey/TriggerKeys]
       0=Alt+Shift+Shift_L
       
       [Hotkey/AltTriggerKeys]
       0=Shift_L
-    '';
+      '';
+    };
   };
 }
