@@ -10,11 +10,11 @@
 
   home.packages = with pkgs; [
     # comms
-    signal-desktop
+    # signal-desktop covered by electron wrapper
     thunderbird
 
     # players
-    tidal-hifi
+    # tidal-hifi covered by electron wrapper
     strawberry
     jellyfin-media-player
 
