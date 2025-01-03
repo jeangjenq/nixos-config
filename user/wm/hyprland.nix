@@ -4,6 +4,7 @@
   imports = [
     ../app/terminal/alacritty.nix
     ../app/terminal/kitty.nix
+    ./inputmethod.nix
     ./waybar.nix
   ];
 
