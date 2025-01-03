@@ -65,9 +65,9 @@
 
 	# preferences
 	"steam -silent"
-	"[workspace 9 silent] thunderbird"
 	"[workspace 6 silent] flatpak run com.discordapp.Discord"
 	"[workspace 7 silent] signal-desktop"
+	"[workspace 8 silent] thunderbird"
       ];
 
       
@@ -248,6 +248,10 @@
           natural_scroll = false;
         };
       };
+
+      cursor = {
+        default_monitor = "0";
+      };
       
       gestures = {
         workspace_swipe = true;
@@ -279,8 +283,12 @@
         "monitor 1 , class:discord"
 	"workspace 7, class:signal, title:Signal"
 	"monitor 1 , class:signal, title:Signal"
-	"workspace 9, class:thunderbird"
+	"workspace 8, class:thunderbird"
 	"monitor 1 , class:thunderbird"
+
+	# specific apps
+	"workspace 9, class:tidal-hifi"
+	"monitor 1, class:tidal-hifi"
 
 	# popups
 	"float, $filedialog"
