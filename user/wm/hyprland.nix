@@ -13,11 +13,10 @@
     # core
     kitty # hyprland default terminal
     rofi-wayland # app launcher
-    hyprpaper # hyprland bg
+    hyprpaper # set bg
     hyprpolkitagent # authentication agent
     brightnessctl # control screen brightness
     playerctl # control media playback
-    gnome-calculator # like this calculator
 
     # screenshot
     grim # take screenshot
@@ -27,6 +26,9 @@
     # tray control
     networkmanagerapplet   
     pavucontrol
+    
+    # additionals
+    gnome-calculator # like this calculator
   ];
   # services.blueman-applet.enable = true;
 
@@ -53,24 +55,24 @@
       monitor = [
         (lguw + ", highrr, 0x0, 1, vrr, 1")
         (dell + ", preferred , 3840x-960 , 1, transform, 1")
-	(lapt + ", highrr, auto-down, 1.5")
-	", preferred, auto, 1"
+        (lapt + ", highrr, auto-down, 1.5")
+        ", preferred, auto, 1"
       ];
 
       # initial startups
       exec-once = [
         # essentials
         "waybar"
-	"hyprpaper"
+        "hyprpaper"
         "nm-applet --indicator"
         "blueman-applet"
-	"systemctl --user start hyprpolkitagent"
+        "systemctl --user start hyprpolkitagent"
 
-	# preferences
-	"steam -silent"
-	"[workspace 6 silent] flatpak run com.discordapp.Discord"
-	"[workspace 7 silent] signal-desktop"
-	"[workspace 8 silent] thunderbird"
+        # preferences
+        "steam -silent"
+        "[workspace 6 silent] flatpak run com.discordapp.Discord"
+        "[workspace 7 silent] signal-desktop"
+        "[workspace 8 silent] thunderbird"
       ];
 
       
@@ -82,13 +84,13 @@
         "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"
         "$mainMod, F, fullscreen,"
-	"$mainMod, Q, exec, makoctl dismiss"
+        "$mainMod, Q, exec, makoctl dismiss"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, E, togglesplit," # dwindle
 
-	# screenshots
-	",print, exec, ${screengrab}"
-	"ALT,print, exec, ${screenshot}"
+        # screenshots
+        ",print, exec, ${screengrab}"
+        "ALT,print, exec, ${screenshot}"
         
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -97,19 +99,19 @@
         "$mainMod, down, movefocus, d"
         
         # Move focus with mainMod + vim keys
-	"$mainMod, H, movefocus, l"
+        "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
         "$mainMod, J, movefocus, u"
         "$mainMod, K, movefocus, d"
         
-	# Move window with mainMod + arrow keys
+        # Move window with mainMod + arrow keys
         "$mainMod SHIFT, left, movewindow, l"
         "$mainMod SHIFT, right, movewindow, r"
         "$mainMod SHIFT, up, movewindow, u"
         "$mainMod SHIFT, down, movewindow, d"
         
         # Move window with mainMod + vim keys
-	"$mainMod SHIFT, H, movewindow, l"
+        "$mainMod SHIFT, H, movewindow, l"
         "$mainMod SHIFT, L, movewindow, r"
         "$mainMod SHIFT, J, movewindow, u"
         "$mainMod SHIFT, K, movewindow, d"
@@ -146,10 +148,10 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-	# media control on specific mkb 
-	",mouse:276, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-	",mouse:275, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
-	",mouse:278, exec, playerctl play-pause"
+        # media control on specific mkb 
+        ",mouse:276, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ",mouse:275, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
+        ",mouse:278, exec, playerctl play-pause"
         "$mainMod, C, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         
       ];
@@ -180,40 +182,40 @@
 
       general = {
         gaps_in = 4;
-	gaps_out = 12;
-	border_size = 1;
+        gaps_out = 12;
+        border_size = 1;
 
-	# don't resize window on accidental border click
-	resize_on_border = false;
+        # don't resize window on accidental border click
+        resize_on_border = false;
 
-	allow_tearing = false;
-	layout = "dwindle";
+        allow_tearing = false;
+        layout = "dwindle";
       };
 
       decoration = {
         rounding = 6;
-	shadow = {
-	  enabled = true;
-	  range = 4;
-	  render_power = 3;
-	};
-	blur = {
-	  enabled = true;
-	  size = 8;
-	  passes = 1;
-	};
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+        };
+        blur = {
+          enabled = true;
+          size = 8;
+          passes = 1;
+        };
       };
 
       animations = {
         enabled = "yes";
         
-	bezier = [
+        bezier = [
           "wind, 0.05, 0.9, 0.1, 1.05"
           "winIn, 0.1, 1.1, 0.1, 1.0"
           "winOut, 0.3, -0.3, 0, 1"
           "liner, 1, 1, 1, 1"
           "linear, 0.0, 0.0, 1.0, 1.0"
-	];
+        ];
 
         animation = [
           "windowsIn, 1, 6, winIn, popin"
@@ -225,7 +227,7 @@
           "workspaces, 1, 5, wind"
           "windows, 1, 6, wind, slide"
           "specialWorkspace, 1, 6, default, slidefadevert -50%"
-	];
+        ];
       };
       
       dwindle = {
@@ -240,14 +242,14 @@
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
-	middle_click_paste = false;
+        middle_click_paste = false;
       };
       
       input = {
         kb_layout = "us";
-	kb_options = [
-	  "caps:super"
-	];
+        kb_options = [
+          "caps:super"
+        ];
         follow_mouse = 1;
         
         numlock_by_default = true;
@@ -274,54 +276,54 @@
       "$pavucontrol" = "class:org.pulseaudio.pavucontrol";
       windowrulev2 = [
         # steam
-        "float, class:steam, title:[^(Steam)]"
-        "noinitialfocus, class:steam, $steamnotifications"
-        "pin, class:steam, $steamnotifications"
+        "float, class:^(steam), title:[^(Steam)]"
+        "suppressevent activate activatefocus, class:^(steam), $steamnotifications"
+        "pin, class:^(steam), $steamnotifications"
         "opacity 0.6, class:steam, $steamnotifications"
         "workspace 5, class:steam"
 
-	# games
-	"fullscreen, class:gamescope"
-	"fullscreen, class:steam_app_.*"
-	"immediate, class:steam_app_.*" # allow tearing for games
-	"monitor[0], class:steam_app_.*"
+        # games
+        "fullscreen, class:gamescope"
+        "fullscreen, class:steam_app_.*"
+        "immediate, class:steam_app_.*" # allow tearing for games
+        "monitor[0], class:steam_app_.*"
 
-	# comms
+        # comms
         "workspace 6, class:discord"
         "monitor 1 , class:discord"
-	"workspace 7, class:signal, title:Signal"
-	"monitor 1 , class:signal, title:Signal"
-	"workspace 8, class:thunderbird"
-	"monitor 1 , class:thunderbird"
+        "workspace 7, class:signal, title:Signal"
+        "monitor 1 , class:signal, title:Signal"
+        "workspace 8, class:thunderbird"
+        "monitor 1 , class:thunderbird"
 
-	# specific apps
-	"workspace 9, class:tidal-hifi"
-	"monitor 1, class:tidal-hifi"
+        # specific apps
+        "workspace 9, class:tidal-hifi"
+        "monitor 1, class:tidal-hifi"
 
-	# popups
-	"float, $filedialog"
-	"size 40% 60%, $filedialog"
-	"opacity 0.85, $filedialog"
-	
-	"float, $pavucontrol"
-	"size 40% 60%, $pavucontrol"
-	"opacity 0.85, $pavucontrol"
-	
-	"float, class:firefox, title:(Picture-in-Picture)"
-	"float, class:(^org\.speedcrunch\.$), title: ^SpeedCrunch$"
-	"float, class:org\.gnome\.Calculator"
-	"float, class:(^com\.gabm\.satty$)"
-	"fullscreenstate 0, class:(^com\.gabm\.satty$)"
+        # popups
+        "float, $filedialog"
+        "size 40% 60%, $filedialog"
+        "opacity 0.85, $filedialog"
+        
+        "float, $pavucontrol"
+        "size 40% 60%, $pavucontrol"
+        "opacity 0.85, $pavucontrol"
+        
+        "float, class:firefox, title:(Picture-in-Picture)"
+        "float, class:(^org\.speedcrunch\.$), title: ^SpeedCrunch$"
+        "float, class:org\.gnome\.Calculator"
+        "float, class:(^com\.gabm\.satty$)"
+        "fullscreenstate 0, class:(^com\.gabm\.satty$)"
 
-	# specific apps ricing
-	"opacity 0.85, class:^(org\.gnome\.Nautilus)$"
+        # specific apps ricing
+        "opacity 0.85, class:^(org\.gnome\.Nautilus)$"
 
       ];
 
       workspace = [
         "r[1-5], monitor:${lguw}"
-	"r[0], monitor:${lguw}"
-	"r[6-9], monitor:${dell}"
+        "r[0], monitor:${lguw}"
+        "r[6-9], monitor:${dell}"
       ];
 
     };
