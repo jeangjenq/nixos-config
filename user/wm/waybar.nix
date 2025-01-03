@@ -49,6 +49,7 @@ in
         ${window} = {
           "icon" = true;
 	  "icon-size" = 12;
+	  "separate-outputs"= true;
         };
 
         "clock" = {
