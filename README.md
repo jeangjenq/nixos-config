@@ -10,6 +10,7 @@ TODO: Make an install script
    ```bash
    sudo nixos-generate-config --show-hardware-config > system/hardware-configuration.nix
    ```
+   - Although it warns you not to do it inside `hardware-configuration.nix`, I can edit the `fileSystems` section in it at this stage to configure mounting any network shares.
 1. Change `hostname` in (flakes.nix)[./flakes.nix].
 1. Change boot mode in (configuration.nix)[./profiles/work/configuration.nix] if necessary, use `/etc/nixos/configuration.nix` as a reference.
 1. Enable flakes in `/etc/nixos/configuration.nix` by adding the line
