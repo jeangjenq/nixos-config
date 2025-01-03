@@ -1,5 +1,5 @@
 # firefox
-I'm using [firefox policies] to declare my preferred configs.
+I'm using [firefox policies](https://mozilla.github.io/policy-templates/) to declare my preferred configs.
 
 ## config
  - Set up my custom homepage.
