@@ -21,6 +21,9 @@
     # photography
     rapid-photo-downloader
     darktable
+
+    # editors
+    standardnotes
   ];
 
 }
