@@ -6,7 +6,7 @@
     settings = {
       exec-once = [
         "fcitx5 -d -r"
-	"fcitx5-remote -r"
+        "fcitx5-remote -r"
       ];
       windowrule = [
         "pseudo, fcitx"
