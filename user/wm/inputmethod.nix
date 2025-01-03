@@ -1,16 +1,6 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-gtk
-      fcitx5-chinese-addons # simplified chinese
-      # we don't need themes we have stylix
-    ];
-    fcitx5.waylandFrontend = true;
-  };
-
   # hyprland specific startup and rule
   wayland.windowManager.hyprland = {
     settings = {
@@ -23,7 +13,7 @@
       ];
     };
   };
-  
+
   home.file = {
     # make sure stylix is being used as a them
     ".config/fcitx5/conf/classicui.conf".text = ''

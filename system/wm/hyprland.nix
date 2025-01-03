@@ -3,6 +3,7 @@
 {
   imports = [
     ./pipewire.nix
+    ./inputmethod.nix
     ./dbus.nix
     ./fonts.nix
   ];
