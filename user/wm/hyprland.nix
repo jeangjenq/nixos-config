@@ -281,7 +281,7 @@
       windowrulev2 = [
         # steam
 	      "monitor 0, $steam"
-        "workspace 5, $steam"
+        "workspace 5 silent, $steam"
         "float, $steam, title:[^(Steam)]"
         "nofocus, $steam, $steamtoast"
         "pin, $steam, $steamtoast"
