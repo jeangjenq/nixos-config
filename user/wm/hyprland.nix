@@ -5,13 +5,13 @@
     ../app/terminal/alacritty.nix
     ../app/terminal/kitty.nix
     ./inputmethod.nix
+    ./mako.nix
     ./waybar.nix
   ];
 
   home.packages = with pkgs; [
     # core
     kitty # hyprland default terminal
-    mako # notification
     rofi-wayland # app launcher
     hyprpaper # hyprland bg
     hyprpolkitagent # authentication agent
@@ -79,6 +79,7 @@
         "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"
         "$mainMod, F, fullscreen,"
+	"$mainMod, Q, exec, makoctl dismiss"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, E, togglesplit," # dwindle
         
