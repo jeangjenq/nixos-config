@@ -6,11 +6,17 @@
     profiles.${userSettings.username} = {
       search = {
         force = true;
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
-        order = [ "DuckDuckGo" "Google" ];
+        default = "Searx";
+        privateDefault = "Searx";
+        order = [ "Searx" "DuckDuckGo" "NixPkgs" "MyNixOS" "Google" ];
         engines = {
-          "Nix Packages" = {
+          "Searx" = {
+            urls = [{ template = "https://searx.lohng.com/?q={searchTerms}"; }];
+            iconUpdateURL = "https://docs.searxng.org/_static/searxng-wordmark.svg";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = [ "@searx" ];
+          };
+          "NixPkgs" = {
             urls = [{
               template = "https://search.nixos.org/packages";
               params = [
