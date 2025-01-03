@@ -1,7 +1,7 @@
-{ pkgs, ... }
+{ pkgs, ... }:
 
 {
-  home.packges = with pkgs; [
+  home.packages = with pkgs; [
     vscodium
   ];
 
@@ -51,7 +51,6 @@
           }
       ]
     '';
-    mutable = true;
     };
   };
 }
