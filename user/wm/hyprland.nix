@@ -72,7 +72,7 @@
         "systemctl --user start hyprpolkitagent"
 
         # preferences
-        "steam -silent"
+        "steam"
         "[workspace 6 silent] flatpak run com.discordapp.Discord"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] thunderbird"
@@ -246,6 +246,7 @@
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
         middle_click_paste = false;
+	      focus_on_activate = false;
       };
       
       input = {
@@ -272,25 +273,28 @@
       
       # window identifiers
       ## steam
-      "$steamnotifications" = "title:notificationtoasts.*";
+      "$steam" = "class:^(steam)$";
+      "$steamtoast" = "title:^(notificationtoasts_.*_desktop)$";
 
       ## popups
       "$filedialog" = "title:((Open|Save) (File|Folder|As))";
       "$pavucontrol" = "class:org.pulseaudio.pavucontrol";
       windowrulev2 = [
         # steam
-        "float, class:^(steam), title:[^(Steam)]"
-        "noinitialfocus, class:^(steam), $steamnotifications"
-        "suppressevent activate activatefocus, class:^(steam), $steamnotifications"
-        "pin, class:^(steam), $steamnotifications"
-        "opacity 0.6, class:steam, $steamnotifications"
-        "workspace 5, class:steam"
+	      "monitor 0, $steam"
+        "workspace 5, $steam"
+        "float, $steam, title:[^(Steam)]"
+        "nofocus, $steam, $steamtoast"
+        "pin, $steam, $steamtoast"
+        "opacity 0.6, $steam, $steamtoast"
 
         # games
         "fullscreen, class:gamescope"
         "fullscreen, class:steam_app_.*"
         "immediate, class:steam_app_.*" # allow tearing for games
-        "monitor[0], class:steam_app_.*"
+        "monitor 0, class:steam_app_.*"
+        "decorate off, class:steam_app_.*"
+        "noanim, class:steam_app_.*"
 
         # comms
         "workspace 6, class:discord"
