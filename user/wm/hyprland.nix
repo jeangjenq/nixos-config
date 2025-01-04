@@ -58,7 +58,7 @@
       monitor = [
         (lguw + ", highrr, 0x0, 1, vrr, 1")
         (dell + ", preferred , 3840x-960 , 1, transform, 1")
-        (lapt + ", highrr, auto-down, 1.5")
+        (lapt + ", highrr, auto-down, 1.25")
         ", preferred, auto, 1"
       ];
 
@@ -182,6 +182,11 @@
         ", XF86AudioPause, exec, playerctl play-pause"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
+        # laptop lid switch
+        # ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
+        # ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, highrr, auto-down, 1.25\""
+        ", switch:on:Lid Switch, exec, hyprctl dispatch dpms off && hyprlock"
+        ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
       ];
 
       general = {
@@ -260,7 +265,7 @@
         numlock_by_default = true;
         accel_profile = "flat";
         touchpad = {
-          natural_scroll = false;
+          natural_scroll = true;
         };
       };
 
