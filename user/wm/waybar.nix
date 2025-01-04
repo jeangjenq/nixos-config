@@ -12,8 +12,8 @@ let
   margin = "12";
 
   # color
-  unfocused = "alpha(shade(@theme_base_color, 1.25), 0.2)";
-  focused = "alpha(@theme_selected_fg_color, 0.6)";
+  unfocused = "alpha(shade(@theme_base_color, 1.25), 0.5)";
+  focused = "alpha(@theme_selected_fg_color, 0.5)";
   border = "shade(@borders, 1.5)";
   text = "@theme_text_color";
   success = "alpha(@success_color, 0.6)";
