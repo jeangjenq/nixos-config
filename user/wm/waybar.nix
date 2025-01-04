@@ -1,11 +1,23 @@
 { pkgs, systemSettings, ... }:
 
 let
+  # wm specific changes
   workspaces = (systemSettings.wm + "/workspaces");
   window = (systemSettings.wm + "/window");
   mode =  if (systemSettings.wm == "hyprland" )
             then "hyprland/submap"
           else "sway/mode";
+  
+  # styling
+  margin = "12";
+
+  # color
+  unfocused = "alpha(shade(@theme_base_color, 1.25), 0.2)";
+  focused = "alpha(@theme_selected_fg_color, 0.6)";
+  border = "shade(@borders, 1.5)";
+  text = "@theme_text_color";
+  success = "alpha(@success_color, 0.6)";
+  error = "alpha(@error_color, 0.6)";
 in
 {
   programs.waybar = {
@@ -38,13 +50,6 @@ in
 
         ${workspaces} = {
           "format" = "{icon}";
-          "format-icons" = {
-            "default" = "";
-            "active" = "";
-          };
-          "persistent-workspaces" = {
-            "*" = 4;
-          };
         };
 
         ${window} = {
@@ -58,13 +63,14 @@ in
           "timezone" = systemSettings.timezone;
           "format" = "{:%a, %d %b %Y | %H:%M %p}";
           "tooltip-format" = "<tt><big>{calendar}</big></tt>";
+          "on-click" = "gnome-calendar";
         };
 
         "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = "󰅶";
+            deactivated = "󰾪";
           };
         };
 
@@ -102,7 +108,7 @@ in
         "battery" = {
           "states" = {
             "good" = 60;
-            "warning" = 30;
+            "warning" = 40;
             "critical" = 15;
           };
           "format" = "{capacity}% {icon}";
@@ -154,10 +160,13 @@ in
     style = ''
       * {
           border: none;
-          border-radius: 6px;
-          padding: 1 3px;
+          border-radius: 8px;
           font-size: 12px;
-          font-family: "Roboto Mono Medium";
+      }
+
+      tooltip {
+          background: ${unfocused};
+          color: ${text};
       }
       
       window#waybar {
@@ -165,29 +174,60 @@ in
       }
 
       .module {
-          padding: 0 10px;
-          box-shadow: inset 0 -2px rgba(255,255,255,0.4);
+          padding: 0 ${margin}px;
+          background-color: ${unfocused};
+          box-shadow: inset -0.05em -0.05em ${border};
       }
       
       .modules-right {
-          margin: 10px 10px 0 0;
-          background-color: rgba(255,222,242,0.2);
+          margin: ${margin}px ${margin}px 0 0;
       }
       .modules-center {
-          margin: 10px 0 0 0;
-          background-color: rgba(242,226,255,0.2);
+          margin: ${margin}px 0 0 0;
       }
       .modules-left {
-          margin: 10px 0 0 10px;
-          background-color: rgba(226,238,255,0.2);
+          margin: ${margin}px 0 0 ${margin}px;
       }
 
-      #battery.critical:not(.charging) {
-          background-color: #f53c3c;
-          color: #ffffff;
+      #workspaces button {
+          padding: 0em 0.25em;
+          margin: 0.5em;
+      }
+      #workspaces button.active {
+          background-color: ${success};
+          border-color: ${border};
+          color: ${text};
+      }
+
+      @keyframes blink {
+          to {
+              background-color: ${error};
+              color: ${text};
+              font-size: larger;
+          }
+      }
+
+      #workspaces button.urgent {
+          border-radius: 1em;
           animation-name: blink;
           animation-duration: 0.5s;
-          animation-timing-function: linear;
+          animation-timing-function: steps(12);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
+
+      #battery.warning:not(.charging) {
+          animation-name: blink;
+          animation-duration: 0.5s;
+          animation-timing-function: steps(12);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
+      
+      #battery.critical:not(.charging) {
+          animation-name: blink;
+          animation-duration: 0.25s;
+          animation-timing-function: steps(12);
           animation-iteration-count: infinite;
           animation-direction: alternate;
       }
