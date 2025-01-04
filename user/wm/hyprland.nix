@@ -276,7 +276,8 @@
       "$steamtoast" = "title:^(notificationtoasts_.*_desktop)$";
 
       ## popups
-      "$filedialog" = "title:((Open|Save) (File|Folder|As))";
+      "$filedialog" = "class:^(xdg.desktop-portal)";
+      # "$filedialog" = "title:((Open|Save) (File|Folder|As))";
       "$pavucontrol" = "class:org.pulseaudio.pavucontrol";
       windowrulev2 = [
         # steam
@@ -319,11 +320,12 @@
         "float, class:firefox, title:(Picture-in-Picture)"
         "float, class:(^org\.speedcrunch\.$), title: ^SpeedCrunch$"
         "float, class:org\.gnome\.Calculator"
+        "float, class:org\.gnome\.Calendar"
         "float, class:(^com\.gabm\.satty$)"
         "fullscreenstate 0, class:(^com\.gabm\.satty$)"
 
         # specific apps ricing
-        "opacity 0.85, class:^(org\.gnome\.Nautilus)$"
+        "opacity 0.85, class:^(org\.gnome.+)$"
 
       ];
 
