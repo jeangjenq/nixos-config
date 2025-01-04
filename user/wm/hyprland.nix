@@ -83,7 +83,7 @@
       
       bind = [
         ("$mainMod, RETURN, exec," + terminal)
-        ("$mainMod, R, exec," + menu)
+        ("$mainMod, D, exec," + menu)
         "$mainMod SHIFT, E, exec, wlogout"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, M, exit,"
