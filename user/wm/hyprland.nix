@@ -4,9 +4,10 @@
   imports = [
     ../app/terminal/alacritty.nix
     ../app/terminal/kitty.nix
+    ./inputmethod.nix
     ./hyprlock.nix
     ./hypridle.nix
-    ./inputmethod.nix
+    ./wlogout.nix
     ./swaync.nix
     ./waybar.nix
   ];
@@ -72,7 +73,8 @@
         "systemctl --user start hyprpolkitagent"
 
         # preferences
-        "steam"
+        "[workspace 1] firefox"
+        "[workspace 5 silent] steam"
         "[workspace 6 silent] flatpak run com.discordapp.Discord"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] thunderbird"
@@ -80,9 +82,9 @@
 
       
       bind = [
-        # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         ("$mainMod, RETURN, exec," + terminal)
         ("$mainMod, R, exec," + menu)
+        "$mainMod SHIFT, E, exec, wlogout"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"
@@ -269,6 +271,10 @@
       gestures = {
         workspace_swipe = true;
       };
+
+      layerrule = [
+        "blur, logout_dialog"
+      ];
       
       # window identifiers
       ## steam
