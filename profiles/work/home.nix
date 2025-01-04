@@ -9,6 +9,7 @@
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
     ../../system/hardware/rnnoise.nix
+    ../../system/app/obs.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix
@@ -37,7 +38,6 @@
     gimp
     krita
     inkscape
-    obs-studio
     tenacity
     davinci-resolve
     kdenlive
