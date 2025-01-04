@@ -20,9 +20,9 @@ TODO: Make an install script
    Then run `sudo nixos-rebuild test`
 1. Now that NixOS has flakes, switch to the cloned flakes.
    ```bash
-   sudo nixos-rebuild switch --flakes ~/.dotfiles#system
+   sudo nixos-rebuild switch --flake ~/.dotfiles#system
    ```
 1. If the rebuild went well, install and build home-manager configuration.
    ```bash
-   nix run home-manager/master --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/.dotfiles#user;
+   nix run home-manager/master --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/.dotfiles#user
    ```
