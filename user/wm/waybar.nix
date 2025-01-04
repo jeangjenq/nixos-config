@@ -75,10 +75,10 @@ in
         };
 
         "pulseaudio" = {
-          "format" = "{volume}% {icon} {format_source}";
-          "format-bluetooth" = "{volume}% {icon} {format_source}";
-          "format-bluetooth-muted" = " {icon} {format_source}";
-          "format-muted" = " {format_source}";
+          "format" = "{volume}% {icon}   {format_source}";
+          "format-bluetooth" = "{volume}% {icon}    {format_source}";
+          "format-bluetooth-muted" = " {icon}    {format_source}";
+          "format-muted" = "   {format_source}";
           "format-source" = "{volume}% ";
           "format-source-muted" = "";
           "format-icons"= {
@@ -101,7 +101,7 @@ in
 
         "memory" = {
           "interval" = 1;
-          "format" = "mem:{}%";
+          "format" = "mem: {}%";
           "on-click" = "missioncenter";
         };
         
@@ -159,6 +159,7 @@ in
 
     style = ''
       * {
+          padding: 0.1em 0.1em;
           border: none;
           border-radius: 8px;
           font-size: 12px;

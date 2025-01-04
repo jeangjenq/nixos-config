@@ -337,6 +337,7 @@
 
         # specific apps ricing
         "opacity 0.85, class:^(org\.gnome.+)$"
+        "opacity 0.85, class:^(codium)"
 
       ];
 
