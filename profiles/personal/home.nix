@@ -11,6 +11,7 @@
   home.packages = with pkgs; [
     # comms
     # signal-desktop covered by electron wrapper
+    vesktop
     thunderbird
 
     # players

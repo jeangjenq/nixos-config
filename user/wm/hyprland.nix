@@ -75,7 +75,7 @@
         # preferences
         "[workspace 1] firefox"
         "[workspace 5 silent] steam"
-        "[workspace 6 silent] flatpak run com.discordapp.Discord"
+        "[workspace 6 silent] vesktop"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] thunderbird"
       ];
@@ -303,8 +303,8 @@
         "noanim, class:steam_app_.*"
 
         # comms
-        "workspace 6, class:discord"
-        "monitor 1 , class:discord"
+        "workspace 6, class:vesktop"
+        "monitor 1 , class:vesktop"
         "workspace 7, class:signal, title:Signal"
         "monitor 1 , class:signal, title:Signal"
         "workspace 8, class:thunderbird"
