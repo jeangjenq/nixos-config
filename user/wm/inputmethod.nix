@@ -18,8 +18,8 @@
     # make sure stylix is being used as a them
     ".config/fcitx5/conf/classicui.conf" = {
       text = ''
-      Theme=stylix
-      DarkTheme=stylix
+      Theme=FluentDark
+      DarkTheme=FluentDark
       UseDarkTheme=True
       '';
       force = true;
