@@ -19,7 +19,10 @@
     ".config/fcitx5/conf/classicui.conf" = {
       text = ''
       Theme=stylix
+      DarkTheme=stylix
+      UseDarkTheme=True
       '';
+      force = true;
     };
 
     # add pinyin input method right away
@@ -60,6 +63,7 @@
       [Hotkey/AltTriggerKeys]
       0=Shift_L
       '';
+      force = true;
     };
   };
 }
