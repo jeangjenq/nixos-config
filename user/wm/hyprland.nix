@@ -62,6 +62,10 @@
         ", preferred, auto, 1"
       ];
 
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       # initial startups
       exec-once = [
         # essentials
