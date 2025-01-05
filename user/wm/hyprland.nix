@@ -322,6 +322,8 @@
         # specific apps
         "workspace 9, class:tidal-hifi"
         "monitor 1, class:tidal-hifi"
+        "workspace 6, class:^(teams-for-linux)$"
+        "monitor 1, class:^(teams-for-linux)$"
 
         # popups
         "float, $filedialog"
