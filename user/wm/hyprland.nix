@@ -344,6 +344,8 @@
         # specific apps ricing
         "opacity 0.85, class:^(org\.gnome.+)$"
         "opacity 0.85, class:^(codium)"
+        "opacity 0.85, class:^(Standard Notes)$"
+        "opacity 0.85, class:^(@joplin)"
 
       ];
 
