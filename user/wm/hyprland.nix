@@ -4,12 +4,12 @@
   imports = [
     ../app/terminal/alacritty.nix
     ../app/terminal/kitty.nix
-    ./inputmethod.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./wlogout.nix
     ./swaync.nix
     ./waybar.nix
+    ./ime.nix
   ];
 
   home.packages = with pkgs; [
