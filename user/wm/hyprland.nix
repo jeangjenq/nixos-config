@@ -78,7 +78,7 @@
 
         # preferences
         "[workspace 1] firefox"
-        "[workspace 5 silent] steam"
+        "[workspace 5 silent] MANGOHUD=1 steam"
         "[workspace 6 silent] vesktop"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] thunderbird"
