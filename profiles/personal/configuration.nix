@@ -12,7 +12,7 @@ let
       postBuild = lib.strings.concatStrings [
         "wrapProgram $out/bin/"
         appName
-	" --add-flags \"--enable-wayland-ime\""
+        " --add-flags \"--enable-wayland-ime\""
       ];
     };
 
@@ -36,7 +36,13 @@ in
       authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEQnJVdL98B5voLeFHF9pGhNBW6mudDPJM2By159a/6 jeangjenq@worf"];
       inherit userSettings; })
   ];
-    
+
+  # personal preferences on powerkey and suspend behaviour
+  services.logind = {
+    powerKey = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
+
   # enable flatpak for something like discord
   services.flatpak.enable = true;
 
