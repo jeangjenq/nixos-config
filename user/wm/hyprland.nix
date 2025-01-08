@@ -340,6 +340,7 @@
         "float, class:org\.gnome\.Calendar"
         "float, class:(^com\.gabm\.satty$)"
         "fullscreenstate 0, class:(^com\.gabm\.satty$)"
+        "opacity 0.85, class:^(com.nextcloud.desktopclient.nextcloud)$"
 
         # specific apps ricing
         "opacity 0.85, class:^(org\.gnome.+)$"

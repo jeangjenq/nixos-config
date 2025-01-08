@@ -14,6 +14,10 @@
     vesktop
     thunderbird
 
+    # productivity
+    nextcloud-client
+    protonmail-bridge
+
     # players
     # tidal-hifi covered by electron wrapper
     strawberry
@@ -26,5 +30,10 @@
     # editors
     standardnotes
   ];
+
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 
 }
