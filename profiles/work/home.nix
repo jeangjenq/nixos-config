@@ -43,7 +43,6 @@
     kdenlive
 
     # media
-    nomacs
     yt-dlp
     ffmpeg
 
