@@ -74,6 +74,8 @@
         "hypridle"
         "nm-applet --indicator"
         "blueman-applet"
+        "protonmail-bridge --noninteractive"
+        "nextcloud"
         "systemctl --user start hyprpolkitagent"
 
         # preferences
@@ -81,7 +83,7 @@
         "[workspace 5 silent] MANGOHUD=1 steam"
         "[workspace 6 silent] vesktop"
         "[workspace 7 silent] signal-desktop"
-        "[workspace 8 silent] thunderbird"
+        "[workspace 8 silent] sleep 5 && thunderbird"
       ];
 
       
