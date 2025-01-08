@@ -326,6 +326,8 @@
         "monitor 1, class:tidal-hifi"
         "workspace 6, class:^(teams-for-linux)$"
         "monitor 1, class:^(teams-for-linux)$"
+        "monitor 0 silent, class:^(pcoip-client)$"
+        "workspace 0 silent, class:^(pcoip-client)$"
 
         # popups
         "float, $filedialog"
@@ -359,6 +361,14 @@
       ];
 
     };
+
+    extraConfig = ''
+      # teradici hotkeys passthrough
+      bind = $mainMod SHIFT, Z, submap, passthrough
+      submap = passthrough
+      bind = $mainMod SHIFT, Z, submap, reset
+      submap = reset
+    '';
   };
 
 }
