@@ -327,7 +327,7 @@
         "workspace 6, class:^(teams-for-linux)$"
         "monitor 1, class:^(teams-for-linux)$"
         "monitor 0 silent, class:^(pcoip-client)$"
-        "workspace 0 silent, class:^(pcoip-client)$"
+        "workspace 10 silent, class:^(pcoip-client)$"
 
         # popups
         "float, $filedialog"
