@@ -26,6 +26,7 @@ in
     ../work/configuration.nix
     ../../system/hardware-configuration.nix
     ../../system/hardware/automount.nix
+    ../../system/hardware/8bitdo.nix
     ../../system/network/wireguard.nix
     ../../system/game/steam.nix
     ../../system/game/heroic.nix
