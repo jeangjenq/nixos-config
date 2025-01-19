@@ -40,6 +40,7 @@
       settings = {
         # personal preferences
         "places.history.enabled" = false;
+        "media.ffmpeg.vaapi.enabled" = true; # hardware acceleration
       };
     };
 
