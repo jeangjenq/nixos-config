@@ -5,6 +5,12 @@ let
   DISPLAY="DP-1";
 in
 {
+  hardware = {
+    graphics = {
+      enable32Bit = true;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     steam
     gamescope
@@ -28,4 +34,3 @@ in
   };
 
 }
-
