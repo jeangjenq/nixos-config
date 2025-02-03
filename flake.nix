@@ -43,28 +43,28 @@
     nixosConfigurations = {
       system = nixpkgs.lib.nixosSystem {
         system = systemSettings.system;
-	modules = [
-	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-	  stylix.nixosModules.stylix
-	];
-	specialArgs = {
-	  inherit systemSettings;
-	  inherit userSettings;
-	};
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+          stylix.nixosModules.stylix
+        ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
 
     homeConfigurations = {
       user = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-	modules = [
-	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-	  stylix.homeManagerModules.stylix
-	];
-	extraSpecialArgs = {
-	  inherit systemSettings;
-	  inherit userSettings;
-	};
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+          stylix.homeManagerModules.stylix
+        ];
+        extraSpecialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
 
@@ -72,13 +72,13 @@
       system = nix-darwin.lib.darwinSystem {
         system = systemSettings.system;
         modules = [
-	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-	  stylix.darwinModules.stylix
-	];
-	specialArgs = {
-	  inherit systemSettings;
-	  inherit userSettings;
-	};
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+          stylix.darwinModules.stylix
+        ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
   };
