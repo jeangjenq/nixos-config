@@ -2,13 +2,15 @@
   description = "jeangjenq's nix flakes.";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-    stylix.url = "github:danth/stylix/release-24.11";
-    home-manager.url = "github:nix-community/home-manager/release-24.11"; 
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    stylix.url = "github:danth/stylix";
+    home-manager.url = "github:nix-community/home-manager"; 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, stylix, home-manager, ... }:
   let
     # ---------- VARIABLES ---------- #
     systemSettings = {
@@ -28,10 +30,8 @@
     };
     # ---------- VARIABLES ---------- #
     
-    lib = inputs.nixpkgs.lib;
     # pkgs = nixpkgs.legacyPackages.${system};
-    home-manager = inputs.home-manager;
-    pkgs = import inputs.nixpkgs {
+    pkgs = import nixpkgs {
       system = systemSettings.system;
       config = {
         allowUnfree = true;
@@ -41,11 +41,11 @@
   in
   {
     nixosConfigurations = {
-      system = lib.nixosSystem {
+      system = nixpkgs.lib.nixosSystem {
         system = systemSettings.system;
 	modules = [
 	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-	  inputs.stylix.nixosModules.stylix
+	  stylix.nixosModules.stylix
 	];
 	specialArgs = {
 	  inherit systemSettings;
@@ -59,9 +59,23 @@
         inherit pkgs;
 	modules = [
 	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-	  inputs.stylix.homeManagerModules.stylix
+	  stylix.homeManagerModules.stylix
 	];
 	extraSpecialArgs = {
+	  inherit systemSettings;
+	  inherit userSettings;
+	};
+      };
+    };
+
+    darwinConfigurations = {
+      system = nix-darwin.lib.darwinSystem {
+        system = systemSettings.system;
+        modules = [
+	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+	  stylix.darwinModules.stylix
+	];
+	specialArgs = {
 	  inherit systemSettings;
 	  inherit userSettings;
 	};
