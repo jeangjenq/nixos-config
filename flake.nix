@@ -8,9 +8,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, stylix, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, stylix, home-manager, nix-darwin, nix-homebrew, ... }:
   let
     # ---------- VARIABLES ---------- #
     systemSettings = {
@@ -74,6 +75,14 @@
         modules = [
           (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
           stylix.darwinModules.stylix
+          nix-homebrew.darwinModules.nix-homebrew {
+            nix-homebrew = {
+              enable = true;
+              # Apple Silicon
+              enableRosetta = true;
+              user = userSettings.username;
+            };
+          }
         ];
         specialArgs = {
           inherit systemSettings;

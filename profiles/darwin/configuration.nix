@@ -8,6 +8,34 @@
     home-manager
   ];
 
+  homebrew = {
+    enable = true;
+    casks = [
+      # better than spotlight?
+      "raycast"
+
+      # comms
+      "thunderbird"
+      "signal"
+      "discord"
+
+      # media
+      "tidal"
+
+      # dev
+      "vmware-fusion"
+    ];
+    masApps = {
+      "bitwarden" = 1352778147;
+      "wireguard" = 1451685025;
+    };
+    onActivation = {
+      cleanup = "zap";
+      autoUpdate = true;
+      upgrade = true;
+    };
+  };
+
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
