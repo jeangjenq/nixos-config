@@ -2,11 +2,11 @@
   description = "jeangjenq's nix flakes.";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    stylix.url = "github:danth/stylix";
-    home-manager.url = "github:nix-community/home-manager"; 
+    nixpkgs.url = "nixpkgs/nixos-24.11";
+    stylix.url = "github:danth/stylix/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.11"; 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };

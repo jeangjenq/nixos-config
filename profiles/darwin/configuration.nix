@@ -51,7 +51,7 @@
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 6;
+  system.stateVersion = 5;
 
   # make sure rosetta is enabled so we can run binaries for intel-cpus
   system.activationScripts.extraActivation.text = ''
