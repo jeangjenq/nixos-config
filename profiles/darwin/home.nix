@@ -6,9 +6,12 @@
     ../../user/app/git/git.nix
     ../../user/app/media/mpv.nix
     ../../user/app/editor/vscodium.nix
+    ../../user/app/browser/firefox.nix
     ../../user/shell/sh.nix
     # ../../themes/stylix.nix
   ];
+
+  programs.firefox.package = pkgs.firefox-unwrapped;
 
   home.username = userSettings.username;
   home.homeDirectory = "/Users/" + userSettings.username;
