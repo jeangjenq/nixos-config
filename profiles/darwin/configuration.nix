@@ -1,5 +1,16 @@
-{ pkgs, systemSettings, userSettings, ... }:
-
+{ pkgs, lib, systemSettings, userSettings, ... }:
+let
+  firefoxConfig = import ../../user/app/browser/firefox.nix { inherit lib pkgs userSettings; };
+  firefoxJson = builtins.toJSON firefoxConfig.programs.firefox.policies;
+  firefoxPolicies = pkgs.writeTextFile {
+    name = "policies.json";
+    text = ''
+      {"policies":${firefoxJson}}
+    '';
+    destination = "/policies.json";
+  };
+  firefoxPoliciesDir = "/Applications/Firefox.app/Contents/Resources/distribution/";
+in
 {
   environment.systemPackages = with pkgs; [
     neovim
@@ -8,6 +19,13 @@
     home-manager
   ];
 
+  # dumping firefox policies to /etc/firefox/policies.json
+  # NOTE: Could not figure out how to link policies.json into
+  # /Applications/Firefox.app/Contents/Resources/distribution/
+  # manual mkdir and symlink later
+  # sudo ln -s /etc/firefox/policies.json /Applications/Firefox.app/Contents/Resources/distribution/policies.json
+  environment.etc."firefox".source = firefoxPolicies;
+
   homebrew = {
     enable = true;
     casks = [
@@ -15,6 +33,7 @@
       "raycast"
 
       # comms
+      "firefox"
       "thunderbird"
       "signal"
       "discord"

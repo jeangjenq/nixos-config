@@ -11,10 +11,7 @@
     # ../../themes/stylix.nix
   ];
 
-  programs.firefox.package = pkgs.firefox-unwrapped;
-
-  home.username = userSettings.username;
-  home.homeDirectory = "/Users/" + userSettings.username;
+  programs.firefox.package = null;
   
   home.stateVersion = "24.11";
 
