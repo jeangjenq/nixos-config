@@ -23,7 +23,5 @@
     yt-dlp
     ffmpeg
 
-    # media
-    mpv
   ];
 }

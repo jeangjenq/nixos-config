@@ -45,7 +45,7 @@ in
       "vmware-fusion"
     ];
     masApps = {
-      "bitwarden" = 1352778147;
+      # "bitwarden" = 1352778147;
       "wireguard" = 1451685025;
     };
     onActivation = {
