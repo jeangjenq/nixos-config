@@ -40,6 +40,11 @@
     dock.autohide = true;
   };
 
+  # specify user
+  users.users."${userSettings.username}" = {
+    home = "/Users/" + userSettings.username;
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 

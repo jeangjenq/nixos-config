@@ -55,9 +55,6 @@
       };
     };
 
-    # homeConfigurations =  if (systemSettings.system == "aarch64-darwin")
-    #                       then {}
-    #                       else {
     homeConfigurations = {
       user = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -77,17 +74,17 @@
         system = systemSettings.system;
         modules = [
           (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-          # home-manager.darwinModules.home-manager {
-          #   home-manager = {
-          #     useGlobalPkgs = true;
-          #     useUserPackages = true;
-          #     users."${userSettings.username}" = import ./profiles/darwin/home.nix;
-          #     extraSpecialArgs = {
-          #       inherit systemSettings;
-          #       inherit userSettings;
-          #     };
-          #   };
-          # }
+          home-manager.darwinModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."${userSettings.username}" = import ./profiles/darwin/home.nix;
+              extraSpecialArgs = {
+                inherit systemSettings;
+                inherit userSettings;
+              };
+            };
+          }
           stylix.darwinModules.stylix
           nix-homebrew.darwinModules.nix-homebrew {
             nix-homebrew = {
