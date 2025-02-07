@@ -40,16 +40,12 @@ in
 
       # media
       "tidal"
-
-      # dev
-      "vmware-fusion"
     ];
     masApps = {
-      # "bitwarden" = 1352778147;
       "wireguard" = 1451685025;
     };
     onActivation = {
-      cleanup = "zap";
+      cleanup = "uninstall";
       autoUpdate = true;
       upgrade = true;
     };
