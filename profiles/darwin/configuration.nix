@@ -40,7 +40,14 @@ in
 
       # media
       "tidal"
+      "jellyfin-media-player"
+      "steam"
+
+      # work
+      "microsoft-teams"
+      "pcoipclient"
     ];
+
     masApps = {
       "wireguard" = 1451685025;
     };
