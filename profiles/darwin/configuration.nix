@@ -57,6 +57,23 @@ in
 
   system.defaults = {
     dock.autohide = true;
+    dock.static-only = false;
+    dock.show-recents = false;
+    dock.persistent-apps = [];
+    menuExtraClock.Show24Hour = true;
+    menuExtraClock.ShowSeconds = true;
+    menuExtraClock.ShowDayOfWeek = true;
+    hitoolbox.AppleFnUsageType = "Change Input Source";
+    # remove trash after 30 days
+    finder.FXRemoveOldTrashItems = true;
+    controlcenter.BatteryShowPercentage = true;
+    # Whether to enable moving window by holding anywhere on it like on Linux.
+    NSGlobalDomain.NSWindowShouldDragOnGesture = true;
+    NSGlobalDomain."com.apple.keyboard.fnState" = true;
+    NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+    NSGlobalDomain.NSAutomaticInlinePredictionEnabled = false;
+    NSGlobalDomain.KeyRepeat = 2;
+    NSGlobalDomain.AppleInterfaceStyle = "Dark";
   };
 
   # specify user
