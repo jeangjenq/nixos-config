@@ -1,0 +1,57 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+# required for dbus
+include /etc/sway/config.d/*
+
+### Style
+default_border pixel
+gaps {
+  inner 2px
+  outer 2px
+}
+
+# Variables
+set {
+  # Mod key
+  $mod Mod4
+  # Home row direction keys, like vim
+  $left   h
+  $down   j
+  $up     k
+  $right  l
+  # prefered applications
+  $term alacritty
+  $menu fuzzel
+  $exit wlogout -p layer-shell
+  $prt  grim - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+  $prts grim -g "$(slurp)" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png
+
+
+}
+
+# Workspaces
+set {
+  $ws1 1
+  $ws2 2
+  $ws3 3
+  $ws4 4
+  $ws5 5
+  $ws6 6
+  $ws7 7
+  $ws8 8
+  $ws9 9
+  $ws0 10
+}
+
+# Drag floating windows by holding down $mod and left mouse button.
+# floating_modifier $mod normal
+
+# Status Bar:
+bar {
+  swaybar_command waybar
+}
+
+include ./config.d/*.conf
