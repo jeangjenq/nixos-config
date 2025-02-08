@@ -6,12 +6,13 @@ I'm setting this up based on [LibrePhoenix's extensive tutorial](https://www.you
 TODO: Make an install script
 1. Clone this repository into home folder. I prefer to place it inside `.dotfiles` folder.
 1. cd into the repository.
+1. Adjust `hostname`, `system` and `profile` in (flakes.nix)[./flakes.nix].
+### NixOS
 1. Replace the `hardware-configuration.nix` in system folder by running
    ```bash
    sudo nixos-generate-config --show-hardware-config > system/hardware-configuration.nix
    ```
    - Although it warns you not to do it inside `hardware-configuration.nix`, I can edit the `fileSystems` section in it at this stage to configure mounting any network shares.
-1. Change `hostname` in (flakes.nix)[./flakes.nix].
 1. Change boot mode in (configuration.nix)[./profiles/work/configuration.nix] if necessary, use `/etc/nixos/configuration.nix` as a reference.
 1. Enable flakes in `/etc/nixos/configuration.nix` by adding the line
    ```yaml
@@ -25,4 +26,15 @@ TODO: Make an install script
 1. If the rebuild went well, install and build home-manager configuration.
    ```bash
    nix run home-manager/master --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/.dotfiles#user
+   ```
+
+### Apple Silicon
+1. [Install nix package manager](https://nixos.org/download/) and follow its instructions.
+1. Run the following command to apply system configurations.
+   ```bash
+   nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/.dotfiles#system
+   ```
+1. Apply home-manager configurations
+   ```bash
+   home-manager switch --flake ~/.dotfiles#user
    ```

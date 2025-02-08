@@ -6,9 +6,12 @@
     stylix.url = "github:danth/stylix/release-24.11";
     home-manager.url = "github:nix-community/home-manager/release-24.11"; 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs = inputs@{ self, nixpkgs, stylix, home-manager, nix-darwin, nix-homebrew, ... }:
   let
     # ---------- VARIABLES ---------- #
     systemSettings = {
@@ -28,10 +31,8 @@
     };
     # ---------- VARIABLES ---------- #
     
-    lib = inputs.nixpkgs.lib;
     # pkgs = nixpkgs.legacyPackages.${system};
-    home-manager = inputs.home-manager;
-    pkgs = import inputs.nixpkgs {
+    pkgs = import nixpkgs {
       system = systemSettings.system;
       config = {
         allowUnfree = true;
@@ -41,30 +42,63 @@
   in
   {
     nixosConfigurations = {
-      system = lib.nixosSystem {
+      system = nixpkgs.lib.nixosSystem {
         system = systemSettings.system;
-	modules = [
-	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-	  inputs.stylix.nixosModules.stylix
-	];
-	specialArgs = {
-	  inherit systemSettings;
-	  inherit userSettings;
-	};
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+          stylix.nixosModules.stylix
+        ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
 
     homeConfigurations = {
       user = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-	modules = [
-	  (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-	  inputs.stylix.homeManagerModules.stylix
-	];
-	extraSpecialArgs = {
-	  inherit systemSettings;
-	  inherit userSettings;
-	};
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+          stylix.homeManagerModules.stylix
+        ];
+        extraSpecialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
+      };
+    };
+
+    darwinConfigurations = {
+      system = nix-darwin.lib.darwinSystem {
+        system = systemSettings.system;
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+          home-manager.darwinModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users."${userSettings.username}" = import ./profiles/darwin/home.nix;
+              extraSpecialArgs = {
+                inherit systemSettings;
+                inherit userSettings;
+              };
+            };
+          }
+          stylix.darwinModules.stylix
+          nix-homebrew.darwinModules.nix-homebrew {
+            nix-homebrew = {
+              enable = true;
+              # Apple Silicon
+              enableRosetta = true;
+              user = userSettings.username;
+            };
+          }
+        ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
   };
