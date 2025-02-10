@@ -6,13 +6,13 @@
     ../work/home.nix
     ../../user/app/editor/joplin.nix
     ../../user/app/browser/firefox.nix
+    ../../user/app/browser/thunderbird.nix
   ];
 
   home.packages = with pkgs; [
     # comms
     # signal-desktop covered by electron wrapper
     vesktop
-    thunderbird
 
     # productivity
     nextcloud-client
