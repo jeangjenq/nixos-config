@@ -54,6 +54,7 @@
       OverrideFirstRunPage = "";
       DisableProfileImport = true;
       DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
 
       # preferences
       Homepage = {
