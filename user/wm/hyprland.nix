@@ -275,6 +275,14 @@
         };
       };
 
+      # touchpad gets 
+      device = [
+        {
+          name = "asue120b:00-04f3:31c0-touchpad";
+          accel_profile = "adaptive";
+        }
+      ];
+
       cursor = {
         default_monitor = "0";
       };
