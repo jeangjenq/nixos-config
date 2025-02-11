@@ -5,6 +5,9 @@ let
     ll = "ls -lah";
     htop = "btm";
     cat = "bat";
+    # human readable is always nice
+    df = "df -h";
+    du = "du --max-depth=1 -h";
   };
 in
 {
