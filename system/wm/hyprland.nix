@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, systemSettings, ... }:
 
 {
   imports = [
@@ -11,7 +11,7 @@
   programs.hyprland = {
     enable = true;
     xwayland = {
-      enable = true;
+      enable = (if (systemSettings.system == "aarch64-linux") then false else true);
     };
   };
 
@@ -33,7 +33,13 @@
     gnome-online-accounts.enable = true;
   };
 
-  services.displayManager.ly = {
+  services.greetd = {
     enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+        user = "greeter";
+      };
+    };
   };
 }
