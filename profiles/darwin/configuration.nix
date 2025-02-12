@@ -66,13 +66,16 @@ in
     menuExtraClock.Show24Hour = true;
     menuExtraClock.ShowSeconds = true;
     menuExtraClock.ShowDayOfWeek = true;
-    hitoolbox.AppleFnUsageType = "Change Input Source";
+    # pressing fn key shouldn't do shit
+    hitoolbox.AppleFnUsageType = "Do Nothing";
     # remove trash after 30 days
     finder.FXRemoveOldTrashItems = true;
     controlcenter.BatteryShowPercentage = true;
     # Whether to enable moving window by holding anywhere on it like on Linux.
     NSGlobalDomain.NSWindowShouldDragOnGesture = true;
-    NSGlobalDomain."com.apple.keyboard.fnState" = true;
+    # use function keys as media control first
+    NSGlobalDomain."com.apple.keyboard.fnState" = false;
+    # don't touch what I type
     NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
     NSGlobalDomain.NSAutomaticInlinePredictionEnabled = false;
     NSGlobalDomain.KeyRepeat = 2;
