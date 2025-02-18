@@ -13,7 +13,7 @@
       label = [
         {
           # time
-          text="$TIME12";
+          text="$TIME";
           font_size = 96;
           shadow_passes = 1;
           # position = "0,300";
