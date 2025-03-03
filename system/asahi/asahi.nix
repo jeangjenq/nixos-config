@@ -26,6 +26,8 @@
   };
 
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  # swap fn and control key
+  boot.extraModprobeConfig = "options hid_apple swap_fn_leftctrl=1";
 
   # fix an issue where gtk applications can't detect wayland display
   environment.sessionVariables = {
