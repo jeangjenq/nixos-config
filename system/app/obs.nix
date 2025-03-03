@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, systemSettings, ... }:
 
 {
   # home.packages = [
@@ -7,8 +7,13 @@
   
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-pipewire-audio-capture
-    ];
+    plugins = (
+      if systemSettings.system == "aarch64-linux" then
+        []
+      else
+        with pkgs.obs-studio-plugins; [
+          obs-pipewire-audio-capture
+        ]
+    );
   };
 }
