@@ -11,7 +11,7 @@
 
       ../../system/asahi/asahi.nix
 
-      ../../system/app/wrapper.nix
+      ../../system/app/electron-wrapper.nix
       ../../system/app/docker.nix
       ../../system/virtualization/virtualization.nix
       ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
