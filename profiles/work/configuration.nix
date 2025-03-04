@@ -7,15 +7,39 @@
 {
   imports =
     [ # hardwares
-     ../../system/hardware-configuration.nix
-     ../../system/hardware/opengl.nix
-     ../../system/hardware/bluetooth.nix
-     ../../system/hardware/printing.nix
+      ../../system/hardware-configuration.nix
+      ../../system/hardware/opengl.nix
+      ../../system/hardware/bluetooth.nix
+      ../../system/hardware/printing.nix
+      ../../system/hardware/rnnoise.nix
+      ../../system/hardware/automount.nix
+      ../../system/hardware/8bitdo.nix
+      ../../system/network/wireguard.nix
+      
+      ../../system/game/steam.nix
+      ../../system/game/heroic.nix
+      ../../system/game/gamemode.nix
+      ../../system/app/electron-wrapper.nix
 
-     ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
-     ../../system/app/docker.nix
-     ../../system/virtualization/virtualization.nix
+      ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
+      
+      ../../system/app/docker.nix
+      ../../system/virtualization/virtualization.nix
+
+      # sshd for setting up nixos in vm
+      (import ../../system/network/sshd.nix {
+        authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEQnJVdL98B5voLeFHF9pGhNBW6mudDPJM2By159a/6 jeangjenq@worf"];
+        inherit userSettings; })
     ];
+
+  # personal preferences on powerkey and suspend behaviour
+  services.logind = {
+    powerKey = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
+
+  # enable flatpak for something like discord
+  services.flatpak.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -64,7 +88,10 @@
     isNormalUser = true;
     description = userSettings.username;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = [];
+    packages = [
+      signal
+      tidal
+    ];
     uid = 1000;
   };
 
@@ -76,16 +103,7 @@
     home-manager
   ];
 
-
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

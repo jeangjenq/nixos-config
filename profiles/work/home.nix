@@ -4,15 +4,17 @@
 
   imports = [
     ( ./. + "../../../user/wm" + ( "/" + systemSettings.wm + ".nix") )
-    ../../user/app/git/git.nix
     (./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
+    ../../user/app/git/git.nix
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
-    ../../system/hardware/rnnoise.nix
     ../../system/app/obs.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix
+    ../../user/app/editor/joplin.nix
+    ../../user/app/browser/firefox.nix
+    ../../user/app/browser/thunderbird.nix
     ../../themes/stylix.nix
   ];
 
@@ -33,6 +35,12 @@
     seahorse
     speedcrunch
     mission-center
+    nextcloud-client
+    protonmail-bridge
+
+    # comms
+    # signal-desktop covered by electron wrapper
+    vesktop
 
     # create
     gimp
@@ -41,10 +49,14 @@
     tenacity
     davinci-resolve
     kdenlive
+    rapid-photo-downloader
+    darktable
 
     # media
     yt-dlp
     ffmpeg
+    strawberry
+    jellyfin-media-player
 
     # dev
     remmina
@@ -52,25 +64,11 @@
     rpi-imager
     isoimagewriter
     veracrypt
+    standardnotes
 
     # eww
     teams-for-linux
   ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
 
   home.sessionVariables = {
   };
