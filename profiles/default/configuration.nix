@@ -11,7 +11,6 @@
       ../../system/hardware/opengl.nix
       ../../system/hardware/bluetooth.nix
       ../../system/hardware/printing.nix
-      ../../system/hardware/rnnoise.nix
       ../../system/hardware/automount.nix
       ../../system/hardware/8bitdo.nix
       ../../system/network/wireguard.nix
@@ -88,10 +87,7 @@
     isNormalUser = true;
     description = userSettings.username;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = [
-      signal
-      tidal
-    ];
+    packages = [];
     uid = 1000;
   };
 
