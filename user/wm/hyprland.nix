@@ -281,6 +281,15 @@
           name = "asue120b:00-04f3:31c0-touchpad";
           accel_profile = "adaptive";
         }
+        {
+          name = "apple-spi-trackpad";
+          accel_profile = "adaptive";
+        }
+        {
+          name = "apple-spi-keyboard";
+          kb_layout = "us";
+          kb_options = "caps:super, altwin:swap_alt_win";
+        }
       ];
 
       cursor = {
