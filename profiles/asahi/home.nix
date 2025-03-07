@@ -37,11 +37,8 @@
     joplin
 
     # create
-    gimp
-    krita
-    inkscape
-    tenacity
-    kdenlive
+    rapid-photo-downloader
+    darktable
 
     # media
     yt-dlp
