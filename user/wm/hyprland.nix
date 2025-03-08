@@ -308,6 +308,7 @@
       ## steam
       "$steam" = "class:^(steam)$";
       "$steamtoast" = "title:^(notificationtoasts_.*_desktop)$";
+      "$steam_games" = "class:^(steam_app_.*)|^(gamescope)";
 
       ## popups
       "$filedialog" = "class:^(xdg.desktop-portal)";
@@ -323,12 +324,13 @@
         "opacity 0.6, $steam, $steamtoast"
 
         # games
-        "fullscreen, class:gamescope"
-        "fullscreen, class:steam_app_.*"
-        "immediate, class:steam_app_.*" # allow tearing for games
-        "monitor 0, class:steam_app_.*"
-        "decorate off, class:steam_app_.*"
-        "noanim, class:steam_app_.*"
+        "fullscreen, $steam_games"
+        "fullscreen, $steam_games"
+        "immediate, $steam_games" # allow tearing for games
+        "monitor 0, $steam_games"
+        "decorate off, $steam_games"
+        "noanim, $steam_games"
+        "idleinhibit always, $steam_games"
 
         # comms
         "workspace 6, class:vesktop"
