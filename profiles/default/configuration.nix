@@ -18,7 +18,6 @@
 
       ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
       
-      ../../system/app/docker.nix
       ../../system/virtualization/virtualization.nix
 
       # sshd for setting up nixos in vm
