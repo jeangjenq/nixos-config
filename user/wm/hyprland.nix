@@ -35,6 +35,13 @@
     gnome-calculator # like this calculator
   ];
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "image/jpeg" = "imv-dir.desktop";
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;

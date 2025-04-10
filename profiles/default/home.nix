@@ -74,4 +74,13 @@
   home.sessionVariables = {
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/msteams" = "teams-for-linux.desktop";
+      "x-scheme-handler/discord" = "vesktop.desktop";
+    };
+  };
+  xdg.configFile."mimeapps.list".force = true;
+
 }
