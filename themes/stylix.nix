@@ -2,7 +2,7 @@
 
 {
   stylix.enable = true;
-  stylix.image = ./wallpaper/shoulder_touch.jpg;
+  stylix.image = ./wallpaper/albertbierstadt.jpg;
   stylix.polarity = "dark";
 
   stylix.targets.waybar.enable = false;
