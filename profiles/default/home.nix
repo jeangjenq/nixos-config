@@ -11,6 +11,7 @@
     ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix
+    ../../user/app/media/docs.nix
     ../../user/app/editor/joplin.nix
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
@@ -28,6 +29,7 @@
   programs.home-manager.enable = true;
 
   programs.firefox.enable = true;
+  
   home.packages = with pkgs; [
     # core
     adwaita-icon-theme
