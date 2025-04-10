@@ -47,8 +47,6 @@
     gimp
     krita
     inkscape
-    tenacity
-    davinci-resolve
     kdenlive
     rapid-photo-downloader
     darktable
