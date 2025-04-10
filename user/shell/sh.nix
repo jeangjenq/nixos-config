@@ -14,19 +14,22 @@ in
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    shellAliases = aliases; 
+    shellAliases = aliases;
+    initExtra = "cbonsai -p";
   };
   
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    shellAliases = aliases; 
+    shellAliases = aliases;
+    initExtra = "cbonsai -p";
   };
   
   home.packages = with pkgs;[
     tmux
     bottom
     bat
+    cbonsai
   ];
 }
 
