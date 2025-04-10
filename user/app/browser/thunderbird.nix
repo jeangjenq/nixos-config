@@ -15,7 +15,6 @@
 
         "mailnews.emptyJunk.dontAskAgain" = true;
       };
-      search.default = "DuckDuckGo";
     };
   };
 }
