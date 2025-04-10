@@ -8,7 +8,7 @@
   programs.git.extraConfig = {
     init.defaultBranch = "main";
     safe.directory = [ userSettings.dotfilesDir ];
-    core.editor = "nvim";
+    core.editor = "vi";
     credential.helper = "store";
   };
 }
