@@ -6,12 +6,13 @@
     ../../user/app/git/git.nix
     ../../user/app/media/mpv.nix
     ../../user/app/editor/vscodium.nix
+    ../../user/app/editor/joplin.nix
     ../../user/app/browser/firefox.nix
     ../../user/shell/sh.nix
-    # ../../themes/stylix.nix
   ];
 
   programs.firefox.package = null;
+  programs.joplin-desktop.package = pkgs.emptyDirectory;
   
   home.stateVersion = "24.11";
   home.username = userSettings.username;
@@ -21,7 +22,6 @@
 
   home.packages = with pkgs; [
     # create
-    darktable
     yt-dlp
     ffmpeg
 

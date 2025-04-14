@@ -28,6 +28,8 @@ in
 
   homebrew = {
     enable = true;
+    brews = [
+    ];
     casks = [
       # better than spotlight?
       "raycast"
@@ -36,14 +38,22 @@ in
       "firefox"
       "thunderbird"
       "signal"
+      "protonvpn"
       "discord"
 
       # media
+      "darktable"
       "tidal"
       "jellyfin-media-player"
       "steam"
+      "obs"
+      "nextcloud"
 
       # work
+      "docker"
+      "ollama"
+      "joplin"
+      "vial"
       "microsoft-teams"
       "pcoipclient"
     ];
