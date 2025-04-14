@@ -14,6 +14,8 @@
   programs.firefox.package = null;
   
   home.stateVersion = "24.11";
+  home.username = userSettings.username;
+  home.homeDirectory = "/Users/" + userSettings.username;
 
   programs.home-manager.enable = true;
 
