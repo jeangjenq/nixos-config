@@ -12,6 +12,21 @@ let
   firefoxPoliciesDir = "/Applications/Firefox.app/Contents/Resources/distribution/";
 in
 {
+  imports = [
+  ];
+
+  # stylix is not gonna set background
+  # but just using an image to create color palette
+  stylix.enable = true;
+  stylix.image = ../../themes/wallpaper/albertbierstadt.jpg;
+  stylix.polarity = "dark";
+  # terminal opacity, very important
+  stylix.opacity = {
+    popups = 0.8;
+    terminal = 0.85;
+  };
+  
+  # actual packages
   environment.systemPackages = with pkgs; [
     neovim
     wget
