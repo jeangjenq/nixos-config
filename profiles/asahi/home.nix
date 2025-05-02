@@ -8,10 +8,8 @@
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
     ../../system/hardware/rnnoise.nix
-    ../../system/app/obs.nix
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
-    ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix
     ../../themes/stylix.nix
