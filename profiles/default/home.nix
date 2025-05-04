@@ -44,11 +44,10 @@
     # comms
     # signal-desktop covered by electron wrapper
     vesktop
+    newsflash
 
     # create
     gimp
-    krita
-    inkscape
     kdenlive
     rapid-photo-downloader
     darktable
