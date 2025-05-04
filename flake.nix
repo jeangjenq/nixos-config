@@ -27,7 +27,7 @@
       username = "jeangjenq";
       email = "jeangjenq@jeangjenq.com";
       dotfilesDir = "~/.dotfiles"; # absolute path to dotfiles
-      term = "alacritty";
+      term = "kitty";
     };
     # ---------- VARIABLES ---------- #
     
