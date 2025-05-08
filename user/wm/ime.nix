@@ -14,9 +14,9 @@
     };
   };
 
-  home.file = {
+  xdg.configFile = {
     # make sure stylix is being used as a them
-    ".config/fcitx5/conf/classicui.conf" = {
+    "fcitx5/conf/classicui.conf" = {
       text = ''
       Theme=FluentDark
       DarkTheme=FluentDark
@@ -26,7 +26,7 @@
     };
 
     # add pinyin input method right away
-    ".config/fcitx5/profile" = {
+    "fcitx5/profile" = {
       text = ''
       [Groups/0]
       # Group Name
@@ -55,7 +55,7 @@
     };
 
     # change to preferred hotkey
-    ".config/fcitx5/config" = {
+    "fcitx5/config" = {
       text = ''
       [Hotkey/TriggerKeys]
       0=Alt+Shift+Shift_L

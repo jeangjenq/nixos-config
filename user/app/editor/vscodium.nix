@@ -5,8 +5,8 @@
     vscodium
   ];
 
-  home.file = {
-    ".config/VSCodium/User/keybindings.json" = {
+  xdg.configFile = {
+    "VSCodium/User/keybindings.json" = {
     text = ''
       [
           {
