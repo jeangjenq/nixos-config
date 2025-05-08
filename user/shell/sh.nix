@@ -9,20 +9,26 @@ let
     df = "df -h";
     du = "du --max-depth=1 -h";
   };
+  extra = ''
+    cbonsai -p
+    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+      tmux attach-session -t default || tmux new-session -s default
+    fi
+  '';
 in
 {
   programs.bash = {
     enable = true;
     enableCompletion = true;
     shellAliases = aliases;
-    initExtra = "cbonsai -p";
+    initExtra = extra;
   };
   
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     shellAliases = aliases;
-    initExtra = "cbonsai -p";
+    initExtra = extra;
   };
   
   home.packages = with pkgs;[
