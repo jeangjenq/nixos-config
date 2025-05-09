@@ -6,7 +6,7 @@
     profiles.${userSettings.username} = {
       search = {
         force = true;
-        default = "Searx";
+        default = "DuckDuckGo";
         privateDefault = "Searx";
         order = [ "Searx" "DuckDuckGo" "NixPkgs" "MyNixOS" "Google" ];
         engines = {
