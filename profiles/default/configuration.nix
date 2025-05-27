@@ -13,7 +13,6 @@
       ../../system/network/wireguard.nix
       
       ../../system/game/steam.nix
-      ../../system/game/heroic.nix
       ../../system/game/gamemode.nix
       ../../system/app/electron-wrapper.nix
 
