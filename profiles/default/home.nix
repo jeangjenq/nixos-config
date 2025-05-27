@@ -55,6 +55,7 @@
 
     # media
     yt-dlp
+    tidal-dl
     ffmpeg
     strawberry
     jellyfin-media-player
