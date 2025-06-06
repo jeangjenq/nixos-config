@@ -14,6 +14,7 @@
     ../../user/app/media/docs.nix
     ../../user/app/editor/joplin.nix
     ../../user/app/browser/firefox.nix
+    ../../user/app/browser/qutebrowser.nix
     ../../user/app/browser/thunderbird.nix
     ../../system/hardware/rnnoise.nix
     ../../system/app/obs.nix
