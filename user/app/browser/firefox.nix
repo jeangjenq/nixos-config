@@ -49,6 +49,19 @@
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       DisableFormHistory = true;
+
+      # permission settings
+      Permissions = {
+        Location = {
+          BlockNewRequests = true;
+        };
+        Notifications = {
+          BlockNewRequests = true;
+        };
+        Autoplay = {
+          BlockNewRequests = true;
+        };
+      };
       
       # no first run stuff
       OverrideFirstRunPage = "";
