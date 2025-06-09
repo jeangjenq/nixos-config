@@ -52,7 +52,10 @@
     gimp
     kdenlive
     rapid-photo-downloader
+    digikam
     darktable
+    hugin
+    exiftool
 
     # media
     yt-dlp
