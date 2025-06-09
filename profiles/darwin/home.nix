@@ -24,6 +24,7 @@
     # create
     yt-dlp
     ffmpeg
-
+    hugin
+    exiftool
   ];
 }

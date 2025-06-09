@@ -57,6 +57,7 @@ in
       "discord"
 
       # media
+      "digikam"
       "darktable"
       "tidal"
       "jellyfin-media-player"
