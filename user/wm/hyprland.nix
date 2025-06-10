@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ../app/terminal/alacritty.nix
-    ../app/terminal/kitty.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./wlogout.nix
