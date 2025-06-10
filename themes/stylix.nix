@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, userSettings, ... }:
 
 {
   stylix.enable = true;
@@ -6,6 +6,9 @@
   stylix.polarity = "dark";
 
   stylix.targets.waybar.enable = false;
+  stylix.targets.firefox.profileNames = [
+    userSettings.username
+  ];
 
   stylix.cursor = {
     package = pkgs.bibata-cursors;
@@ -15,7 +18,7 @@
 
   stylix.fonts = {
     monospace = {
-      package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+      package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font Mono";
     };
     sansSerif = {

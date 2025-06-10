@@ -28,7 +28,7 @@ in
     enable = true;
     enableCompletion = true;
     shellAliases = aliases;
-    initExtra = extra;
+    initContent = extra;
   };
   
   home.packages = with pkgs;[

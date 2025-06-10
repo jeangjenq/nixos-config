@@ -63,7 +63,7 @@
         inherit pkgs;
         modules = [
           (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-          stylix.homeManagerModules.stylix
+          stylix.homeModules.stylix
         ];
         extraSpecialArgs = {
           inherit systemSettings;

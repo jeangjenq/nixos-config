@@ -9,7 +9,7 @@
         "fcitx5-remote -r"
       ];
       windowrule = [
-        "pseudo, fcitx"
+        "pseudo, class:fcitx"
       ];
     };
   };

@@ -2,7 +2,7 @@
 
 {
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.jetbrains-mono
     font-awesome # waybar default
     roboto-mono # waybar theme at this time
     noto-fonts # google font
