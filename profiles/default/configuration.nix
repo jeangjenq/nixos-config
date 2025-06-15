@@ -8,7 +8,6 @@
       ../../system/hardware/bluetooth.nix
       ../../system/hardware/printing.nix
       ../../system/hardware/automount.nix
-      ../../system/hardware/8bitdo.nix
       ../../system/hardware/vial.nix
       ../../system/network/wireguard.nix
       

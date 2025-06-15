@@ -50,8 +50,8 @@
 
     # create
     gimp
-    kdenlive
-    rapid-photo-downloader
+    # kdenlive
+    # rapid-photo-downloader
     digikam
     darktable
     hugin
