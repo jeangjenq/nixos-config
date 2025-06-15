@@ -319,11 +319,11 @@
       "$filedialog" = "class:^(xdg.desktop-portal)";
       # "$filedialog" = "title:((Open|Save) (File|Folder|As))";
       "$pavucontrol" = "class:org.pulseaudio.pavucontrol";
-      windowrulev2 = [
+      windowrule = [
         # steam
 	      "monitor 0, $steam"
         "workspace 5 silent, $steam"
-        "float, $steam, title:[^(Steam)]"
+        "float, $steam, title:^Friends.+|^Steam.+"
         "nofocus, $steam, $steamtoast"
         "pin, $steam, $steamtoast"
         "opacity 0.6, $steam, $steamtoast"
@@ -368,7 +368,7 @@
         "float, class:org\.gnome\.Calendar"
         "float, class:(^com\.gabm\.satty$)"
         "fullscreenstate 0, class:(^com\.gabm\.satty$)"
-        "opacity 0.85, class:^(com.nextcloud.desktopclient.nextcloud)$"
+        "opacity 0.85, class:^(com\.nextcloud\.desktopclient\.nextcloud)$"
 
         # specific apps ricing
         "opacity 0.85, class:^(org\.gnome.+)$"
