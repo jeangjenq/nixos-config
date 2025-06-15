@@ -3,6 +3,9 @@
 {
   programs.firefox = {
     enable = true;
+    nativeMessagingHosts = [
+      pkgs.vdhcoapp
+    ];
     profiles.${userSettings.username} = {
       search = {
         force = true;
