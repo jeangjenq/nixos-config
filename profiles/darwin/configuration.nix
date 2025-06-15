@@ -66,6 +66,7 @@ in
       "nextcloud"
 
       # work
+      "libreoffice"
       "docker"
       "ollama"
       "joplin"
