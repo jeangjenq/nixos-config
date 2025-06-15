@@ -113,15 +113,13 @@ in
   users.users."${userSettings.username}" = {
     home = "/Users/" + userSettings.username;
   };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  system.primaryUser = userSettings.username;
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
   # use TouchID for sudo
-  security.pam.enableSudoTouchIdAuth = true; 
+  security.pam.services.sudo_local.touchIdAuth = true; 
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
