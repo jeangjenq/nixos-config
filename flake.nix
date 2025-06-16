@@ -18,9 +18,9 @@
     # ---------- VARIABLES ---------- #
     systemSettings = {
       system = "x86_64-linux";
-      hostname = "padd";
-      profile = "personal";
-      wm = "gnome";
+      hostname = "worf";
+      profile = "default";
+      wm = "hyprland";
       timezone = "Pacific/Auckland";
       locale = "en_US.UTF-8";
     };
