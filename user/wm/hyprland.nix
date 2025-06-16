@@ -53,16 +53,16 @@
       screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
 
       # monitors
-      lguw = "DP-1";
-      dell = "HDMI-A-1";
+      lguw = "LG Electronics LG HDR WQHD+ 302NTDV4K290";
+      dell = "Dell Inc. DELL P2416D 3RKPR6BH1C0S";
       lapt = "eDP-1";
     in {
       
       "$mainMod" = mod; # choosing a mod key
 
       monitor = [
-        (lguw + ", highrr, 0x0, 1, vrr, 1")
-        (dell + ", preferred , 3840x-960 , 1, transform, 1")
+        ("desc:${lguw}, highrr, 0x0, 1, vrr, 1") # , bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.2")
+        ("desc:${dell}, preferred , 3840x-960 , 1, transform, 1")
         (lapt + ", highrr, auto-down, 1.25")
         ", preferred, auto, 1"
       ];
