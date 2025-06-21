@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ( ./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
+    ( ./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/app/git/git.nix
     ../../user/app/media/mpv.nix
     ../../user/app/editor/vscodium.nix

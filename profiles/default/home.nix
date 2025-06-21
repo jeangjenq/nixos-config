@@ -4,7 +4,7 @@
 
   imports = [
     ( ./. + "../../../user/wm" + ( "/" + systemSettings.wm + ".nix") )
-    (./. + "../../../user/app/terminal" + ("/" + userSettings.term) + ".nix")
+    (./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
     ../../user/virtualization/virtualization.nix
