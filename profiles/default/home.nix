@@ -7,6 +7,8 @@
     (./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
+    ../../user/shell/yazi.nix
+    ../../user/shell/helix.nix
     ../../user/virtualization/virtualization.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
@@ -50,7 +52,7 @@
 
     # create
     gimp
-    # kdenlive
+    kdePackages.kdenlive
     # rapid-photo-downloader
     digikam
     darktable
