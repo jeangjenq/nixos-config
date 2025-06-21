@@ -27,9 +27,9 @@ pkgs.stdenv.mkDerivation rec {
     which
     tree
     bc
-    python310
-    python310Packages.pip
-    python310Packages.setuptools
+    python311
+    python311Packages.pip
+    python311Packages.setuptools
   ];
 
   dontBuild = true;
@@ -40,12 +40,13 @@ pkgs.stdenv.mkDerivation rec {
   dontFixup = false;
 
   installPhase = ''
+    export HOME=$(pwd)
     # runHook preInstall
     mkdir -p $out/share/rez/src/
     mkdir -p $out/share/rez/env/
     cp -r $src/* $out/share/rez/src/
     cd $out/share/rez/src/
-    ${pkgs.python310}/bin/python3.10 ./install.py $out/share/rez/env/
+    ${pkgs.python311}/bin/python3.11 ./install.py $out/share/rez/env/
     # runHook postInstall
   '';
 }
