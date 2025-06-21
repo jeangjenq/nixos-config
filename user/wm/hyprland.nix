@@ -61,7 +61,7 @@
       "$mainMod" = mod; # choosing a mod key
 
       monitor = [
-        ("desc:${lguw}, highrr, 0x0, 1, vrr, 1") # , bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.2")
+        ("desc:${lguw}, highrr, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
         ("desc:${dell}, preferred , 3840x-960 , 1, transform, 1")
         (lapt + ", highrr, auto-down, 1.25")
         ", preferred, auto, 1"
