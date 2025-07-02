@@ -2,7 +2,7 @@
 
 {
   stylix.enable = true;
-  stylix.image = ./wallpaper/kcdloading02.png;
+  stylix.image = ./wallpaper/kcdloading01.png;
   stylix.polarity = "dark";
 
   stylix.targets.waybar.enable = false;
