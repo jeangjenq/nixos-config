@@ -63,7 +63,7 @@
       monitor = [
         ("desc:${lguw}, highrr, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
         ("desc:${dell}, preferred , 3840x-960 , 1, transform, 1")
-        (lapt + ", highrr, auto-down, 1.25")
+        (lapt + ", highrr, auto-down, 1.25, vrr, 1, cm, auto")
         ", preferred, auto, 1"
       ];
 
