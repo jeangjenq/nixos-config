@@ -1,4 +1,4 @@
-{ pkg, ... }:
+{ pkg, lib, ... }:
 
 {
   programs.helix = {
@@ -10,12 +10,26 @@
         cursor-shape = {
           insert = "bar";
         };
+        # indent-guides = {
+        #   render = true;
+        # };
         whitespace = {
           render = {
             space = "all";
             tab = "all";
           };
         };
+      };
+      theme = lib.mkForce "override";
+    };
+
+    themes = {
+      override = let
+        theme = "flexoki_dark";
+        transparent = { };
+      in {
+        inherits = theme;
+        "ui.background" = transparent;
       };
     };
   };
