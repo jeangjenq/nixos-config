@@ -7,6 +7,8 @@
     (./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
+    ../../user/shell/yazi.nix
+    ../../user/shell/helix.nix
     ../../system/hardware/rnnoise.nix
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
