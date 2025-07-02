@@ -8,6 +8,7 @@
       ../../system/hardware/printing.nix
       ../../system/hardware/automount.nix
       ../../system/network/wireguard.nix
+      ../../system/virtualization/virtualization.nix
 
       ../../system/asahi/asahi.nix
 
