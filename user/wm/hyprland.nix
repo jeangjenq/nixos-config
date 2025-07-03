@@ -67,6 +67,11 @@
         ", preferred, auto, 1"
       ];
 
+      # something about gamescope now requires scRGB
+      debug = {
+        full_cm_proto = true;
+      };
+
       xwayland = {
         force_zero_scaling = true;
       };
