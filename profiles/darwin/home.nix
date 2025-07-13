@@ -9,6 +9,8 @@
     ../../user/app/editor/joplin.nix
     ../../user/app/browser/firefox.nix
     ../../user/shell/sh.nix
+    ../../user/shell/yazi.nix
+    ../../user/shell/helix.nix
   ];
 
   programs.firefox.package = null;
