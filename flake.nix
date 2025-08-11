@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     stylix.url = "github:danth/stylix";
     home-manager.url = "github:nix-community/home-manager"; 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +14,7 @@
     nixos-apple-silicon.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, stylix, home-manager, nix-darwin, nix-homebrew, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, stylix, home-manager, nix-darwin, nix-homebrew, ... }:
   let
     # ---------- VARIABLES ---------- #
     systemSettings = {
@@ -40,6 +41,12 @@
         allowUnfree = true;
       };
     };
+    pkgs-stable = import nixpkgs-stable {
+      system = systemSettings.system;
+      config = {
+        allowUnfree = true;
+      };
+    };
     
   in
   {
@@ -54,6 +61,7 @@
           inherit inputs;
           inherit systemSettings;
           inherit userSettings;
+          inherit pkgs-stable;
         };
       };
     };
@@ -68,6 +76,7 @@
         extraSpecialArgs = {
           inherit systemSettings;
           inherit userSettings;
+          inherit pkgs-stable;
         };
       };
     };
@@ -85,6 +94,7 @@
               extraSpecialArgs = {
                 inherit systemSettings;
                 inherit userSettings;
+              inherit pkgs-stable;
               };
             };
           }
@@ -101,6 +111,7 @@
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
+          inherit pkgs-stable;
         };
       };
     };

@@ -1,4 +1,4 @@
-{ config, pkgs, systemSettings, userSettings, ... }:
+{ config, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
 
@@ -33,7 +33,7 @@
 
   programs.firefox.enable = true;
   
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     # core
     adwaita-icon-theme
     nautilus
@@ -52,9 +52,7 @@
     # create
     gimp
     kdePackages.kdenlive
-    # rapid-photo-downloader
     digikam
-    darktable
     hugin
     exiftool
 
@@ -75,7 +73,11 @@
 
     # eww
     teams-for-linux
-  ];
+  ])
+  ++
+  (with pkgs-stable ;[
+    darktable
+  ]);
 
   home.sessionVariables = {
   };
