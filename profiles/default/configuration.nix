@@ -26,9 +26,9 @@
     ];
 
   # personal preferences on powerkey and suspend behaviour
-  services.logind = {
-    powerKey = "ignore";
-    lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
   };
 
   # enable flatpak for something like discord
