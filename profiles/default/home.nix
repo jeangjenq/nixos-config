@@ -53,6 +53,8 @@
     gimp
     kdePackages.kdenlive
     digikam
+    darktable
+    siril
     hugin
     exiftool
 
@@ -76,7 +78,6 @@
   ])
   ++
   (with pkgs-stable ;[
-    darktable
   ]);
 
   home.sessionVariables = {
