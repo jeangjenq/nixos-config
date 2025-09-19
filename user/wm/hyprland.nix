@@ -13,7 +13,7 @@
   home.packages = with pkgs; [
     # core
     kitty # hyprland default terminal
-    rofi-wayland # app launcher
+    rofi # app launcher
     hyprpaper # set bg
     hyprpolkitagent # authentication agent
     brightnessctl # control screen brightness
@@ -306,9 +306,10 @@
         default_monitor = "0";
       };
       
-      gestures = {
-        workspace_swipe = true;
-      };
+      gesture = [
+        "3, horizontal, workspace"
+        "3, down, special, magic"
+      ];
 
       layerrule = [
         "blur, logout_dialog"
