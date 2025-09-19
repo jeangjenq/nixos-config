@@ -12,10 +12,13 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    steam
-    gamescope
     mangohud
   ];
+
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 
   programs.steam = {
     enable = true;
