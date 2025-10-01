@@ -14,6 +14,7 @@
       ../../system/game/steam.nix
       ../../system/game/gamemode.nix
       ../../system/app/electron-wrapper.nix
+      ../../system/app/llm.nix
 
       ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
       
