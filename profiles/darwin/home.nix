@@ -26,6 +26,5 @@
     # create
     yt-dlp
     ffmpeg
-    exiftool
   ];
 }

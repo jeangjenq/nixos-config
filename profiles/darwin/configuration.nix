@@ -44,6 +44,7 @@ in
   homebrew = {
     enable = true;
     brews = [
+      "exiftool"
     ];
     casks = [
       # better than spotlight?
