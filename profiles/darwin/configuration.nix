@@ -90,6 +90,7 @@ in
     dock.static-only = false;
     dock.show-recents = false;
     dock.persistent-apps = [];
+    finder.ShowPathbar = true;
     menuExtraClock.Show24Hour = true;
     menuExtraClock.ShowSeconds = true;
     menuExtraClock.ShowDayOfWeek = true;
