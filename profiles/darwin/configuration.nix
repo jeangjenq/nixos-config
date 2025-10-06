@@ -63,11 +63,9 @@ in
       "tidal"
       "jellyfin-media-player"
       "steam"
-      "obs"
       "nextcloud"
 
       # work
-      "utm" # qemu
       "libreoffice"
       "docker"
       "ollama"
