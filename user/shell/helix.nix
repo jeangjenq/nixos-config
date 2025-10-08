@@ -1,4 +1,4 @@
-{ pkg, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.helix = {
@@ -19,6 +19,9 @@
             tab = "all";
           };
         };
+        inline-diagnostics = {
+          cursor-line = "warning";
+        };
       };
       theme = lib.mkForce "override";
     };
@@ -33,4 +36,15 @@
       };
     };
   };
+
+  programs.ruff = {
+    enable = true;
+    settings = {
+      line-length = 79;
+    };
+  };
+
+  home.packages = with pkgs; [
+    nil
+  ];
 }
