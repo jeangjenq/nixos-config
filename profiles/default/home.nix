@@ -43,6 +43,7 @@
     mission-center
     nextcloud-client
     protonmail-bridge
+    scrcpy
 
     # comms
     # signal-desktop covered by electron wrapper
