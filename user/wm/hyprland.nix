@@ -37,6 +37,7 @@
     enable = true;
     defaultApplications = {
       "image/jpeg" = "imv-dir.desktop";
+      "image/png" = "imv-dir.desktop";
     };
   };
 
