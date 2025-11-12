@@ -15,7 +15,6 @@
     ../../user/app/media/mpv.nix
     ../../user/app/media/music.nix
     ../../user/app/media/docs.nix
-    ../../user/app/editor/joplin.nix
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
     ../../system/hardware/rnnoise.nix
@@ -68,7 +67,7 @@
     remmina
     isoimagewriter
     veracrypt
-    standardnotes
+    obsidian
 
     # eww
     teams-for-linux
