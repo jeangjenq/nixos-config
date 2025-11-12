@@ -21,7 +21,6 @@
     ../../system/hardware/rnnoise.nix
     ../../system/app/obs.nix
     ../../themes/stylix.nix
-    ../../user/game/pob.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -64,13 +63,9 @@
     yt-dlp
     tidal-dl
     ffmpeg
-    strawberry
-    jellyfin-media-player
 
     # dev
     remmina
-    gparted
-    rpi-imager
     isoimagewriter
     veracrypt
     standardnotes
