@@ -4,9 +4,9 @@
   services = {
     mpd = {
       enable = true;
-      musicDirectory = "/mnt/Warp/music";
+      musicDirectory = "/mnt/Warp/Music";
+      playlistDirectory = "/mnt/Warp/Music/Playlists";
       extraConfig = ''
-        auto_update "yes"
         audio_output {
           type "pipewire"
           name "music"
@@ -18,14 +18,5 @@
       enable = true;
       multimediaKeys = true;
     };
-  };
-
-  programs.rmpc = {
-    enable = true;
-    config = ''
-      (
-        wrap_navigation: true,
-      )
-    '';
   };
 }

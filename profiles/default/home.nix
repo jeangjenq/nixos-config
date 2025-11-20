@@ -13,7 +13,8 @@
     ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix
-    ../../user/app/media/music.nix
+    ../../user/app/media/mpd.nix
+    ../../user/app/media/rmpc.nix
     ../../user/app/media/docs.nix
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
