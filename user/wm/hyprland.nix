@@ -13,6 +13,7 @@
   home.packages = with pkgs; [
     # core
     kitty # hyprland default terminal
+    foot # call this a backup terminal
     rofi # app launcher
     hyprpaper # set bg
     hyprpolkitagent # authentication agent
