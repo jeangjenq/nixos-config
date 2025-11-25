@@ -387,9 +387,10 @@
       ];
 
       workspace = [
-        "r[1-5], monitor:${lguw}"
-        "r[0], monitor:${lguw}"
-        "r[6-9], monitor:${dell}"
+        "r[1-5], monitor:desc:${lguw}"
+        "r[0], monitor:desc:${lguw}"
+        "r[6-9], monitor:desc:${dell}"
+        "r[6-9], monitor:desc:${lapt}"
       ];
 
     };
