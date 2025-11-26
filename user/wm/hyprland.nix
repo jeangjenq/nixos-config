@@ -31,7 +31,6 @@
     
     # additionals
     imv
-    gnome-calculator # like this calculator
   ];
 
   xdg.mimeApps = {
