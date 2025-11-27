@@ -24,16 +24,25 @@ in
   home.packages = [
     pkgs.wf-recorder
     pkgs.slurp
+    pkgs.libnotify
     (pkgs.writeShellScriptBin "recorder-toggle" ''
       #!/bin/bash
+
       pid=`pgrep wf-recorder`
       status=$?
-
-      if [ $status != 0 ]
-      then
-        wf-recorder -g "$(slurp)" -c gif -f ~/Videos/$(date +'recording_%Y-%m-%d_%H%M%S.gif');
+      if [ $status != 0 ]; then
+        region=`slurp`
+        region_is=$?
+        if [ $region_is == 1 ]; then
+          notify-send "Region not selected, cancelling recording."
+          exit 1
+        else
+          notify-send "Recording started!" "Your screen is being recorded."
+          wf-recorder -yg "$region" -c h264_vaapi -f ~/Videos/$(date +'recording_%Y-%m-%d_%H%M%S.mp4');
+        fi
       else
         pkill --signal SIGINT wf-recorder
+        notify-send "Recording finished!"
       fi;
     '')
   ];
