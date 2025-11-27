@@ -106,7 +106,7 @@ in
           "format-disconnected" = "MPD Disconnected";
           "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} Stopped";
           "interval" = 10;
-          "on-click" = "playerctl play-pause";
+          "on-click" = "rmpc togglepause";
           "consume-icons" = {
               "on" = " ";
           };
