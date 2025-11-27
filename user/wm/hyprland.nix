@@ -40,6 +40,7 @@
     defaultApplications = {
       "image/jpeg" = "imv-dir.desktop";
       "image/png" = "imv-dir.desktop";
+      "image/gif" = "imv-dir.desktop";
     };
   };
 
