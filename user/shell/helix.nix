@@ -7,6 +7,7 @@
     settings = {
       editor = {
         line-number = "relative";
+        auto-pairs = false;
         cursor-shape = {
           insert = "bar";
         };
