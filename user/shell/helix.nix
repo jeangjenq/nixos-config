@@ -28,7 +28,7 @@
 
     themes = {
       override = let
-        theme = "flexoki_dark";
+        theme = "sunset";
         transparent = { };
       in {
         inherits = theme;

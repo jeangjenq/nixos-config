@@ -1,44 +1,52 @@
 { pkgs, userSettings, ... }:
 
 {
-  stylix.enable = true;
-  stylix.image = ./wallpaper/kcdloading01.png;
-  stylix.polarity = "dark";
-
-  stylix.targets.waybar.enable = false;
-  stylix.targets.firefox.profileNames = [
-    userSettings.username
-  ];
-
-  stylix.cursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-  };
-
-  stylix.fonts = {
-    monospace = {
-      package = pkgs.nerd-fonts.jetbrains-mono;
-      name = "JetBrainsMono Nerd Font Mono";
+  stylix = {
+    enable = true;
+    image = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/o5/wallhaven-o5w859.png";
+      hash = "sha256-Nk+PG4+MhkvgW9CF9Dtj9wH5BgiCilaY0DKRNcHsHwA=";
     };
-    sansSerif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans";
-    };
-    serif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Serif";
-    };
-  };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
+    polarity = "dark";
 
-  stylix.fonts.sizes = {
-    applications = 10;
-    terminal = 12;
-    popups = 10;
-  };
+    targets.waybar.enable = false;
+    targets.firefox.profileNames = [
+      userSettings.username
+    ];
+    targets.fuzzel.enable = true;
+    targets.helix.enable = true;
+
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+    };
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+    };
+
+    fonts.sizes = {
+      applications = 10;
+      terminal = 12;
+      popups = 10;
+    };
   
-  stylix.opacity = {
-    popups = 0.8;
-    terminal = 0.85;
+    opacity = {
+      popups = 0.8;
+      terminal = 0.85;
+    };
   };
 }
