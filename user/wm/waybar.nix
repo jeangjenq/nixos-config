@@ -71,9 +71,6 @@ in
         "custom/record" = {
           "format" = "";
           "tooltip" = false;
-          "interval" = "once";
-          "exec" = "echo ''";
-          "exec-if" = "pgrep wf-recorder";
           "on-click" = "recorder-toggle";
         };
 
