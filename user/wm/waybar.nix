@@ -45,6 +45,7 @@ in
         "position" = "top";
         "spacing" = 6;
         modules-left = [
+          "custom/record"
           "clock"
           "mpd"
           mode
@@ -52,7 +53,6 @@ in
         ];
 
         modules-center = [
-          "custom/record"
           workspaces
         ];
 
