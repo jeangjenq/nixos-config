@@ -20,6 +20,24 @@ let
   error = "alpha(@error_color, 0.6)";
 in
 {
+
+  home.packages = [
+    pkgs.wf-recorder
+    pkgs.slurp
+    (pkgs.writeShellScriptBin "recorder-toggle" ''
+      #!/bin/bash
+      pid=`pgrep wf-recorder`
+      status=$?
+
+      if [ $status != 0 ]
+      then
+        wf-recorder -g "$(slurp)" -c gif -f ~/Videos/$(date +'recording_%Y-%m-%d_%H%M%S.gif');
+      else
+        pkill --signal SIGINT wf-recorder
+      fi;
+    '')
+  ];
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -33,6 +51,7 @@ in
         ];
 
         modules-center = [
+          "custom/record"
           workspaces
         ];
 
@@ -47,6 +66,15 @@ in
           "tray"
           "custom/notification"
         ];
+
+        "custom/record" = {
+          "format" = "";
+          "tooltip" = false;
+          "interval" = "once";
+          "exec" = "echo ''";
+          "exec-if" = "pgrep wf-recorder";
+          "on-click" = "recorder-toggle";
+        };
 
         ${workspaces} = {
           "format" = "{icon}";
@@ -200,6 +228,10 @@ in
           color: ${text};
       }
 
+      #custom-record {
+        color: #c9545d;
+      }
+
       @keyframes blink {
           to {
               background-color: ${error};
@@ -232,7 +264,6 @@ in
           animation-iteration-count: infinite;
           animation-direction: alternate;
       }
-      
     '';
   };
 }
