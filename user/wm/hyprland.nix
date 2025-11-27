@@ -16,23 +16,22 @@
 
   home.packages = with pkgs; [
     # core
-    kitty # hyprland default terminal
     foot # call this a backup terminal
     hyprpaper # set bg
     hyprpolkitagent # authentication agent
     brightnessctl # control screen brightness
     playerctl # control media playback
+    pavucontrol
+    networkmanagerapplet
 
     # screenshot
     grim # take screenshot
     slurp # select screenshot region
     satty # screenshot editor
 
-    # tray control
-    networkmanagerapplet   
-    pavucontrol
-    
-    # additionals
+    # viewers
+    nautilus
+    gnome-calendar
     imv
   ];
 

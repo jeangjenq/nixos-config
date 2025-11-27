@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
+{ pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
 
@@ -36,9 +36,6 @@
   home.packages = (with pkgs; [
     # core
     adwaita-icon-theme
-    nautilus
-    gnome-calendar
-    seahorse
     speedcrunch
     mission-center
     nextcloud-client

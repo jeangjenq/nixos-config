@@ -30,11 +30,12 @@ in
     shellAliases = aliases;
     initContent = extra;
   };
+
+  programs.bat.enable = true;
+  programs.bottom.enable = true;
   
   home.packages = with pkgs;[
     tmux
-    bottom
-    bat
     cbonsai
   ];
 }
