@@ -31,6 +31,7 @@
       email = "jeangjenq@jeangjenq.com";
       dotfilesDir = "~/.dotfiles"; # absolute path to dotfiles
       term = "kitty";
+      launcher = "fuzzel";
     };
     # ---------- VARIABLES ---------- #
     

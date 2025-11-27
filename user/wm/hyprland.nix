@@ -10,11 +10,14 @@
     ./ime.nix
   ];
 
+  programs.${userSettings.launcher} = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     # core
     kitty # hyprland default terminal
     foot # call this a backup terminal
-    rofi # app launcher
     hyprpaper # set bg
     hyprpolkitagent # authentication agent
     brightnessctl # control screen brightness
@@ -47,8 +50,7 @@
 
     settings = let
       terminal = userSettings.term;
-      fileManager = "nautilus";
-      menu = "rofi -show drun -show-icons";
+      menu = userSettings.launcher;
       mod = "SUPER";
       screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
       screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
