@@ -46,6 +46,7 @@ in
         "spacing" = 6;
         modules-left = [
           "clock"
+          "mpd"
           mode
           window
         ];
@@ -92,6 +93,33 @@ in
           "format" = "{:%a, %d %b %Y | %H:%M %p}";
           "tooltip-format" = "<tt><big>{calendar}</big></tt>";
           "on-click" = "gnome-calendar";
+        };
+
+        "mpd" = {
+          "format" = "{stateIcon}{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})";
+          "format-disconnected" = "MPD Disconnected";
+          "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} Stopped";
+          "interval" = 10;
+          "on-click" = "playerctl play-pause";
+          "consume-icons" = {
+              "on" = " ";
+          };
+          "random-icons" = {
+              "off" = "<span color=\"#f53c3c\"></span> ";
+              "on" = " ";
+          };
+          "repeat-icons" = {
+              "on" = " ";
+          };
+          "single-icons" = {
+              "on" = "1 ";
+          };
+          "state-icons" = {
+              "paused" = "";
+              "playing" = "";
+          };
+          "tooltip-format" = "{artist} - {album}";
+          "tooltip-format-disconnected" = "MPD (disconnected)";
         };
 
         "idle_inhibitor" = {
