@@ -82,6 +82,7 @@
     defaultApplications = {
       "x-scheme-handler/msteams" = "teams-for-linux.desktop";
       "x-scheme-handler/discord" = "vesktop.desktop";
+      "x-scheme-handler/pcoip" = "remote-pcoip-client.desktop";
     };
   };
   xdg.configFile."mimeapps.list".force = true;
