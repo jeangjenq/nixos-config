@@ -63,7 +63,7 @@
 
     # dev
     remmina
-    isoimagewriter
+    mediawriter
     veracrypt
     obsidian
 
