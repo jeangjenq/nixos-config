@@ -1,11 +1,10 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ pkgs-stable, ... }:
 
 {
   services = {
     ollama = {
       enable = true;
-      acceleration = "rocm";
-      package = pkgs-stable.ollama;
+      package = pkgs-stable.ollama-vulkan;
     };
 
     open-webui = {
