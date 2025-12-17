@@ -55,11 +55,13 @@
     siril
     hugin
     exiftool
+    openscad
 
     # media
     yt-dlp
     tidal-dl
     ffmpeg
+    jellyfin-media-player
 
     # dev
     remmina
