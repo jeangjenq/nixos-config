@@ -3,9 +3,7 @@
 {
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-     rocmPackages.clr.icd
-    ];
+    enable32Bit = true;
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];

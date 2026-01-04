@@ -5,12 +5,6 @@ let
   DISPLAY="DP-1";
 in
 {
-  hardware = {
-    graphics = {
-      enable32Bit = true;
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     mangohud
   ];
@@ -32,7 +26,7 @@ in
       "--xwayland-count 2"
       "--adaptive-sync"
       "-w ${WIDTH}" "-h ${HEIGHT}"
-      "-W ${WIDTH}" "-H ${HEIGHT}" "-r 144 -e -O DP-1"
+      "-W ${WIDTH}" "-H ${HEIGHT}" "-r 144 -e -O ${DISPLAY}"
     ];
   };
 
