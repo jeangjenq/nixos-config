@@ -4,6 +4,7 @@
   imports = [
     ./hyprlock.nix
     ./hypridle.nix
+    ./hyprpaper.nix
     ./wlogout.nix
     ./swaync.nix
     ./waybar.nix
@@ -17,7 +18,6 @@
   home.packages = with pkgs; [
     # core
     foot # call this a backup terminal
-    hyprpaper # set bg
     hyprpolkitagent # authentication agent
     brightnessctl # control screen brightness
     playerctl # control media playback
@@ -83,7 +83,6 @@
       exec-once = [
         # essentials
         "waybar"
-        "hyprpaper"
         "hypridle"
         "nm-applet --indicator"
         "blueman-applet"
@@ -108,7 +107,6 @@
         "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"
         "$mainMod, F, fullscreen,"
-        "$mainMod, P, pseudo," # dwindle
         "$mainMod, E, togglesplit," # dwindle
 
         # screenshots
@@ -270,6 +268,7 @@
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
+        disable_splash_rendering = true;
         middle_click_paste = false;
 	      focus_on_activate = true;
       };
@@ -315,75 +314,56 @@
       ];
 
       layerrule = [
-        "blur, logout_dialog"
+        "match:namespace logout_dialog, blur on"
       ];
       
       # window identifiers
       ## steam
-      "$steam" = "class:^(steam)$";
-      "$steamtoast" = "title:^(notificationtoasts_.*_desktop)$";
-      "$steam_games" = "class:^(steam_app_.*)|^(gamescope)";
+      "$steam" = "match:class ^(steam)$";
+      "$steamfloat" = "match:title ^Friends.+|^Steam.+";
+      "$steamtoast" = "match:title ^(notificationtoasts_.*_desktop)$";
+      "$steam_games" = "match:class ^(steam_app_.*)|^(gamescope)";
 
       ## popups
-      "$filedialog" = "class:^(xdg.desktop-portal)";
-      # "$filedialog" = "title:((Open|Save) (File|Folder|As))";
-      "$pavucontrol" = "class:org.pulseaudio.pavucontrol";
+      "$filedialog" = "match:class ^(xdg.desktop-portal)";
+      # "$filedialog" = "match:title ((Open|Save) (File|Folder|As))";
+      "$pavucontrol" = "match:class org.pulseaudio.pavucontrol";
       windowrule = [
         # steam
-	      "monitor 0, $steam"
-        "workspace 5 silent, $steam"
-        "float, $steam, title:^Friends.+|^Steam.+"
-        "nofocus, $steam, $steamtoast"
-        "pin, $steam, $steamtoast"
-        "opacity 0.6, $steam, $steamtoast"
+        "$steam, monitor 0, workspace 5 silent"
+        "$steamfloat, monitor 0, workspace 5 silent, float on, opacity 0.85"
+        "$steamtoast, no_focus on, pin on, opacity 0.6"
 
         # games
-        "fullscreen, $steam_games"
-        "fullscreen, $steam_games"
-        "immediate, $steam_games" # allow tearing for games
-        "monitor 0, $steam_games"
-        "decorate off, $steam_games"
-        "noanim, $steam_games"
-        "idleinhibit always, $steam_games"
+        "$steam_games, monitor 0, fullscreen on, immediate on, decorate off, no_anim on, idle_inhibit always"
 
         # comms
-        "workspace 6, class:vesktop"
-        "monitor 1 , class:vesktop"
-        "workspace 7, class:signal, title:Signal"
-        "monitor 1 , class:signal, title:Signal"
-        "workspace 8, class:thunderbird"
-        "monitor 1 , class:thunderbird"
+        "match:class vesktop, workspace 6, monitor 1"
+        "match:class signal, match:title Signal, workspace 7, monitor 1"
+        "match:class thunderbird, workspace 8 silent, monitor 1"
 
         # specific apps
-        "workspace 9, class:tidal-hifi"
-        "monitor 1, class:tidal-hifi"
-        "workspace 6, class:^(teams-for-linux)$"
-        "monitor 1, class:^(teams-for-linux)$"
-        "monitor 0 silent, class:^(pcoip-client)$"
-        "workspace 10 silent, class:^(pcoip-client)$"
+        "match:class tidal-hifi, workspace 9, monitor 1"
+        "match:class ^(teams-for-linux)$, workspace 6, monitor 1"
+        "match:class ^(pcoip-client)$, workspace 10 silent, monitor 0"
 
         # popups
-        "float, $filedialog"
-        "size 40% 60%, $filedialog"
-        "opacity 0.85, $filedialog"
-        
-        "float, $pavucontrol"
-        "size 40% 60%, $pavucontrol"
-        "opacity 0.85, $pavucontrol"
-        
-        "float, class:firefox, title:(Picture-in-Picture)"
-        "float, class:(^org\.speedcrunch\.$), title: ^SpeedCrunch$"
-        "float, class:org\.gnome\.Calculator"
-        "float, class:org\.gnome\.Calendar"
-        "float, class:(^com\.gabm\.satty$)"
-        "fullscreenstate 0, class:(^com\.gabm\.satty$)"
-        "opacity 0.85, class:^(com\.nextcloud\.desktopclient\.nextcloud)$"
+        "$filedialog, float on, size 40% 60%, opacity 0.85"
+        "$pavucontrol, float on, size 40% 60%, opacity 0.85"
+
+        "match:class firefox, match:title (Picture-in-Picture), float on"
+        "match:class (^org\.speedcrunch\.$), match:title ^SpeedCrunch$, float on"
+        "match:class org\.gnome\.Calculator, float on"
+        "match:class org\.gnome\.Calendar, float on"
+        "match:class (^com\.gabm\.satty$), float on, fullscreen_state 0 on"
+        "match:class ^(com\.nextcloud\.desktopclient\.nextcloud)$, opacity 0.85"
 
         # specific apps ricing
-        "opacity 0.85, class:^(org\.gnome.+)$"
-        "opacity 0.85, class:^(codium)"
-        "opacity 0.85, class:^(Standard Notes)$"
-        "opacity 0.85, class:^(@joplin)"
+        "match:class ^(org\.gnome.+)$, opacity 0.85"
+        "match:class ^(io\.missioncenter\.MissionCenter)$, opacity 0.85, float on"
+        "match:class ^(codium), opacity 0.85"
+        "match:class ^(Standard Notes)$, opacity 0.85"
+        "match:class ^(@joplin), opacity 0.85"
 
       ];
 
