@@ -4,10 +4,10 @@
   stylix = {
     enable = true;
     image = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/o5/wallhaven-o5w859.png";
-      hash = "sha256-Nk+PG4+MhkvgW9CF9Dtj9wH5BgiCilaY0DKRNcHsHwA=";
+      url = "https://w.wallhaven.cc/full/d8/wallhaven-d8gjeg.png";
+      hash = "sha256-IsmiqjIfbpczUYYJb/BvwWCZjY6xIjHjR1HgtdSiA+A=";
     };
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
     polarity = "dark";
 
     targets.waybar.enable = false;
