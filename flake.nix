@@ -32,6 +32,11 @@
       dotfilesDir = "~/.dotfiles"; # absolute path to dotfiles
       term = "kitty";
       launcher = "fuzzel";
+      monitors = {
+        primary = "LG Electronics LG HDR WQHD+ 302NTDV4K290"; # main monitor
+        vertical = "Dell Inc. DELL P2416D 3RKPR6BH1C0S"; # secondary monitor
+        lapt = "eDP-1"; # laptop monitor
+      };
     };
     # ---------- VARIABLES ---------- #
     

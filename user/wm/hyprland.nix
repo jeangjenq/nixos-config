@@ -56,18 +56,18 @@
       screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
 
       # monitors
-      lguw = "LG Electronics LG HDR WQHD+ 302NTDV4K290";
-      dell = "Dell Inc. DELL P2416D 3RKPR6BH1C0S";
-      lapt = "eDP-1";
+      primary = userSettings.monitors.primary;
+      vertical = userSettings.monitors.vertical;
+      lapt = userSettings.monitors.lapt;
     in {
       
       "$mainMod" = mod; # choosing a mod key
 
       monitor = [
-        ("desc:${lguw}, highrr, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
-        ("desc:${dell}, preferred , 3840x-960 , 1, transform, 1")
-        (lapt + ", highrr, auto-down, 1.25, vrr, 1, cm, auto")
-        ", preferred, auto, 1"
+        ("desc:${primary}, preferred, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
+        ("desc:${vertical}, preferred , 3840x-960 , 1, transform, 1")
+        (lapt + ", preferred, auto-down, 1.25, vrr, 1, cm, auto")
+        ", preferred, auto, 1, vrr, 1"
       ];
 
       # something about gamescope now requires scRGB
@@ -368,10 +368,10 @@
       ];
 
       workspace = [
-        "r[1-5], monitor:desc:${lguw}"
-        "r[0], monitor:desc:${lguw}"
-        "r[6-9], monitor:desc:${dell}"
-        "r[6-9], monitor:desc:${lapt}"
+        "r[1-5], monitor:desc:${primary}"
+        "r[0], monitor:desc:${primary}"
+        "r[6-9], monitor:desc:${vertical}"
+        "r[6-9], monitor:${lapt}"
       ];
 
     };
