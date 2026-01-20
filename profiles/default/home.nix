@@ -68,6 +68,7 @@
     mediawriter
     veracrypt
     obsidian
+    code-cursor-fhs
 
     # eww
     teams-for-linux
