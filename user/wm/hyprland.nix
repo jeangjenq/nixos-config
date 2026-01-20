@@ -1,4 +1,4 @@
-{ pkgs, userSettings, ... }:
+{ pkgs, lib, userSettings, ... }:
 
 {
   imports = [
@@ -37,11 +37,35 @@
 
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = {
-      "image/jpeg" = "imv-dir.desktop";
-      "image/png" = "imv-dir.desktop";
-      "image/gif" = "imv-dir.desktop";
-    };
+    defaultApplications = lib.genAttrs [
+      # Common raster formats
+      "image/jpeg"
+      "image/png"
+      "image/gif"
+      "image/webp"
+      "image/bmp"
+      "image/tiff"
+      "image/x-tiff"
+
+      # Vector formats
+      "image/svg+xml"
+      "image/svg"
+
+      # Icons
+      "image/x-icon"
+      "image/vnd.microsoft.icon"
+
+      # Modern formats
+      "image/heic"
+      "image/heif"
+      "image/avif"
+      "image/jxl"
+
+      # Editor formats (if imv supports them)
+      "image/x-xcf"  # GIMP
+      "image/x-psd"  # Photoshop
+      "image/x-krita" # Krita
+    ] (_: "imv-dir.desktop");
   };
 
   wayland.windowManager.hyprland = {
