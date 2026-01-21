@@ -47,5 +47,21 @@
 
   home.packages = with pkgs; [
     nil
+    nixfmt
   ];
+
+  # Manually write languages.toml to get inline table format for formatter.
+  # home-manager's TOML serializer generates [language.formatter] table format
+  # instead of the inline format (formatter = { command = "nixfmt" }) shown in
+  # Helix documentation.
+  xdg.configFile."helix/languages.toml" = {
+    text = ''
+    [[language]]
+    name = "nix"
+    auto-format = false
+    formatter = { command = "nixfmt" }
+    '';
+    force = true;
+  };
+
 }
