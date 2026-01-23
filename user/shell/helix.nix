@@ -60,6 +60,10 @@
     name = "nix"
     auto-format = false
     formatter = { command = "nixfmt" }
+
+    [[language]]
+    name = "python"
+    formatter = { command = "ruff", args = ["format", "--line-length", "79", "-"] }
     '';
     force = true;
   };
