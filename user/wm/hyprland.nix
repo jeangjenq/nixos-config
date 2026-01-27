@@ -374,6 +374,7 @@
         # popups
         "$filedialog, float on, size 40% 60%, opacity 0.85"
         "$pavucontrol, float on, size 40% 60%, opacity 0.85"
+        "match:class ^[tT]hunar, match:title ^(File Operation Progress), float on, opacity 0.85"
 
         "match:class firefox, match:title (Picture-in-Picture), float on"
         "match:class (^org\.speedcrunch\.$), match:title ^SpeedCrunch$, float on"
