@@ -67,9 +67,11 @@ in
 
       # work
       "libreoffice"
-      "docker"
-      "ollama"
-      "joplin"
+      "docker-desktop"
+      "ollama-app"
+      "cursor"
+      "obsidian"
+      "bambu-studio"
       "vial"
     ];
 
