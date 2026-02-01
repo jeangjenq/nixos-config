@@ -69,9 +69,6 @@
     veracrypt
     obsidian
     code-cursor-fhs
-
-    # eww
-    teams-for-linux
   ])
   ++
   (with pkgs-stable ;[
@@ -83,9 +80,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "x-scheme-handler/msteams" = "teams-for-linux.desktop";
       "x-scheme-handler/discord" = "vesktop.desktop";
-      "x-scheme-handler/pcoip" = "remote-pcoip-client.desktop";
     };
   };
   xdg.configFile."mimeapps.list".force = true;

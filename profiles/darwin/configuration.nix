@@ -71,8 +71,6 @@ in
       "ollama"
       "joplin"
       "vial"
-      "microsoft-teams"
-      "pcoipclient"
     ];
 
     masApps = {

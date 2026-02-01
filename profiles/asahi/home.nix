@@ -54,9 +54,6 @@
     isoimagewriter
     veracrypt
 
-    # eww
-    teams-for-linux
-
   ];
 
   home.sessionVariables = {
