@@ -49,7 +49,7 @@
 
     # create
     gimp
-    kdePackages.kdenlive
+    shotcut
     digikam
     darktable
     siril
