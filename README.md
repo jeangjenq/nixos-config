@@ -1,30 +1,49 @@
 # jeangjenq's NixOS config
 This is my Nix(OS) config at home. I have several profiles depending on what machine I'm on.
+![Overview of my desktop running rmpc, helix and fastfetch](./screenshots/desktop.png)
+## Features
+- **[Stylix](https://github.com/danth/stylix)** for consistent theming across the system.
+- **[Hyprland](https://wiki.hypr.land/)** as the window manager with [hypridle](https://github.com/hyprwm/hypridle), [hyprlock](https://github.com/hyprwm/hyprlock), [hyprpaper](https://github.com/hyprwm/hyprpaper), [waybar](https://github.com/Alexays/Waybar), and [mako](https://github.com/emersion/mako)
+- **[Kitty](https://sw.kovidgoyal.net/kitty/)** terminal
+- **[Helix](https://helix-editor.com/)** editor
+- **[Firefox](https://www.mozilla.org/firefox/)** with custom policies via home-manager
+- Modular structure separating system and user configurations
 
 ## Profiles
+
 ### default
-This is my most comprehensive profile that's meant for home PC or x86_64 laptops. Notable configs in this profile that may be missing from other profiles:
- - docker
- - distrobox
- - virtualization with virt-manager
- - davinci-resolve
- - gaming software/hardware configs
-   - steam
-   - heroic
-   - 8bitdo config
-
-
-### asahi
-M1 Macbook Air running NixOS.
+This is my most comprehensive profile for home PC (x86_64). Notable features:
+- **Gaming**: Steam with gamescope (HDR enabled), gamemode, mangohud
+- **Virtualization**: virt-manager with QEMU/KVM
+- **Hardware**: TLP power management, Vial keyboard config, bluetooth, printing
+- **Media**: OBS Studio, mpd + rmpc, mpv, jellyfin-media-player
+- **Apps**: VSCodium, Cursor, LibreOffice, Obsidian, Thunderbird, Vesktop
+- **Creative**: GIMP, Shotcut, DigiKam, Darktable, Siril, Hugin, OpenSCAD
+- **Network**: Wireguard VPN, sshd, Nextcloud
+- **Other**: Flatpak enabled, electron-wrapper for apps like Signal, local LLM support
 
 ### darwin
-nix only config for M1 Macbook Air on MacOS. The only profile in here that has home-manager as a module.
+nix-darwin config for M1 Macbook Air on MacOS. Uses home-manager as a module.
+- Apps installed via nix-homebrew (Firefox, Thunderbird, Signal, Discord, Steam, etc.)
+- TouchID for sudo enabled
+- Rosetta 2 for x86_64 compatibility
 
-### Install on a new system.
-TODO: Make an install script
-1. Clone this repository into home folder. I prefer to place it inside `.dotfiles` folder.
-1. cd into the repository.
-1. Adjust `hostname`, `system` and `profile` in [flakes.nix](./flakes.nix).
+### asahi (deprecated)
+M1 Macbook Air running NixOS via nixos-apple-silicon. Lighter profile with:
+- Hyprland WM
+- Firefox, Thunderbird, VSCodium
+- DigiKam, Darktable for photo management
+- No gaming configurations
+
+> **Note:** I no longer use this profile. The M1 Mac doesn't have enough storage for dual booting, and running Asahi Linux significantly reduces battery life.
+
+## Install on a new system
+1. Clone this repository into home folder as `.dotfiles`:
+2. Adjust settings in [flake.nix](./flake.nix):
+   - `systemSettings.system` - architecture (e.g., `x86_64-linux`, `aarch64-darwin`)
+   - `systemSettings.hostname`
+   - `systemSettings.profile` - profile to use (`default`, `asahi`, or `darwin`)
+   - `userSettings.username`
 
 ### NixOS
 1. Replace the `hardware-configuration.nix` in system folder by running
@@ -52,31 +71,60 @@ TODO: Make an install script
    ```bash
    nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/.dotfiles#system
    ```
-1. darwin profile installs `firefox` via `nix-homebrew`. But I never couldn't get `home-manager` to deploy my desired firefox policies. So in darwin profile I place the firefox's `policies.json` in `/etc` and manually link it to where it should go with this command.
+1. darwin profile installs `firefox` via `nix-homebrew`. But I couldn't get `home-manager` to deploy my desired firefox policies. So in darwin profile I place the firefox's `policies.json` in `/etc` and manually link it to where it should go with this command.
 ```bash
+sudo mkdir -p /Applications/Firefox.app/Contents/Resources/distribution
 sudo ln -s /etc/firefox/policies.json /Applications/Firefox.app/Contents/Resources/distribution/policies.json
 ```
 
-
 ## Rebuilding
-Rebuild process is different on different OS.
+
 ### NixOS
-I don't include `home-manager` as a module in `nixosConfigurations`, so I can pick and choose when I rebuild system and user level stuff.
-#### system
+System and user configs are separate, so you can rebuild them independently.
+
+**System:**
+
 ```bash
 sudo nixos-rebuild switch --flake ~/.dotfiles#system
 ```
-#### user
+
+**User:**
+
 ```bash
 home-manager switch --flake ~/.dotfiles#user
 ```
 
 ### MacOS
-Since rebuilding won't generate new GRUB entry on MacOS, I simply include `home-manager` as a module and each rebuild triggers both.
+Darwin profile includes home-manager as a module, so both rebuild together:
+
 ```bash
 darwin-rebuild switch --flake ~/.dotfiles#system
 ```
-However, when I make user level only changes, rebuilding via `home-manager` only is also an option.
+
+For user-only changes:
+
 ```bash
 home-manager switch --flake ~/.dotfiles#user
+```
+
+## Directory Structure
+```
+.dotfiles/
+├── flake.nix              # Main flake with system/user settings
+├── profiles/              # Per-machine profiles
+│   ├── default/           # x86_64 desktop/laptop
+│   ├── asahi/             # M1 Mac running NixOS
+│   └── darwin/            # M1 Mac running MacOS
+├── system/                # System-level NixOS modules
+│   ├── app/               # System apps (OBS, LLM, electron-wrapper)
+│   ├── game/              # Gaming (Steam, gamescope, gamemode)
+│   ├── hardware/          # Hardware configs (bluetooth, TLP, etc.)
+│   ├── network/           # Network (sshd, wireguard)
+│   ├── virtualization/    # QEMU/KVM setup
+│   └── wm/                # Window manager system config
+├── user/                  # User-level home-manager modules
+│   ├── app/               # Apps (browser, editor, media)
+│   ├── shell/             # Shell tools (kitty, helix, yazi)
+│   └── wm/                # WM user config (hyprland, waybar, etc.)
+└── themes/                # Stylix config and wallpapers
 ```
