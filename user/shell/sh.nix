@@ -8,6 +8,7 @@ let
     # human readable is always nice
     df = "df -h";
     du = "du --max-depth=1 -h";
+    weather = "curl wttr.in/akl";
   };
   extra = ''
     cbonsai -p
