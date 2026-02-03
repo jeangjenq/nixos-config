@@ -7,7 +7,7 @@ let
     cat = "bat";
     # human readable is always nice
     df = "df -h";
-    du = "du --max-depth=1 -h";
+    du = "du -d 1 -h";
     weather = "curl wttr.in/akl";
   };
   extra = ''
