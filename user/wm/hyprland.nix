@@ -1,5 +1,7 @@
 { pkgs, lib, userSettings, ... }:
-
+let
+  lapt_config = ", preferred, auto-down, auto, vrr, 1, cm, auto";
+in
 {
   imports = [
     ./hyprlock.nix
@@ -33,6 +35,38 @@
     nautilus
     gnome-calendar
     imv
+
+    # clamshell script
+    (pkgs.writeShellScriptBin "clamshell-toggle" ''
+      #!/usr/bin/env bash
+
+      # Read lid state from ACPI
+      lid_file="/proc/acpi/button/lid/LID0/state"
+      [[ -f "$lid_file" ]] || lid_file="/proc/acpi/button/lid/LID/state"
+      if [[ ! -f "$lid_file" ]]; then
+        echo "Cannot determine lid state"
+        exit 1
+      fi
+
+      if grep -q "closed" "$lid_file"; then
+        lid_state="closed"
+      else
+        lid_state="open"
+      fi
+
+      echo "Clamshell toggle: lid is $lid_state"
+
+      if [[ "$(hyprctl monitors)" =~ [[:space:]](DP|HDMI)-[A-Za-z0-9]+(-[0-9]+)? ]]; then
+        echo "External monitor plugged in."
+        if [[ "$lid_state" == "open" ]]; then
+          hyprctl keyword monitor "${userSettings.monitors.lapt}${lapt_config}"
+        else
+          hyprctl keyword monitor "${userSettings.monitors.lapt}, disable"
+        fi
+      else
+        echo "External monitor not plugged in, keeping laptop display enabled"
+      fi
+    '')
   ];
 
   xdg.mimeApps = {
@@ -90,7 +124,7 @@
       monitor = [
         ("desc:${primary}, maxwidth, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
         ("desc:${vertical}, preferred , 3840x-960 , 1, transform, 1")
-        (lapt + ", preferred, auto-down, 1.25, vrr, 1, cm, auto")
+        ("${lapt}${lapt_config}")
         ", preferred, auto, 1, vrr, 1"
       ];
 
@@ -122,7 +156,11 @@
         "[workspace 8 silent] sleep 5 && thunderbird"
       ];
 
-      
+      # runs on every reload - sync lid state with monitor config
+      exec = [
+        "clamshell-toggle"
+      ];
+
       bind = [
         ("$mainMod, RETURN, exec," + terminal)
         ("$mainMod, D, exec," + menu)
@@ -224,10 +262,7 @@
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         # laptop lid switch
-        # ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
-        # ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, highrr, auto-down, 1.25\""
-        ", switch:on:Lid Switch, exec, hyprctl dispatch dpms off && hyprlock"
-        ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+        ", switch:Lid Switch, exec, clamshell-toggle"
       ];
 
       general = {
