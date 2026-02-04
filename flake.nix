@@ -62,6 +62,22 @@
         modules = [
           (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
           stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = false;
+              users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+              extraSpecialArgs = {
+                inherit systemSettings;
+                inherit userSettings;
+                inherit pkgs-stable;
+              };
+              sharedModules = [
+                stylix.homeModules.stylix
+              ];
+            };
+          }
         ];
         specialArgs = {
           inherit inputs;
@@ -95,7 +111,7 @@
           home-manager.darwinModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
-              useUserPackages = true;
+              useUserPackages = false;
               users."${userSettings.username}" = import ./profiles/darwin/home.nix;
               extraSpecialArgs = {
                 inherit systemSettings;
