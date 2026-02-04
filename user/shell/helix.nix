@@ -28,12 +28,9 @@
     };
 
     themes = {
-      override = let
-        theme = "sunset";
-        transparent = { };
-      in {
-        inherits = theme;
-        "ui.background" = transparent;
+      override = {
+        inherits = "nightfox";
+        "ui.background" = { };
       };
     };
   };
