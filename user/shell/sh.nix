@@ -2,7 +2,7 @@
 
 let
   aliases = {
-    ll = "ls -lah";
+    ll = "ls -lh";
     htop = "btm";
     cat = "bat";
     # human readable is always nice
@@ -34,9 +34,14 @@ in
 
   programs.bat.enable = true;
   programs.bottom.enable = true;
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    keyMode = "vi";
+    escapeTime = 5;
+  };
   
   home.packages = with pkgs;[
-    tmux
     cbonsai
   ];
 }
