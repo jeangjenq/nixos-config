@@ -3,6 +3,7 @@
 {
   imports = [
     ./commons.nix
+    ./workstyle.nix
     ./swaylock.nix
     ./swayidle.nix
   ];
