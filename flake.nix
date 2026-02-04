@@ -5,6 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-25.11";
     stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager"; 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -116,7 +117,7 @@
               extraSpecialArgs = {
                 inherit systemSettings;
                 inherit userSettings;
-              inherit pkgs-stable;
+                inherit pkgs-stable;
               };
             };
           }
