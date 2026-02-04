@@ -1,18 +1,21 @@
-{ ... }:
+{ lib, systemSettings, ... }:
 
 {
-  # hyprland specific startup and rule
-  wayland.windowManager.hyprland = {
-    settings = {
-      exec-once = [
-        "fcitx5 -d -r"
-        "fcitx5-remote -r"
-      ];
-      windowrule = [
-        "match:class ^fcitx$, pseudo on"
-      ];
-    };
+  # Hyprland specific startup and rule
+  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
+    exec-once = [
+      "fcitx5 -d -r"
+      "fcitx5-remote -r"
+    ];
+    windowrule = [
+      "match:class ^fcitx$, pseudo on"
+    ];
   };
+
+  # Sway specific startup
+  wayland.windowManager.sway.config.startup = lib.mkIf (systemSettings.wm == "sway") [
+    { command = "fcitx5 -d -r"; }
+  ];
 
   xdg.configFile = {
     # make sure stylix is being used as a them

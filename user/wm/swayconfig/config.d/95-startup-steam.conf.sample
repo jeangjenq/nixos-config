@@ -1,6 +1,0 @@
-exec {
-  # flatpak steam
-  # flatpak run com.valvesoftware.Steam
-  # native steam
-  # steam
-}

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, systemSettings, ... }:
 
 {
   services.mako = {
@@ -11,7 +11,8 @@
     '';
   };
 
-  wayland.windowManager.hyprland.settings = {
+  # Dismiss keybinding for Hyprland
+  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
     bind = [
       "$mainMod, Q, exec, makoctl dismiss"
     ];

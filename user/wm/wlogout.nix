@@ -1,5 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, systemSettings, ... }:
 
+let
+  lockCommands = {
+    hyprland = "hyprlock";
+    sway = "swaylock -f";
+  };
+  lockCommand = lockCommands.${systemSettings.wm} or "swaylock -f";
+in
 {
   home.packages = [
     pkgs.wlogout
@@ -22,7 +29,7 @@
       }
       {
         label = "lock";
-        action = "hyprlock";
+        action = lockCommand;
         text = "Lock";
         keybind = "l";
       }
