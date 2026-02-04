@@ -28,6 +28,18 @@ in
         keybind = "r";
       }
       {
+        label = "logout";
+        action = "loginctl terminate-user $USER";
+        text = "Logout";
+        keybind = "o";
+      }
+      {
+        label = "suspend";
+        action = "systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
+      }
+      {
         label = "lock";
         action = lockCommand;
         text = "Lock";
