@@ -17,7 +17,7 @@ in
   # Hyprland startup and keybinding
   wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
     exec-once = [ "swaync" ];
-    bind = [ "$mainMod, A, exec, swaync-client -t -sw" ];
+    bind = [ "$mainMod, Tab, exec, swaync-client -t -sw" ];
   };
 
   # Sway startup and keybindings
