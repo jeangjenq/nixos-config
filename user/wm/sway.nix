@@ -2,71 +2,15 @@
 
 {
   imports = [
+    ./commons.nix
     ./swaylock.nix
     ./swayidle.nix
-    ./wlogout.nix
-    ./swaync.nix
-    ./waybar.nix
-    ./ime.nix
   ];
-
-  programs.${userSettings.launcher} = {
-    enable = true;
-  };
 
   home.packages = with pkgs; [
-    # core
-    foot # backup terminal
     polkit_gnome # authentication agent
-    brightnessctl # control screen brightness
-    playerctl # control media playback
-    pavucontrol
-    networkmanagerapplet
     swayest-workstyle
-
-    # screenshot
-    grim # take screenshot
-    slurp # select screenshot region
-    satty # screenshot editor
-
-    # viewers
-    nautilus
-    gnome-calendar
-    imv
   ];
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = lib.genAttrs [
-      # Common raster formats
-      "image/jpeg"
-      "image/png"
-      "image/gif"
-      "image/webp"
-      "image/bmp"
-      "image/tiff"
-      "image/x-tiff"
-
-      # Vector formats
-      "image/svg+xml"
-      "image/svg"
-
-      # Icons
-      "image/x-icon"
-      "image/vnd.microsoft.icon"
-
-      # Modern formats
-      "image/heic"
-      "image/heif"
-      "image/avif"
-      "image/jxl"
-
-      # Editor formats
-      "image/x-xcf"
-      "image/x-psd"
-      "image/x-krita"
-    ] (_: "imv-dir.desktop");
-  };
 
   wayland.windowManager.sway = {
     enable = true;
@@ -76,8 +20,6 @@
       terminal = userSettings.term;
       menu = userSettings.launcher;
       mod = "Mod4";
-      screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
-      screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
 
       # window rule presets
       gameRule = "inhibit_idle focus; floating enable; border none; fullscreen enable; shadows disable";
@@ -197,10 +139,6 @@
         "${mod}+Shift+q" = "kill";
         "${mod}+d" = "exec ${menu}";
         "${mod}+Shift+c" = "reload";
-
-        # Screenshots
-        "print" = "exec ${screengrab}";
-        "Alt+print" = "exec ${screenshot}";
 
         # Focus movement with vim keys
         "${mod}+h" = "focus left";

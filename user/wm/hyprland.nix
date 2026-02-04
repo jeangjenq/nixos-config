@@ -2,73 +2,16 @@
 
 {
   imports = [
+    ./commons.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./hyprpaper.nix
-    ./wlogout.nix
-    ./swaync.nix
-    ./waybar.nix
-    ./ime.nix
     ./laptop.nix
   ];
 
-  programs.${userSettings.launcher} = {
-    enable = true;
-  };
-
   home.packages = with pkgs; [
-    # core
-    foot # call this a backup terminal
     hyprpolkitagent # authentication agent
-    brightnessctl # control screen brightness
-    playerctl # control media playback
-    pavucontrol
-    networkmanagerapplet
-
-    # screenshot
-    grim # take screenshot
-    slurp # select screenshot region
-    satty # screenshot editor
-
-    # viewers
-    nautilus
-    gnome-calendar
-    imv
-
   ];
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = lib.genAttrs [
-      # Common raster formats
-      "image/jpeg"
-      "image/png"
-      "image/gif"
-      "image/webp"
-      "image/bmp"
-      "image/tiff"
-      "image/x-tiff"
-
-      # Vector formats
-      "image/svg+xml"
-      "image/svg"
-
-      # Icons
-      "image/x-icon"
-      "image/vnd.microsoft.icon"
-
-      # Modern formats
-      "image/heic"
-      "image/heif"
-      "image/avif"
-      "image/jxl"
-
-      # Editor formats (if imv supports them)
-      "image/x-xcf"  # GIMP
-      "image/x-psd"  # Photoshop
-      "image/x-krita" # Krita
-    ] (_: "imv-dir.desktop");
-  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -78,8 +21,6 @@
       terminal = userSettings.term;
       menu = userSettings.launcher;
       mod = "SUPER";
-      screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
-      screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png";
 
       # monitors
       primary = userSettings.monitors.primary;
@@ -130,10 +71,6 @@
         "$mainMod, F, fullscreen,"
         "$mainMod, E, togglesplit," # dwindle
 
-        # screenshots
-        ",print, exec, ${screengrab}"
-        "ALT,print, exec, ${screenshot}"
-        
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
