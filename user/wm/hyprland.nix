@@ -107,8 +107,6 @@
       # initial startups
       exec-once = [
         # essentials
-        "waybar"
-        "hypridle"
         "nm-applet --indicator"
         "blueman-applet"
         "protonmail-bridge --noninteractive"
@@ -126,7 +124,6 @@
       bind = [
         ("$mainMod, RETURN, exec," + terminal)
         ("$mainMod, D, exec," + menu)
-        "$mainMod SHIFT, E, exec, wlogout"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"

@@ -141,10 +141,6 @@
         ];
       };
 
-      bars = [{
-        command = "waybar";
-      }];
-
       # Input configuration
       input = {
         "type:keyboard" = {
@@ -201,7 +197,6 @@
         "${mod}+Shift+q" = "kill";
         "${mod}+d" = "exec ${menu}";
         "${mod}+Shift+c" = "reload";
-        "${mod}+Shift+e" = "exec wlogout -p layer-shell";
 
         # Screenshots
         "print" = "exec ${screengrab}";
