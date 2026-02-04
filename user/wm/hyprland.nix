@@ -1,7 +1,5 @@
 { pkgs, lib, userSettings, ... }:
-let
-  lapt_config = ", preferred, auto-down, auto, vrr, 1, cm, auto";
-in
+
 {
   imports = [
     ./hyprlock.nix
@@ -11,6 +9,7 @@ in
     ./swaync.nix
     ./waybar.nix
     ./ime.nix
+    ./laptop.nix
   ];
 
   programs.${userSettings.launcher} = {
@@ -36,37 +35,6 @@ in
     gnome-calendar
     imv
 
-    # clamshell script
-    (pkgs.writeShellScriptBin "clamshell-toggle" ''
-      #!/usr/bin/env bash
-
-      # Read lid state from ACPI
-      lid_file="/proc/acpi/button/lid/LID0/state"
-      [[ -f "$lid_file" ]] || lid_file="/proc/acpi/button/lid/LID/state"
-      if [[ ! -f "$lid_file" ]]; then
-        echo "Cannot determine lid state"
-        exit 1
-      fi
-
-      if grep -q "closed" "$lid_file"; then
-        lid_state="closed"
-      else
-        lid_state="open"
-      fi
-
-      echo "Clamshell toggle: lid is $lid_state"
-
-      if [[ "$(hyprctl monitors)" =~ [[:space:]](DP|HDMI)-[A-Za-z0-9]+(-[0-9]+)? ]]; then
-        echo "External monitor plugged in."
-        if [[ "$lid_state" == "open" ]]; then
-          hyprctl keyword monitor "${userSettings.monitors.lapt}${lapt_config}"
-        else
-          hyprctl keyword monitor "${userSettings.monitors.lapt}, disable"
-        fi
-      else
-        echo "External monitor not plugged in, keeping laptop display enabled"
-      fi
-    '')
   ];
 
   xdg.mimeApps = {
@@ -124,7 +92,6 @@ in
       monitor = [
         ("desc:${primary}, maxwidth, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
         ("desc:${vertical}, preferred , 3840x-960 , 1, transform, 1")
-        ("${lapt}${lapt_config}")
         ", preferred, auto, 1, vrr, 1"
       ];
 
@@ -154,11 +121,6 @@ in
         "[workspace 6 silent] vesktop"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] sleep 5 && thunderbird"
-      ];
-
-      # runs on every reload - sync lid state with monitor config
-      exec = [
-        "clamshell-toggle"
       ];
 
       bind = [
@@ -261,8 +223,6 @@ in
         ", XF86AudioPause, exec, playerctl play-pause"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
-        # laptop lid switch
-        ", switch:Lid Switch, exec, clamshell-toggle"
       ];
 
       general = {
@@ -341,27 +301,7 @@ in
         
         numlock_by_default = true;
         accel_profile = "flat";
-        touchpad = {
-          natural_scroll = true;
-        };
       };
-
-      # touchpad gets 
-      device = [
-        {
-          name = "asue120b:00-04f3:31c0-touchpad";
-          accel_profile = "adaptive";
-        }
-        {
-          name = "apple-spi-trackpad";
-          accel_profile = "adaptive";
-        }
-        {
-          name = "apple-spi-keyboard";
-          kb_layout = "us";
-          kb_options = "caps:super, altwin:swap_alt_win";
-        }
-      ];
 
       cursor = {
         default_monitor = "0";
