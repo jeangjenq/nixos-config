@@ -9,6 +9,7 @@ in
     ./wlogout.nix
     ./swaync.nix
     ./waybar.nix
+    ./workstyle.nix
     ./ime.nix
   ];
 

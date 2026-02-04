@@ -9,7 +9,6 @@
 
   home.packages = with pkgs; [
     polkit_gnome # authentication agent
-    swayest-workstyle
   ];
 
   wayland.windowManager.sway = {
@@ -102,14 +101,14 @@
 
       # Workspace assignments
       assigns = {
-        "1" = [{ app_id = "firefox"; }];
-        "5" = [
+        "number 1" = [{ app_id = "firefox"; }];
+        "number 5" = [
           { title = "^Steam$"; class = "steam"; }
           { title = "^Friends List"; class = "steam"; }
           { title = "^Sign in to Steam"; class = "steam"; }
           { title = "^Special Offers"; class = "steam"; }
         ];
-        "6" = [
+        "number 6" = [
           { class = "teams-for-linux"; }
           { app_id = "teams-for-linux"; }
           { class = "discord"; }
@@ -117,16 +116,16 @@
           { class = "vesktop"; }
           { app_id = "vesktop"; }
         ];
-        "7" = [
+        "number 7" = [
           { class = "Signal"; }
           { app_id = "signal"; }
         ];
-        "8" = [{ app_id = "thunderbird"; }];
-        "9" = [
+        "number 8" = [{ app_id = "thunderbird"; }];
+        "number 9" = [
           { class = "tidal-hifi"; }
           { app_id = "tidal-hifi"; }
         ];
-        "10" = [
+        "number 10" = [
           { class = "pcoip-client"; }
           { app_id = "pcoip-client"; }
         ];
@@ -247,7 +246,6 @@
         { command = "blueman-applet"; }
         { command = "protonmail-bridge --noninteractive"; }
         { command = "nextcloud"; }
-        { command = "sworkstyle &> /tmp/sworkstyle.log"; }
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
 
         # Applications
