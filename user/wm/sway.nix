@@ -6,6 +6,7 @@
     ./workstyle.nix
     ./swaylock.nix
     ./swayidle.nix
+    ./laptop.nix
   ];
 
   home.packages = with pkgs; [
@@ -36,6 +37,23 @@
       gaps = {
         inner = 2;
         outer = 2;
+      };
+      output = {
+        "*" = {
+          adaptive_sync = "on";
+        };
+        "${userSettings.monitors.primary}" = {
+          position = "0 0";
+          mode = "3840x1600@144Hz";
+        };
+        "${userSettings.monitors.vertical}" = {
+          position = "3840 -960";
+          transform = "270";
+        };
+        "${userSettings.monitors.lapt}" = {
+          position = "960 1600";
+          scale = "1.25";
+        };
       };
       window = {
         border = 1;
