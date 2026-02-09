@@ -68,7 +68,6 @@
     mediawriter
     veracrypt
     obsidian
-    code-cursor-fhs
   ])
   ++
   (with pkgs-stable ;[

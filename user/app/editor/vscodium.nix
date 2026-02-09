@@ -1,13 +1,7 @@
 { pkgs, ... }:
 
-{
-  home.packages = with pkgs; [
-    vscodium
-  ];
-
-  xdg.configFile = {
-    "VSCodium/User/keybindings.json" = {
-    text = ''
+let
+    keybindings = ''
       [
           {
               "key": "shift+alt+down",
@@ -51,6 +45,21 @@
           }
       ]
     '';
+in
+{
+  home.packages = with pkgs; [
+    vscodium
+    code-cursor-fhs
+  ];
+
+  xdg.configFile = {
+    "VSCodium/User/keybindings.json" = {
+        text = keybindings;
+        force = true;
+    };
+    "Cursor/User/keybindings.json" = {
+        text = keybindings;
+        force = true;
     };
   };
 }
