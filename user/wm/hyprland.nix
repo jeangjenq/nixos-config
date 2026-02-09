@@ -1,5 +1,14 @@
 { pkgs, lib, userSettings, ... }:
+let
+  terminal = userSettings.term;
+  menu = userSettings.launcher;
+  mod = "SUPER";
 
+  # monitors
+  primary = userSettings.monitors.primary;
+  vertical = userSettings.monitors.vertical;
+  lapt = userSettings.monitors.lapt;
+in
 {
   imports = [
     ./commons.nix
@@ -17,17 +26,35 @@
     enable = true;
     systemd.enable = false;
 
-    settings = let
-      terminal = userSettings.term;
-      menu = userSettings.launcher;
-      mod = "SUPER";
+    submaps = {
+      # submap that disables all hotkeys
+      passthrough = {
+        settings = {
+          bind = [
+            "${mod} SHIFT, Z, submap, reset"
+          ];
+        };
+      };
 
-      # monitors
-      primary = userSettings.monitors.primary;
-      vertical = userSettings.monitors.vertical;
-      lapt = userSettings.monitors.lapt;
-    in {
-      
+      resize = {
+        settings = {
+          bind = [
+            ", left, resizeactive, -20 0"
+            ", right, resizeactive, 20 0"
+            ", up, resizeactive, 0 -20"
+            ", down, resizeactive, 0 20"
+            "SHIFT , left, resizeactive, -100 0"
+            "SHIFT , right, resizeactive, 100 0"
+            "SHIFT , up, resizeactive, 0 -100"
+            "SHIFT , down, resizeactive, 0 100"
+
+            ", escape, submap, reset"
+          ];
+        };
+      };
+    };
+
+    settings = {
       "$mainMod" = mod; # choosing a mod key
 
       monitor = [
@@ -63,6 +90,8 @@
       ];
 
       bind = [
+        "$mainMod SHIFT, Z, submap, passthrough"
+        "$mainMod, R, submap, resize"
         ("$mainMod, RETURN, exec," + terminal)
         ("$mainMod, D, exec," + menu)
         "$mainMod SHIFT, Q, killactive,"
@@ -309,14 +338,6 @@
       ];
 
     };
-
-    extraConfig = ''
-      # teradici hotkeys passthrough
-      bind = $mainMod SHIFT, Z, submap, passthrough
-      submap = passthrough
-      bind = $mainMod SHIFT, Z, submap, reset
-      submap = reset
-    '';
   };
 
 }
