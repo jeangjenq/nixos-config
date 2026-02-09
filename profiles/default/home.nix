@@ -10,6 +10,7 @@
     ../../user/shell/yazi.nix
     ../../user/shell/helix.nix
     ../../user/virtualization/virtualization.nix
+    ../../user/app/electron-wrapper.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/editor/vscodium.nix
     ../../user/app/media/mpv.nix

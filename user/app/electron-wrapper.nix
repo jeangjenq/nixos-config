@@ -1,4 +1,4 @@
-{ lib, pkgs, userSettings, ... }:
+{ lib, pkgs, ... }:
 
 let
   # screw all these electron app fuckery
@@ -21,7 +21,7 @@ let
 in
 
 {
-  users.users.${userSettings.username}.packages = [
+  home.packages = [
     signal
     tidal
   ];
