@@ -1,13 +1,24 @@
 # jeangjenq's NixOS config
 This is my Nix(OS) config at home. I have several profiles depending on what machine I'm on.
-![Overview of my desktop running rmpc, helix and fastfetch](./screenshots/desktop.png)
+![Overview of my sway wm config running rmpc, helix and fastfetch](./screenshots/desktop.png)
+
 ## Features
 - **[Stylix](https://github.com/danth/stylix)** for consistent theming across the system.
-- **[Hyprland](https://wiki.hypr.land/)** as the window manager with [hypridle](https://github.com/hyprwm/hypridle), [hyprlock](https://github.com/hyprwm/hyprlock), [hyprpaper](https://github.com/hyprwm/hyprpaper), [waybar](https://github.com/Alexays/Waybar), and [mako](https://github.com/emersion/mako)
-- **[Kitty](https://sw.kovidgoyal.net/kitty/)** terminal
-- **[Helix](https://helix-editor.com/)** editor
+- **[Window manager](#window-managers)**: Choose between [Hyprland](https://wiki.hypr.land/) or [Sway](https://swaywm.org/)
+  - **Hyprland**: with [hypridle](https://github.com/hyprwm/hypridle), [hyprlock](https://github.com/hyprwm/hyprlock), [hyprpaper](https://github.com/hyprwm/hyprpaper)
+  - **Sway**: with [swayidle](https://github.com/swaywm/swayidle), [swaylock](https://github.com/swaywm/swaylock), [workstyle](https://github.com/pierrechevalier83/workstyle)
+  - Shared: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
+  - A minimal GNOME configuration is available as a fallback DE when a full desktop environment is needed:
+    - `system/wm/gnome.nix` - Enables GDM + GNOME with bloat removed (maps, weather, camera apps, etc.) and appindicator extension
+    - `user/wm/gnome.nix` - dconf settings for dark mode, flat mouse accel, privacy settings, and power management
+- **[Waybar](https://github.com/Alexays/Waybar)** with a recorder button that toggles recording a selected region on screen
+- **[Kitty](https://sw.kovidgoyal.net/kitty/)** terminal with shell [preferences](./user/shell/sh.nix)
+- **[Helix](https://helix-editor.com/)** editor with some [preferences](./user/shell/helix.nix)
 - **[Firefox](https://www.mozilla.org/firefox/)** with custom policies via home-manager
-- Modular structure separating system and user configurations
+- **[Laptop module](./user/wm/laptop.nix)**: power-aware display mode (uses a lower-res mode on battery by picking the 3rd available mode), clamshell support, touchpad tuning, and a user-level systemd timer to keep it in sync
+- Modular structure separating system and user configurations, controlled by `flake.nix` variables:
+  - **`systemSettings`**: `system`, `hostname`, [`profile`](#profiles), `wm`, `timezone`, `locale`
+  - **`userSettings`**: `username`, `email`, `dotfilesDir`, `term`, `launcher`, `monitors` (`primary`, `vertical`, `lapt`)
 
 ## Profiles
 
@@ -25,8 +36,6 @@ This is my most comprehensive profile for home PC (x86_64). Notable features:
 ### darwin
 nix-darwin config for M1 Macbook Air on MacOS. Uses home-manager as a module.
 - Apps installed via nix-homebrew (Firefox, Thunderbird, Signal, Discord, Steam, etc.)
-- TouchID for sudo enabled
-- Rosetta 2 for x86_64 compatibility
 
 ### asahi (deprecated)
 M1 Macbook Air running NixOS via nixos-apple-silicon. Lighter profile with:
@@ -43,6 +52,7 @@ M1 Macbook Air running NixOS via nixos-apple-silicon. Lighter profile with:
    - `systemSettings.system` - architecture (e.g., `x86_64-linux`, `aarch64-darwin`)
    - `systemSettings.hostname`
    - `systemSettings.profile` - profile to use (`default`, `asahi`, or `darwin`)
+   - `systemSettings.wm` - window manager (`hyprland` or `sway`)
    - `userSettings.username`
 
 ### NixOS
@@ -121,10 +131,16 @@ home-manager switch --flake ~/.dotfiles#user
 │   ├── hardware/          # Hardware configs (bluetooth, TLP, etc.)
 │   ├── network/           # Network (sshd, wireguard)
 │   ├── virtualization/    # QEMU/KVM setup
-│   └── wm/                # Window manager system config
+│   └── wm/                # Window manager system config (incl. gnome.nix fallback)
 ├── user/                  # User-level home-manager modules
 │   ├── app/               # Apps (browser, editor, media)
 │   ├── shell/             # Shell tools (kitty, helix, yazi)
-│   └── wm/                # WM user config (hyprland, waybar, etc.)
+│   └── wm/                # WM user config
+│       ├── hyprland.nix   # Hyprland config (imports laptop.nix)
+│       ├── sway.nix       # Sway config (imports laptop.nix)
+│       ├── laptop.nix     # Shared laptop module (power, clamshell)
+│       ├── commons.nix    # Shared WM utilities (waybar, swaync, etc.)
+│       ├── gnome.nix      # GNOME dconf settings (fallback DE)
+│       └── ...            # Other WM-related configs
 └── themes/                # Stylix config and wallpapers
 ```

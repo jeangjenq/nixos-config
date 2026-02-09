@@ -2,6 +2,12 @@
 
 {
   home.packages = [ pkgs.hypridle ];
+
+  # Hyprland hypridle startup
+  wayland.windowManager.hyprland.settings.exec-once = [
+    "hypridle"
+  ];
+
   services.hypridle = {
     enable = true;
     settings = {

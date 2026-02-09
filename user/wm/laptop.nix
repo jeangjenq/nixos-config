@@ -1,11 +1,27 @@
-{ pkgs, userSettings, ... }:
+{ pkgs, lib, userSettings, systemSettings, ... }:
 let
   lapt = userSettings.monitors.lapt;
-  lapt_config = "auto-down, 1.25, vrr, 1, cm, auto";
+  hypr_config = "vrr, 1, cm, auto";
+
+  # WM-specific commands for power-refresh-toggle
+  getModesCmd = if systemSettings.wm == "hyprland" then
+    ''hyprctl monitors -j | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .availableModes[]"''
+  else
+    ''swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .modes[] | \"\(.width)x\(.height)@\(.refresh / 1000 | floor)Hz\""'';
+
+  setHighRefreshCmd = if systemSettings.wm == "hyprland" then
+    ''hyprctl keyword monitor "${lapt}, highrr, auto-down, 1.25, ${hypr_config}"''
+  else
+    ''swaymsg output "${lapt}" mode "$power_mode"'';
+
+  setLowRefreshCmd = if systemSettings.wm == "hyprland" then
+    ''hyprctl keyword monitor "${lapt}, $batt_mode, auto-down, 1, ${hypr_config}"''
+  else
+    ''swaymsg output "${lapt}" mode "$batt_mode" scale 1'';
 in
 {
-  home.packages = [
-    # clamshell script
+  home.packages = lib.optionals (systemSettings.wm == "hyprland") [
+    # clamshell script (Hyprland only - Sway handles this via bindswitch)
     (pkgs.writeShellScriptBin "clamshell-toggle" ''
       #!/usr/bin/env bash
 
@@ -36,8 +52,8 @@ in
         echo "External monitor not plugged in, keeping laptop display enabled"
       fi
     '')
-
-    # power-aware refresh rate script
+  ] ++ [
+    # power-aware refresh rate script (works with both Hyprland and Sway)
     (pkgs.writeShellScriptBin "power-refresh-toggle" ''
       #!/usr/bin/env bash
 
@@ -46,11 +62,11 @@ in
       power_supplies=(/sys/class/power_supply/AC* /sys/class/power_supply/ADP*)
       [[ ''${#power_supplies[@]} -eq 0 ]] && exit 0
 
-      # Check lid state - skip if lid is closed and external monitor is connected
+      # Check lid state - skip if lid is closed
       lid_file="/proc/acpi/button/lid/LID/state"
       [[ -f "$lid_file" ]] || lid_file="/proc/acpi/button/lid/LID0/state"
       if [[ -f "$lid_file" ]] && grep -q "closed" "$lid_file"; then
-        echo "Lid closed with external monitor - skipping refresh toggle"
+        echo "Lid closed - skipping refresh toggle"
         exit 0
       fi
 
@@ -64,17 +80,18 @@ in
       done
 
       # Get available modes for the laptop monitor
-      modes=$(hyprctl monitors -j | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .availableModes[]")
-      second_mode=$(echo "$modes" | sed -n '2p')
+      modes=$(${getModesCmd})
+      power_mode=$(echo "$modes" | head -n1)
+      batt_mode=$(echo "$modes" | sed -n '3p')
       # Fallback to first mode if only one available
-      [[ -z "$second_mode" ]] && second_mode=$(echo "$modes" | head -n1)
+      [[ -z "$batt_mode" ]] && batt_mode="$power_mode"
 
       if [[ "$ac_online" == "1" ]]; then
-        echo "AC power connected - using high refresh rate"
-        hyprctl keyword monitor "${lapt}, highrr, ${lapt_config}"
+        echo "AC power connected - using high refresh rate: $power_mode"
+        ${setHighRefreshCmd}
       else
-        echo "On battery - using $second_mode"
-        hyprctl keyword monitor "${lapt}, $second_mode, ${lapt_config}"
+        echo "On battery - using $batt_mode"
+        ${setLowRefreshCmd}
       fi
     '')
   ];
@@ -87,6 +104,7 @@ in
     };
     Service = {
       Type = "oneshot";
+      Environment = [ "PATH=/etc/profiles/per-user/${userSettings.username}/bin:%h/.nix-profile/bin:/run/current-system/sw/bin" ];
       ExecStart = "${pkgs.bash}/bin/bash -c 'power-refresh-toggle'";
     };
   };
@@ -106,10 +124,10 @@ in
   };
 
   # laptop-specific Hyprland settings (merged with main config)
-  wayland.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
     # laptop monitor config
     monitor = [
-      ("${lapt}, highrr, ${lapt_config}")
+      ("${lapt}, highrr, auto-down, 1.25, ${hypr_config}")
     ];
 
     # run on every reload
@@ -129,7 +147,7 @@ in
       };
     };
 
-    # touchpad gets 
+    # touchpad gets adaptive accel
     device = [
       {
         name = "asue120b:00-04f3:31c0-touchpad";
@@ -146,4 +164,9 @@ in
       }
     ];
   };
+
+  # laptop-specific Sway settings (merged with main config)
+  wayland.windowManager.sway.config.startup = lib.mkIf (systemSettings.wm == "sway") [
+    { command = "power-refresh-toggle"; always = true; }
+  ];
 }

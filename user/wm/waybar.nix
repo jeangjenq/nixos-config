@@ -1,4 +1,4 @@
-{ pkgs, systemSettings, ... }:
+{ lib, pkgs, systemSettings, ... }:
 
 let
   # wm specific changes
@@ -300,4 +300,14 @@ in
       }
     '';
   };
+
+  # Sway bar configuration
+  wayland.windowManager.sway.config.bars = lib.mkIf (systemSettings.wm == "sway") [{
+    command = "waybar";
+  }];
+
+  # Hyprland waybar startup
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkIf (systemSettings.wm == "hyprland") [
+    "waybar"
+  ];
 }
