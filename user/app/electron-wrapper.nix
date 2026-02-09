@@ -16,13 +16,10 @@ let
     };
 
     signal = warp { appName = "signal-desktop"; };
-    tidal = warp { appName = "tidal-hifi"; };
-
 in
 
 {
   home.packages = [
     signal
-    tidal
   ];
 }

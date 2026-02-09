@@ -60,7 +60,6 @@ in
       # media
       "digikam"
       "darktable"
-      "tidal"
       "jellyfin-media-player"
       "steam"
       "nextcloud"

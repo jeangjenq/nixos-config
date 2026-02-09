@@ -60,7 +60,6 @@
 
     # media
     yt-dlp
-    tidal-dl
     ffmpeg
     jellyfin-media-player
 
