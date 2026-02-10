@@ -8,8 +8,8 @@ let
       on = "hyprctl dispatch dpms on";
     };
     sway = {
-      off = "swaymsg 'output * dpms off'";
-      on = "swaymsg 'output * dpms on'";
+      off = "swaymsg output \"*\" dpms off";
+      on = "swaymsg output \"*\" dpms on";
     };
   };
   dpms = dpmsCommands.${systemSettings.wm} or dpmsCommands.sway;
