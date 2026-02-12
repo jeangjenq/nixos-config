@@ -15,15 +15,16 @@ in
   imports = [
   ];
 
-  # stylix is not gonna set background
-  # but just using an image to create color palette
-  stylix.enable = true;
-  stylix.image = ../../themes/wallpaper/albertbierstadt.jpg;
-  stylix.polarity = "dark";
-  # terminal opacity, very important
-  stylix.opacity = {
-    popups = 0.8;
-    terminal = 0.85;
+  # stylix can't do much here, just setting color scheme where it can
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
+    polarity = "dark";
+    # terminal opacity, very important
+    opacity = {
+      popups = 0.8;
+      terminal = 0.85;
+    };
   };
   
   # actual packages
@@ -107,6 +108,12 @@ in
     NSGlobalDomain.NSAutomaticInlinePredictionEnabled = false;
     NSGlobalDomain.KeyRepeat = 2;
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
+  };
+
+  system.keyboard = {
+    enableKeyMapping = true;
+    swapLeftCtrlAndFn = true;
+    remapCapsLockToControl = true;
   };
 
   # specify user
