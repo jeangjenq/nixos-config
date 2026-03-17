@@ -77,6 +77,8 @@ in
 
     masApps = {
       "wireguard" = 1451685025;
+      "amphetamine" = 937984704;
+      "teracopy" = 1378806557;
     };
     onActivation = {
       cleanup = "uninstall";
