@@ -95,7 +95,6 @@ in
         ("$mainMod, RETURN, exec," + terminal)
         ("$mainMod, D, exec," + menu)
         "$mainMod SHIFT, Q, killactive,"
-        "$mainMod, M, exit,"
         "$mainMod, SPACE, togglefloating,"
         "$mainMod, F, fullscreen,"
         "$mainMod, E, togglesplit," # dwindle
