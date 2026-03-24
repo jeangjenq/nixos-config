@@ -12,7 +12,7 @@
       ../../system/network/wireguard.nix
       
       ../../system/game/steam.nix
-      ../../system/game/gamemode.nix
+      ../../system/game/heroic.nix
       ../../system/app/llm.nix
 
       ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )

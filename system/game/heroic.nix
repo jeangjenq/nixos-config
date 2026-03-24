@@ -2,8 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    heroic
-    gamescope
-    mangohud
+    heroic-unwrapped
   ];
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 }

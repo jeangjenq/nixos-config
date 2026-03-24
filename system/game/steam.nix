@@ -9,10 +9,8 @@ in
     mangohud
   ];
 
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   programs.steam = {
     enable = true;
