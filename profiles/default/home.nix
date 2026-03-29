@@ -46,6 +46,7 @@
     # signal-desktop covered by electron wrapper
     vesktop
     newsflash
+    proton-vpn
 
     # create
     gimp
