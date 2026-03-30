@@ -31,7 +31,6 @@ in
 
     # viewers
     nautilus
-    gnome-calendar
     imv
   ];
 

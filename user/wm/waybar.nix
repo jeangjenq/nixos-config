@@ -98,7 +98,7 @@ in
           "timezone" = systemSettings.timezone;
           "format" = "{:%a, %d %b %Y | %H:%M %p}";
           "tooltip-format" = "<tt><big>{calendar}</big></tt>";
-          "on-click" = "gnome-calendar";
+          "on-click" = "kitty --app-id cal-popup sh -c 'cal -y -c auto; read'";
         };
 
         "mpd" = {

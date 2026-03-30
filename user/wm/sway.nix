@@ -93,6 +93,8 @@
           { criteria = { title = "(?:Open|Save) (?:File|Folder|As)"; app_id = "dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"; }; command = popupRule; }
           { criteria = { title = "^(File|Folder)\\s*Already Exists\\s*—\\s*"; app_id = "dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"; }; command = popupRule; }
           { criteria = { title = "Confirm to replace files"; app_id = "dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"; }; command = popupRule; }
+          # custom cal-popup in waybar click
+          { criteria = { app_id = "cal-popup"; }; command = popupRule; }
 
           # video
           { criteria = { app_id = "mpv"; }; command = videoRule; }
