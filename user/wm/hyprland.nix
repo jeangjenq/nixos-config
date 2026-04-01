@@ -58,7 +58,7 @@ in
       "$mainMod" = mod; # choosing a mod key
 
       monitor = [
-        ("desc:${primary}, maxwidth, 0x0, 1, vrr, 1, cm, auto")# hdr, bitdepth, 10, sdrbrightness, 1.2, sdrsaturation, 1.2")
+        ("desc:${primary}, preferred, 0x0, 1, vrr, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.2")
         ("desc:${vertical}, preferred , 3840x-960 , 1, transform, 1")
         ", preferred, auto, 1, vrr, 1"
       ];
@@ -66,6 +66,10 @@ in
       # something about gamescope now requires scRGB
       debug = {
         full_cm_proto = true;
+      };
+
+      render = {
+        cm_fs_passthrough = 1;
       };
 
       xwayland = {
