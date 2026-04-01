@@ -41,6 +41,7 @@
     nextcloud-client
     protonmail-bridge
     scrcpy
+    seahorse
 
     # comms
     # signal-desktop covered by electron wrapper
