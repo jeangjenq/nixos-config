@@ -11,8 +11,6 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    nixos-apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    nixos-apple-silicon.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-stable, stylix, home-manager, nix-darwin, nix-homebrew, ... }:

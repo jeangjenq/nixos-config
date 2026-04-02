@@ -27,8 +27,8 @@ This is my most comprehensive profile for home PC (x86_64). Notable features:
 - **Gaming**: Steam with gamescope (HDR enabled), gamemode, mangohud
 - **Virtualization**: virt-manager with QEMU/KVM
 - **Hardware**: TLP power management, Vial keyboard config, bluetooth, printing
-- **Media**: OBS Studio, mpd + rmpc, mpv, jellyfin-media-player
-- **Apps**: VSCodium, Cursor, LibreOffice, Obsidian, Thunderbird, Vesktop
+- **Media**: mpd + rmpc, mpv
+- **Apps**: LibreOffice, Obsidian, Thunderbird
 - **Creative**: GIMP, Shotcut, DigiKam, Darktable, Siril, Hugin, OpenSCAD
 - **Network**: Wireguard VPN, sshd, Nextcloud
 - **Other**: Flatpak enabled, electron-wrapper for apps like Signal, local LLM support
@@ -37,21 +37,12 @@ This is my most comprehensive profile for home PC (x86_64). Notable features:
 nix-darwin config for M1 Macbook Air on MacOS. Uses home-manager as a module.
 - Apps installed via nix-homebrew (Firefox, Thunderbird, Signal, Discord, Steam, etc.)
 
-### asahi (deprecated)
-M1 Macbook Air running NixOS via nixos-apple-silicon. Lighter profile with:
-- Hyprland WM
-- Firefox, Thunderbird, VSCodium
-- DigiKam, Darktable for photo management
-- No gaming configurations
-
-> **Note:** I no longer use this profile. The M1 Mac doesn't have enough storage for dual booting, and running Asahi Linux significantly reduces battery life.
-
 ## Install on a new system
 1. Clone this repository into home folder as `.dotfiles`:
 2. Adjust settings in [flake.nix](./flake.nix):
    - `systemSettings.system` - architecture (e.g., `x86_64-linux`, `aarch64-darwin`)
    - `systemSettings.hostname`
-   - `systemSettings.profile` - profile to use (`default`, `asahi`, or `darwin`)
+   - `systemSettings.profile` - profile to use (`default`, `darwin`)
    - `systemSettings.wm` - window manager (`hyprland` or `sway`)
    - `userSettings.username`
 
@@ -123,7 +114,6 @@ home-manager switch --flake ~/.dotfiles#user
 ├── flake.nix              # Main flake with system/user settings
 ├── profiles/              # Per-machine profiles
 │   ├── default/           # x86_64 desktop/laptop
-│   ├── asahi/             # M1 Mac running NixOS
 │   └── darwin/            # M1 Mac running MacOS
 ├── system/                # System-level NixOS modules
 │   ├── app/               # System apps (OBS, LLM, electron-wrapper)
@@ -132,6 +122,7 @@ home-manager switch --flake ~/.dotfiles#user
 │   ├── network/           # Network (sshd, wireguard)
 │   ├── virtualization/    # QEMU/KVM setup
 │   └── wm/                # Window manager system config (incl. gnome.nix fallback)
+│   └── ...
 ├── user/                  # User-level home-manager modules
 │   ├── app/               # Apps (browser, editor, media)
 │   ├── shell/             # Shell tools (kitty, helix, yazi)
