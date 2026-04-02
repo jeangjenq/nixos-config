@@ -28,7 +28,6 @@
     # core
     adwaita-icon-theme
     mission-center
-
   ])
   ++
   (with pkgs-stable ;[

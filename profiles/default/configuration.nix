@@ -18,11 +18,6 @@
       ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
       
       ../../system/virtualization/virtualization.nix
-
-      # sshd for setting up nixos in vm
-      (import ../../system/network/sshd.nix {
-        authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEQnJVdL98B5voLeFHF9pGhNBW6mudDPJM2By159a/6 jeangjenq@worf"];
-        inherit userSettings; })
     ];
 
   # personal preferences on powerkey and suspend behaviour

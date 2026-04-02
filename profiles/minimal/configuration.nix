@@ -4,12 +4,11 @@
   imports =
     [ # hardwares
       ../../system/hardware-configuration.nix
-      ../../system/hardware/opengl.nix
       ../../system/hardware/bluetooth.nix
       ../../system/hardware/automount.nix
-      ../../system/network/wireguard.nix
-      
-      ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
+      # enable as needed
+      # ../../system/network/wireguard.nix
+      # ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
       
       ../../system/virtualization/virtualization.nix
 
@@ -18,6 +17,10 @@
         authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICEQnJVdL98B5voLeFHF9pGhNBW6mudDPJM2By159a/6 jeangjenq@worf"];
         inherit userSettings; })
     ];
+
+  hardware.graphics = {
+    enable = true;
+  };
 
   # personal preferences on powerkey and suspend behaviour
   services.logind.settings.Login = {
