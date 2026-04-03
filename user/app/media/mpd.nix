@@ -19,4 +19,8 @@
       multimediaKeys = true;
     };
   };
+
+  programs.rmpc = {
+    enable = true;
+  };
 }
