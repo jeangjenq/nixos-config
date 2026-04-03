@@ -58,7 +58,7 @@ in
       "$mainMod" = mod; # choosing a mod key
 
       monitor = [
-        ("desc:${primary}, preferred, 0x0, 1, vrr, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 1.2")
+        ("desc:${primary}, preferred, 0x0, 1, vrr, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.4")#, sdrsaturation, 1.2")
         ("desc:${vertical}, preferred , 3840x-960 , 1, transform, 1")
         ", preferred, auto, 1, vrr, 1"
       ];
