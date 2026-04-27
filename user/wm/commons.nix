@@ -64,7 +64,10 @@ in
       "image/x-xcf"
       "image/x-psd"
       "image/x-krita"
-    ] (_: "imv-dir.desktop");
+    ] (_: "imv-dir.desktop") //
+    {
+      "inode/directory" = "org.gnome.Nautilus.desktop";
+    };
   };
 
   # Screenshot keybindings for Sway
