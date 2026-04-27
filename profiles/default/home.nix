@@ -13,7 +13,6 @@
     ../../user/app/electron-wrapper.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/media/mpv.nix
-    ../../user/app/media/mpd.nix
     ../../user/app/media/docs.nix
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
@@ -61,6 +60,7 @@
     # media
     yt-dlp
     ffmpeg
+    feishin
     jellyfin-media-player
 
     # dev

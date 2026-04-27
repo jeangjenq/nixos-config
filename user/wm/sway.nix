@@ -145,6 +145,8 @@
         "number 9" = [
           { class = "tidal-hifi"; }
           { app_id = "tidal-hifi"; }
+          { class = "feishin"; }
+          { app_id = "feishin"; }
         ];
         "number 10" = [
           { class = "pcoip-client"; }
@@ -275,6 +277,7 @@
         { command = "vesktop"; }
         { command = "signal-desktop"; }
         { command = "sleep 5 && thunderbird"; }
+        { command = "feishin"; }
       ];
 
       floating = {

@@ -91,6 +91,7 @@ in
         "[workspace 6 silent] vesktop"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] sleep 5 && thunderbird"
+        "[workspace 9 silent] feishin"
       ];
 
       bind = [
@@ -309,6 +310,7 @@ in
 
         # specific apps
         "match:class tidal-hifi, workspace 9, monitor 1"
+        "match:class feishin, workspace 9, monitor 1"
         "match:class ^(teams-for-linux)$, workspace 6, monitor 1"
         "match:class ^(pcoip-client)$, workspace 10 silent, monitor 0"
 
@@ -332,6 +334,7 @@ in
         "match:class ^(codium), opacity 0.85"
         "match:class ^(Standard Notes)$, opacity 0.85"
         "match:class ^(@joplin), opacity 0.85"
+        "match:class ^(feishin), opacity 0.95"
 
       ];
 

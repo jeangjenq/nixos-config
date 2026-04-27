@@ -56,7 +56,7 @@ in
         modules-left = [
           "custom/record"
           "clock"
-          "mpd"
+          "mpris"
           mode
           window
         ];
@@ -126,6 +126,24 @@ in
           };
           "tooltip-format" = "{artist} - {album}";
           "tooltip-format-disconnected" = "MPD (disconnected)";
+        };
+
+        "mpris" = {
+          format = "{status_icon} <small>{player}</small>: {dynamic}";
+          title-len = 16;
+          interval = 2;
+          dynamic-len = 48;
+          dynamic-order = [
+            "title"
+            "artist"
+            "position"
+            "length"
+          ];
+          status-icons = {
+            "playing" = "<span foreground=\"tomato\"></span>";
+            "paused" = "<span foreground=\"tomato\"></span>";
+            "stopped" = "<span foreground=\"tomato\"></span>";
+          };
         };
 
         "idle_inhibitor" = {
