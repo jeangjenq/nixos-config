@@ -6,6 +6,7 @@
     ./dbus.nix
     ./fonts.nix
     ./ime.nix
+    ./ly.nix
   ];
 
   programs.hyprland = {
@@ -28,9 +29,5 @@
 
   services.gnome = {
     gnome-keyring.enable = true;
-  };
-
-  services.displayManager.ly = {
-    enable = true;
   };
 }

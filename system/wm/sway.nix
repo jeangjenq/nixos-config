@@ -6,6 +6,7 @@
     ./dbus.nix
     ./fonts.nix
     ./ime.nix
+    ./ly.nix
   ];
 
   programs.sway = {
@@ -31,9 +32,5 @@
     # optional to use google/nextcloud calendar
     evolution-data-server.enable = true;
     gnome-online-accounts.enable = true;
-  };
-
-  services.displayManager.ly = {
-    enable = true;
   };
 }
