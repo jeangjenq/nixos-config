@@ -3,7 +3,7 @@
 let
   aliases = {
     ll = "ls -lh";
-    htop = "btm";
+    htop = "btop";
     cat = "bat";
     # human readable is always nice
     df = "df -h";
@@ -33,7 +33,7 @@ in
   };
 
   programs.bat.enable = true;
-  programs.bottom.enable = true;
+  programs.btop.enable = true;
   programs.tmux = {
     enable = true;
     mouse = true;
