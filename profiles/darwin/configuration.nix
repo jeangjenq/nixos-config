@@ -56,6 +56,7 @@ in
       "thunderbird"
       "signal"
       "protonvpn"
+      "proton-mail-bridge"
       "discord"
 
       # media
@@ -69,10 +70,10 @@ in
       "libreoffice"
       "docker-desktop"
       "ollama-app"
-      "cursor"
       "obsidian"
       "bambu-studio"
       "vial"
+      "raspberry-pi-imager"
     ];
 
     masApps = {

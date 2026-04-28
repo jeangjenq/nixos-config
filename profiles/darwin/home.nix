@@ -4,7 +4,6 @@
   imports = [
     ( ./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/app/git/git.nix
-    ../../user/app/media/mpv.nix
     ../../user/app/browser/firefox.nix
     ../../user/shell/sh.nix
     ../../user/shell/yazi.nix
