@@ -1,9 +1,10 @@
-{ config, pkgs, userSettings, ... }:
+{ pkgs, userSettings, ... }:
 
 {
   home.packages = [ pkgs.git ];
   programs.git = {
     enable = true;
+    signing.format = null;
     settings = {
       user.name = userSettings.username;
       user.email = userSettings.email;

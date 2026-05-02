@@ -1,8 +1,9 @@
-{ pkgs, lib, userSettings, ... }:
+{ pkgs, config, userSettings, ... }:
 
 {
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles.${userSettings.username} = {
       search = {
         force = true;
