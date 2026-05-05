@@ -59,7 +59,6 @@
     yt-dlp
     ffmpeg
     feishin
-    jellyfin-media-player
 
     # dev
     remmina
@@ -70,6 +69,7 @@
   ++
   (with pkgs-stable ;[
     signal-desktop
+    jellyfin-media-player
   ]);
 
   home.sessionVariables = {
