@@ -10,7 +10,6 @@
     ../../user/shell/yazi.nix
     ../../user/shell/helix.nix
     ../../user/virtualization/virtualization.nix
-    ../../user/app/electron-wrapper.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/media/mpv.nix
     ../../user/app/media/docs.nix
@@ -70,6 +69,7 @@
   ])
   ++
   (with pkgs-stable ;[
+    signal-desktop
   ]);
 
   home.sessionVariables = {
