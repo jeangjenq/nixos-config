@@ -11,12 +11,6 @@
         privateDefault = "Searx";
         order = [ "Searx" "ddg" "NixPkgs" "MyNixOS" "google" ];
         engines = {
-          "Searx" = {
-            urls = [{ template = "https://searx.lohng.com/?q={searchTerms}"; }];
-            icon = "https://docs.searxng.org/_static/searxng-wordmark.svg";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
-            definedAliases = [ "@searx" ];
-          };
           "NixPkgs" = {
             urls = [{
               template = "https://search.nixos.org/packages";
@@ -37,7 +31,7 @@
           };
         };
       };      
-      
+
       settings = {
         # personal preferences
         "places.history.enabled" = false;
@@ -63,7 +57,7 @@
           BlockNewRequests = true;
         };
       };
-      
+
       # no first run stuff
       OverrideFirstRunPage = "";
       DisableProfileImport = true;
