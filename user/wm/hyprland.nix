@@ -285,20 +285,21 @@ in
       
       # window identifiers
       ## steam
-      "$steam" = "match:class ^(steam)$";
-      "$steamfloat" = "match:title ^Friends.+|^Steam.+";
+      "$steam" = "match:class ^steam$";
+      # anything that's steam but not the main window
+      "$steamfloat" = "match:title negative:^Steam$";
       "$steamtoast" = "match:title ^(notificationtoasts_.*_desktop)$";
       "$steam_games" = "match:class ^(steam_app_.*)|^(gamescope)";
 
       ## popups
-      "$filedialog" = "match:class ^(xdg.desktop-portal)";
-      # "$filedialog" = "match:title ((Open|Save) (File|Folder|As))";
+      "$xdgdialog" = "match:class ^(xdg.desktop-portal)";
+      "$filedialog" = "match:title ^(Open|Save) (File|Folder|As).+";
       "$pavucontrol" = "match:class org.pulseaudio.pavucontrol";
       windowrule = [
         # steam
         "$steam, monitor 0, workspace 5 silent"
-        "$steamfloat, monitor 0, workspace 5 silent, float on, opacity 0.85"
-        "$steamtoast, no_focus on, pin on, opacity 0.6"
+        "$steam, $steamfloat, monitor 0, workspace 5 silent, float on, opacity 0.9"
+        "$steam, $steamtoast, no_focus on, pin on, opacity 0.6"
 
         # games
         "$steam_games, monitor 0, fullscreen on, immediate on, decorate off, no_anim on, idle_inhibit always"
@@ -315,6 +316,7 @@ in
         "match:class ^(pcoip-client)$, workspace 10 silent, monitor 0"
 
         # popups
+        "$xdgdialog, float on, size 40% 60%, opacity 0.85"
         "$filedialog, float on, size 40% 60%, opacity 0.85"
         "$pavucontrol, float on, size 40% 60%, opacity 0.85"
         "match:class ^[tT]hunar, match:title ^(File Operation Progress), float on, opacity 0.85"
