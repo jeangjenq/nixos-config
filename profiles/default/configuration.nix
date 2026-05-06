@@ -21,6 +21,9 @@
       ../../system/virtualization/virtualization.nix
     ];
 
+  # latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # personal preferences on powerkey and suspend behaviour
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
