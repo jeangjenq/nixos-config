@@ -52,27 +52,23 @@ in
     settings = {
       top_bar = {
         "position" = "top";
-        "spacing" = 6;
+        "spacing" = 16;
         modules-left = [
           "custom/record"
-          "clock"
-          "mpris"
+          workspaces
+          "group/sys"
           mode
-          window
         ];
 
         modules-center = [
-          workspaces
+          window
+          "clock"
+          "idle_inhibitor"
         ];
 
         modules-right = [
-          "idle_inhibitor"
-          "pulseaudio"
-          "cpu"
-          "memory"
-          "battery"
-          "backlight"
-          "network"
+          "mpris"
+          "group/control"
           "tray"
           "custom/notification"
         ];
@@ -84,13 +80,33 @@ in
         };
 
         ${workspaces} = {
-          "format" = "{icon}";
+          format = "{icon}";
+          icon-size = 16;
         };
 
         ${window} = {
           "icon" = true;
-          "icon-size" = 12;
+          "icon-size" = 16;
+          "format" = "";
           "separate-outputs"= true;
+        };
+
+        "group/sys" = {
+          orientation = "horizontal";
+          modules = [
+            "cpu"
+            "memory"
+            "network"
+          ];
+        };
+
+        "group/control" = {
+          orientation = "horizontal";
+          modules = [
+            "pulseaudio"
+            "backlight"
+            "battery"
+          ];
         };
 
         "clock" = {
@@ -134,7 +150,7 @@ in
         };
 
         "mpris" = {
-          format = "{status_icon} <small>{player}</small>: {dynamic}";
+          format = "<small>{status_icon}</small> {dynamic}";
           title-len = 16;
           interval = 2;
           dynamic-len = 48;
@@ -180,16 +196,16 @@ in
 
         "cpu" = {
           "interval" = 1;
-          "format" = "cpu: {usage}%";
+          "format" = "{usage}% ";
           "on-click" = "missioncenter";
         };
 
         "memory" = {
           "interval" = 1;
-          "format" = "mem: {}%";
+          "format" = "{}% ";
           "on-click" = "missioncenter";
         };
-        
+
         "battery" = {
           "states" = {
             "good" = 60;
@@ -204,19 +220,24 @@ in
         };
         
         "backlight" = {
-          "format" = "{icon} {percent}%";
+          "format" = "{percent}% {icon}";
           "format-icons" = ["🔅" "🔆"];
         };
 
         "network" = {
-            "format-wifi" = "{essid} ({signalStrength}%) ";
-            "format-ethernet" = "{ifname}: {ipaddr}/{cidr} ";
-            "format-linked" = "{ifname} (No IP) ";
-            "format-disconnected" = "Disconnected ⚠";
+          format-wifi = "<span color=\"SteelBlue\"></span>";
+          tooltip-format-wifi = "{essid} {signalStrength}% ";
+          format-ethernet = "<span color=\"SteelBlue\"></span>";
+          tooltip-format-ethernet = "{ipaddr}/{cidr} ";
+          format-alt = "{ipaddr}/{cidr} ";
+          format-linked = "<span color=\"Tomato\"></span>";
+          tooltip-format-linked = "{ifname} (No IP)";
+          format-disconnected = "<span color=\"Tomato\">⚠</span>";
+          tooltip-format-disconnected = "{ifname} (Disconnected)";
         };
 
         "tray" = {
-          "spacing" = 10;
+          "spacing" = 8;
         };
 
         "custom/notification" = {
@@ -286,7 +307,7 @@ in
       }
 
       #custom-record {
-        color: #c9545d;
+        color: #FF6347;
       }
 
       @keyframes blink {
