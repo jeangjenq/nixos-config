@@ -293,7 +293,7 @@ in
           to {
               background-color: ${error};
               color: ${text};
-              font-size: larger;
+              /* font-size: larger; */
           }
       }
 
