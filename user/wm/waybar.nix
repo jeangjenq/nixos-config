@@ -96,9 +96,14 @@ in
         "clock" = {
           "interval"= 30;
           "timezone" = systemSettings.timezone;
-          "format" = "{:%a, %d %b %Y | %H:%M %p}";
+          "format" = "{:%H:%M}";
+          "format-alt" = "{:%a, %d %b %Y}";
           "tooltip-format" = "<tt><big>{calendar}</big></tt>";
-          "on-click" = "kitty --app-id cal-popup sh -c 'cal -y -c auto; read'";
+          "calendar" = {
+            format = {
+              today = "<span color=\"tomato\">{}</span>";
+            };
+          };
         };
 
         "mpd" = {
