@@ -26,6 +26,8 @@ in
       Alacritty = "";
       kitty = "";
       openscad = "";
+      obsidian = "";
+      feishin = "";
       other = {
         fallback_icon = "";
         deduplicate_icons = true;
