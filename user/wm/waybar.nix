@@ -50,7 +50,7 @@ in
   programs.waybar = {
     enable = true;
     settings = {
-      mainBar = {
+      top_bar = {
         "position" = "top";
         "spacing" = 6;
         modules-left = [
@@ -113,21 +113,21 @@ in
           "interval" = 10;
           "on-click" = "rmpc togglepause";
           "consume-icons" = {
-              "on" = " ";
+            "on" = " ";
           };
           "random-icons" = {
-              "off" = "<span color=\"#f53c3c\"></span> ";
-              "on" = " ";
+            "off" = "<span color=\"#f53c3c\"></span> ";
+            "on" = " ";
           };
           "repeat-icons" = {
-              "on" = " ";
+            "on" = " ";
           };
           "single-icons" = {
-              "on" = "1 ";
+            "on" = "1 ";
           };
           "state-icons" = {
-              "paused" = "";
-              "playing" = "";
+            "paused" = "";
+            "playing" = "";
           };
           "tooltip-format" = "{artist} - {album}";
           "tooltip-format-disconnected" = "MPD (disconnected)";
@@ -264,7 +264,7 @@ in
           background-color: ${unfocused};
           box-shadow: inset -0.05em -0.05em ${border};
       }
-      
+
       .modules-right {
           margin: ${margin}px ${margin}px 0 0;
       }
@@ -313,7 +313,7 @@ in
           animation-iteration-count: infinite;
           animation-direction: alternate;
       }
-      
+
       #battery.critical:not(.charging) {
           animation-name: blink;
           animation-duration: 0.25s;
