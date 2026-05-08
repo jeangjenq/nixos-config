@@ -37,6 +37,7 @@
     nextcloud-client
     protonmail-bridge
     scrcpy
+    timr-tui
     seahorse
 
     # comms
