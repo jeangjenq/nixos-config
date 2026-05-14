@@ -311,19 +311,9 @@
         pinch:inward+right move right
       }
 
-      # Device-specific mouse bindings
-      set $huge "1390:284:Getech_HUGE_TrackBall"
-      set $logi "1133:16517:Logitech_G604"
-      set $exg  "1390:297:ELECOM_TrackBall_Mouse_EX-G_Pro_TrackBall"
-
-      bindsym --input-device=$huge --whole-window BTN_EXTRA exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
-      bindsym --input-device=$huge --whole-window BTN_SIDE  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
-      bindsym --input-device=$huge --whole-window BTN_BACK  exec playerctl play-pause
-      bindsym --input-device=$exg --whole-window BTN_EXTRA exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
-      bindsym --input-device=$exg --whole-window BTN_SIDE  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
-      bindsym --input-device=$exg --whole-window BTN_FORWARD  exec playerctl play-pause
-      bindsym --input-device=$logi --whole-window BTN_EXTRA exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
-      bindsym --input-device=$logi --whole-window BTN_SIDE exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
+      bindsym --whole-window BTN_SIDE exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
+      bindsym --whole-window BTN_EXTRA exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
+      bindsym --whole-window BTN_FORWARD exec playerctl play-pause
 
       # Clamshell mode (laptop lid handling)
       set $laptop "eDP-1"
