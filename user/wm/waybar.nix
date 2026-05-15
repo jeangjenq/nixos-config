@@ -112,8 +112,7 @@ in
         "clock" = {
           "interval"= 30;
           "timezone" = systemSettings.timezone;
-          "format" = "{:%H:%M}";
-          "format-alt" = "{:%a, %d %b %Y}";
+          "format" = "{:%a, %d %b %Y | %H:%M}";
           "tooltip-format" = "<tt><big>{calendar}</big></tt>";
           "calendar" = {
             format = {
