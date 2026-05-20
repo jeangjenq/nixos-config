@@ -69,7 +69,7 @@ in
       };
 
       render = {
-        cm_fs_passthrough = 1;
+        cm_auto_hdr = 1;
       };
 
       xwayland = {
@@ -102,7 +102,7 @@ in
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, SPACE, togglefloating,"
         "$mainMod, F, fullscreen,"
-        "$mainMod, E, togglesplit," # dwindle
+        "$mainMod, E, layoutmsg, togglesplit," # dwindle
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -243,7 +243,6 @@ in
       };
       
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
       };
       
@@ -325,7 +324,6 @@ in
         "match:class (^org\.speedcrunch\.$), match:title ^SpeedCrunch$, float on"
         "match:class org\.gnome\.Calculator, float on"
         "match:class org\.gnome\.Calendar, float on"
-        "match:class (^com\.gabm\.satty$), float on, fullscreen_state 0 on"
         "match:class ^(com\.nextcloud\.desktopclient\.nextcloud)$, opacity 0.85"
 
         # specific apps ricing
