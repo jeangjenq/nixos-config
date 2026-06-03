@@ -30,7 +30,7 @@
           "Bing".metaData.hidden = true;
           };
         };
-      };      
+      };
 
       settings = {
         # personal preferences
@@ -44,6 +44,14 @@
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       DisableFormHistory = true;
+
+      # AI
+      AIControls = {
+        SidebarChatbot = "blocked";
+      };
+      GenerativeAI = {
+        Enabled = false;
+      };
 
       # permission settings
       Permissions = {
@@ -86,12 +94,21 @@
 
       # unused features
       DisablePocket = true;
-      DisableFirefoxScreenshots = true;
+      IPProtectionAvailable = false;
       OfferToSaveLogins = false;
       OfferToSaveLoginsDefault = false;
       AutofillAddressEnabled = false;
       AutofillCreditCardEnabled = false;
       PasswordManagerEnabled = false;
+
+      # Search
+      SearchEngines = {
+        Remove = [
+          "perplexity"
+          "bing"
+          "google"
+        ];
+      };
 
       # Some must have extensions
       ExtensionSettings = {
