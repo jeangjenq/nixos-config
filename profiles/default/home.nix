@@ -42,7 +42,7 @@
 
     # comms
     # signal-desktop covered by electron wrapper
-    vesktop
+    discord
     newsflash
     proton-vpn
 

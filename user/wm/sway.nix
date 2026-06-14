@@ -130,8 +130,7 @@
         "number 6" = [
           { class = "teams-for-linux"; }
           { app_id = "teams-for-linux"; }
-          { class = "discord"; }
-          { app_id = "com.discordapp.Discord"; }
+          { app_id = "discord"; }
           { class = "vesktop"; }
           { app_id = "vesktop"; }
         ];
@@ -272,7 +271,7 @@
         # Applications
         { command = "firefox"; }
         { command = "MANGOHUD=1 steam"; }
-        { command = "vesktop"; }
+        { command = "discord"; }
         { command = "signal-desktop"; }
         { command = "sleep 5 && thunderbird"; }
         { command = "feishin"; }

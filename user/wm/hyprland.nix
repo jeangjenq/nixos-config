@@ -88,7 +88,7 @@ in
         # preferences
         "[workspace 1] firefox"
         "[workspace 5 silent] MANGOHUD=1 steam"
-        "[workspace 6 silent] vesktop"
+        "[workspace 6 silent] discord"
         "[workspace 7 silent] signal-desktop"
         "[workspace 8 silent] sleep 5 && thunderbird"
         "[workspace 9 silent] feishin"
@@ -305,6 +305,7 @@ in
 
         # comms
         "match:class vesktop, workspace 6, monitor 1"
+        "match:class discord, workspace 6, monitor 1"
         "match:class signal, match:title Signal, workspace 7, monitor 1"
         "match:class thunderbird, workspace 8 silent, monitor 1"
 
