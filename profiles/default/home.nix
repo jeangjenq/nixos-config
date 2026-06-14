@@ -45,6 +45,7 @@
     discord
     newsflash
     proton-vpn
+    moonlight-qt
 
     # create
     gimp
