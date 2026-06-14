@@ -44,7 +44,6 @@
         };
         "${userSettings.monitors.primary}" = {
           position = "0 0";
-          mode = "3840x1600@144Hz";
         };
         "${userSettings.monitors.vertical}" = {
           position = "3840 -960";
