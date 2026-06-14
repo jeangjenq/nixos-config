@@ -1,16 +1,15 @@
 { pkgs, ... }:
-let
-  WIDTH="3840";
-  HEIGHT="1600";
-  DISPLAY="DP-1";
-in
+
 {
   environment.systemPackages = with pkgs; [
     mangohud
+    gamescope-wsi
   ];
 
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 
   programs.steam = {
     enable = true;
@@ -20,15 +19,5 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    gamescopeSession.enable = true;
-    gamescopeSession.args = [
-      "--hdr-enabled" "--hdr-itm-enable"
-      "--hide-cursor-delay 3000" "--fade-out-duration 200"
-      "--xwayland-count 2"
-      "--adaptive-sync"
-      "-w ${WIDTH}" "-h ${HEIGHT}"
-      "-W ${WIDTH}" "-H ${HEIGHT}" "-r 144 -e -O ${DISPLAY}"
-    ];
   };
-
 }
