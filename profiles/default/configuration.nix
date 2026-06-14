@@ -14,7 +14,7 @@
       ../../system/game/steam.nix
       ../../system/game/heroic.nix
       ../../system/app/llm.nix
-      ../../system/app/deepfilternet.nix
+      ../../system/app/rnnoise.nix
 
       ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
       
