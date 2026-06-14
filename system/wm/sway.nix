@@ -30,8 +30,5 @@
 
   services.gnome = {
     gnome-keyring.enable = true;
-    # optional to use google/nextcloud calendar
-    evolution-data-server.enable = true;
-    gnome-online-accounts.enable = true;
   };
 }
