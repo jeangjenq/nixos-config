@@ -56,7 +56,8 @@
     siril
     hugin
     exiftool
-    openscad
+    openscad-unstable
+    freecad
 
     # media
     yt-dlp
