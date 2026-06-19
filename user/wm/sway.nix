@@ -28,6 +28,10 @@
       floatRule = "floating enable; border pixel 1; shadows enable";
       videoRule = "inhibit_idle fullscreen; border none; max_render_time off";
     in {
+      modifier = mod;
+      menu = menu;
+      terminal = terminal;
+
       # Style
       defaultWorkspace = "workspace number 1";
       gaps = {
