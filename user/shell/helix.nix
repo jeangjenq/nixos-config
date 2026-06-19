@@ -45,6 +45,7 @@
   home.packages = with pkgs; [
     nil
     nixfmt
+    pyright
   ];
 
   # Manually write languages.toml to get inline table format for formatter.
@@ -60,7 +61,9 @@
 
     [[language]]
     name = "python"
+    language-servers = [ "pyright", "ruff" ]
     formatter = { command = "ruff", args = ["format", "--line-length", "79", "-"] }
+    auto-format = true
     '';
     force = true;
   };
