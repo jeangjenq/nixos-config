@@ -18,7 +18,7 @@ This is my Nix(OS) config at home. I have several profiles depending on what mac
 - **[Laptop module](./user/wm/laptop.nix)**: power-aware display mode (uses a lower-res mode on battery by picking the 3rd available mode), clamshell support, touchpad tuning, and a user-level systemd timer to keep it in sync
 - Modular structure separating system and user configurations, controlled by `flake.nix` variables:
   - **`systemSettings`**: `system`, `hostname`, [`profile`](#profiles), `wm`, `timezone`, `locale`
-  - **`userSettings`**: `username`, `email`, `dotfilesDir`, `term`, `launcher`, `monitors` (`primary`, `vertical`, `lapt`)
+  - **`userSettings`**: `username`, `email`, `dotfilesDir`, `term`, `monitors` (`primary`, `vertical`, `lapt`)
 
 ## Profiles
 

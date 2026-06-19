@@ -1,7 +1,7 @@
 { pkgs, lib, userSettings, ... }:
 let
   terminal = userSettings.term;
-  menu = userSettings.launcher;
+  menu = "fuzzel";
   mod = "SUPER";
 
   # monitors

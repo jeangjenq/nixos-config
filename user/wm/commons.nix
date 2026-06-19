@@ -12,7 +12,7 @@ in
     ./ime.nix
   ];
 
-  programs.${userSettings.launcher} = {
+  programs.fuzzel = {
     enable = true;
   };
 

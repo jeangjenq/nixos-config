@@ -19,7 +19,7 @@
 
     config = let
       terminal = userSettings.term;
-      menu = userSettings.launcher;
+      menu = "fuzzel";
       mod = "Mod4";
 
       # window rule presets
@@ -28,10 +28,6 @@
       floatRule = "floating enable; border pixel 1; shadows enable";
       videoRule = "inhibit_idle fullscreen; border none; max_render_time off";
     in {
-      modifier = mod;
-      terminal = terminal;
-      menu = menu;
-
       # Style
       defaultWorkspace = "workspace number 1";
       gaps = {
