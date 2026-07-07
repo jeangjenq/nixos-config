@@ -52,7 +52,11 @@
     shotcut
     kdePackages.kdenlive
     digikam
-    darktable
+    (
+      darktable.override {
+        withAi = true;
+      }
+    )
     siril
     hugin
     exiftool
