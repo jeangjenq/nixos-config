@@ -1,6 +1,8 @@
 { pkgs, userSettings, ... }:
 
 {
+  home.pointerCursor.enable = true;
+
   stylix = {
     enable = true;
     image = pkgs.fetchurl {
