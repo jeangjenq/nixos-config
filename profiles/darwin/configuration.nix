@@ -71,7 +71,7 @@ in
       "docker-desktop"
       "ollama-app"
       "obsidian"
-      "bambu-studio"
+      "orcaslicer"
       "vial"
       "raspberry-pi-imager"
     ];

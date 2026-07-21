@@ -27,11 +27,7 @@ This is my most comprehensive profile for home PC (x86_64). Notable features:
 - **Gaming**: Steam with gamescope (HDR enabled), gamemode, mangohud
 - **Virtualization**: virt-manager with QEMU/KVM
 - **Hardware**: TLP power management, Vial keyboard config, bluetooth, printing
-- **Media**: mpd + rmpc, mpv
 - **Apps**: LibreOffice, Obsidian, Thunderbird
-- **Creative**: GIMP, Shotcut, DigiKam, Darktable, Siril, Hugin, OpenSCAD
-- **Network**: Wireguard VPN, sshd, Nextcloud
-- **Other**: Flatpak enabled, electron-wrapper for apps like Signal, local LLM support
 
 ### darwin
 nix-darwin config for M1 Macbook Air on MacOS. Uses home-manager as a module.

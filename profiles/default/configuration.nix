@@ -30,9 +30,6 @@
     HandleLidSwitchExternalPower = "ignore";
   };
 
-  # enable flatpak for something like discord
-  services.flatpak.enable = true;
-
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader.

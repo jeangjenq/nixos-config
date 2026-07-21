@@ -61,6 +61,7 @@
     hugin
     exiftool
     openscad
+    orca-slicer
 
     # media
     yt-dlp
@@ -85,7 +86,8 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "x-scheme-handler/discord" = "vesktop.desktop";
+      "x-scheme-handler/discord" = "discord.desktop";
+      "x-scheme-handler/bambustudio" = "com.orcaslicer.OrcaSlicer.desktop";
     };
   };
   xdg.configFile."mimeapps.list".force = true;
