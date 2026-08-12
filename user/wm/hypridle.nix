@@ -4,9 +4,16 @@
   home.packages = [ pkgs.hypridle ];
 
   # Hyprland hypridle startup
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "hypridle"
-  ];
+  wayland.windowManager.hyprland.extraLuaFiles = {
+    "idle" = {
+      content = ''
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("hypridle")
+        end)
+      '';
+      autoLoad = true;
+    };
+  };
 
   services.hypridle = {
     enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, lib, userSettings, systemSettings, ... }:
+{ pkgs, lib, systemSettings, ... }:
 
 let
   screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/satty-$(date '+%Y%m%d-%H:%M:%S').png";
@@ -76,9 +76,15 @@ in
     "Alt+print" = "exec ${screenshot}";
   });
 
+
   # Screenshot keybindings for Hyprland
-  wayland.windowManager.hyprland.settings.bind = lib.mkIf (systemSettings.wm == "hyprland") [
-    ",print, exec, ${screengrab}"
-    "ALT,print, exec, ${screenshot}"
-  ];
+  wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
+    "screenshot" = {
+      content = ''
+        hl.bind("print", hl.dsp.exec_cmd([[${screengrab}]]))
+        hl.bind("ALT + print", hl.dsp.exec_cmd([[${screenshot}]]))
+      '';
+      autoLoad = true;
+    };
+  };
 }

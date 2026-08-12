@@ -350,7 +350,14 @@ in
   }];
 
   # Hyprland waybar startup
-  wayland.windowManager.hyprland.settings.exec-once = lib.mkIf (systemSettings.wm == "hyprland") [
-    "waybar"
-  ];
+  wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
+    "waybar" = {
+      content = ''
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("waybar")
+        end)
+      '';
+      autoLoad = true;
+    };
+  };
 }
