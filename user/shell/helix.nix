@@ -46,6 +46,8 @@
     nil
     nixfmt
     pyright
+    lua-language-server
+    stylua
   ];
 
   # Manually write languages.toml to get inline table format for formatter.
@@ -64,6 +66,10 @@
     language-servers = [ "pyright", "ruff" ]
     formatter = { command = "ruff", args = ["format", "--line-length", "79", "-"] }
     auto-format = true
+
+    [[language]]
+    name = "lua"
+    formatter = { command = "stylua", args = [ "-" ] }
     '';
     force = true;
   };
