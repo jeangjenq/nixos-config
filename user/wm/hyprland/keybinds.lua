@@ -124,6 +124,12 @@ hl.bind(
   mod .. " + D",
   hl.dsp.exec_cmd(menu)
 )
+hl.bind(
+  "CTRL + SHIFT + M",
+  hl.dsp.pass({
+    window = "class:^discord$"
+  })
+)
 
 -- media and hardware
 hl.bind(
@@ -178,6 +184,9 @@ hl.bind(
 )
 
 -- mouse and kb
+hl.config({
+  binds = { drag_threshold = 10 }
+})
 hl.bind(
   mod .. " + mouse:272",
   hl.dsp.window.drag(),
