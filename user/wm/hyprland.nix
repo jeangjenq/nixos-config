@@ -46,6 +46,10 @@ in
         content = ./hyprland/submaps.lua;
         autoLoad = true;
       };
+      "rules" = {
+        content = ./hyprland/rules.lua;
+        autoLoad = true;
+      };
       "startups" = {
         content = ''
           hl.on("hyprland.start", function()
@@ -222,143 +226,6 @@ in
           direction = "down";
           action = "special";
           workspace_name = "magic";
-        }
-      ];
-
-      layer_rule = [
-        {
-          match = { namespace = "logout_dialog"; };
-          blur = true;
-        }
-      ];
-
-      window_rule = [
-        {
-          match.class = "^steam$";
-          monitor = 0;
-          workspace = "5 silent";
-        }
-        {
-          match = {
-            class = "^steam$";
-            title = "negative:^Steam$";
-          };
-          monitor = 0;
-          workspace = "5 silent";
-          float = true;
-          opacity = 0.9;
-        }
-        {
-          match = {
-            class = "^steam$";
-            title = "^(notificationtoasts_.*_desktop)$";
-          };
-          no_focus = true;
-          # pin = true;
-          opacity = 0.6;
-        }
-        {
-          match.class = "^(steam_app_.*)|^(gamescope)";
-          monitor = 0;
-          fullscreen = true;
-          immediate = true;
-          decorate = false;
-          no_anim = true;
-          idle_inhibit = "always";
-          render_unfocused = true;
-        }
-
-        {
-          match.class = "^(xdg.desktop-portal)";
-          float = true;
-          opacity = 0.85;
-        }
-        {
-          match.title = "^(Open|Save) (File|Folder|As).+";
-          float = true;
-          opacity = 0.85;
-        }
-        {
-          match.class = "org.pulseaudio.pavucontrol";
-          float = true;
-          opacity = 0.85;
-        }
-        {
-          match = {
-            class = "^[tT]hunar";
-            title = "^(File Operation Progress)";
-          };
-          float = true;
-          opacity = 0.85;
-        }
-
-        {
-          match.class = "vesktop|discord";
-          monitor = 1;
-          workspace = "6 silent";
-        }
-        {
-          match = {
-            class = "signal";
-            title = "Signal";
-          };
-          monitor = 1;
-          workspace = "7 silent";
-        }
-        {
-          match.class = "thunderbird";
-          monitor = 1;
-          workspace = "8 silent";
-        }
-
-        {
-          match = {
-            class = "firefox";
-            title = "Picture-in-Picture";
-          };
-          float = true;
-        }
-        {
-          match = {
-            class = "^org\.speedcrunch\.$";
-            title = "^SpeedCrunch$";
-          };
-          float = true;
-        }
-        {
-          match.class = "^org\.gnome\.Cal.+";
-          float = true;
-        }
-        {
-          match.class = "^(com\.nextcloud}.desktopclient\.nextcloud)$";
-          opacity = 0.85;
-          stay_focused = true;
-        }
-        {
-          match.class = "^(io\.missioncenter\.MissionCenter)$";
-          float = true;
-          opacity = 0.85;
-        }
-
-        {
-          match.class = "^org\.gnome\..+";
-          opacity = 0.85;
-        }
-        {
-          match.class = "(tidal-hifi)|(feishin)";
-          monitor = 1;
-          workspace = 9;
-          opacity = 0.95;
-        }
-        {
-          match.class = "^(teams-for-linux)$";
-          monitor = 1;
-          workspace = 6;
-        }
-        {
-          match.class = "^(pcoip-client)$";
-          monitor = 0;
-          workspace = "10 silent";
         }
       ];
     };
