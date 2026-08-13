@@ -55,6 +55,11 @@ in
 
   # Hyprland keybinding for wlogout
   wayland.windowManager.hyprland.settings.bind = lib.mkIf (systemSettings.wm == "hyprland") [
-    "SUPER SHIFT, E, exec, wlogout"
+    {
+      _args = [
+        "SUPER + SHIFT + E"
+        (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wlogout\")")
+      ];
+    }
   ];
 }

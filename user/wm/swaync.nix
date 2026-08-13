@@ -15,9 +15,21 @@ in
   };
 
   # Hyprland startup and keybinding
-  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
-    exec-once = [ "swaync" ];
-    bind = [ "$mainMod, Tab, exec, swaync-client -t -sw" ];
+  wayland.windowManager.hyprland = lib.mkIf (systemSettings.wm == "hyprland") {
+    extraLuaFiles = {
+      "swaync" = {
+        content = ''
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("swaync")
+          end)
+          hl.bind(
+            "SUPER + Tab",
+            hl.dsp.exec_cmd("swaync-client -t -sw")
+          )
+        '';
+        autoLoad = true;
+      };
+    };
   };
 
   # Sway startup and keybindings

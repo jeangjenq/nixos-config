@@ -28,11 +28,14 @@ in
     };
   };
 
-  wayland.windowManager.hyprland = {
-    settings = {
-      exec-once = [
-        "hyprpaper"
-      ];
+  wayland.windowManager.hyprland.extraLuaFiles = {
+    "paper" = {
+      content = ''
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("hyprpaper")
+        end)
+      '';
+      autoLoad = true;
     };
   };
 }

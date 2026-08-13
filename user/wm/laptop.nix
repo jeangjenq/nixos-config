@@ -1,7 +1,6 @@
 { pkgs, lib, userSettings, systemSettings, ... }:
 let
   lapt = userSettings.monitors.lapt;
-  hypr_config = "vrr, 1, cm, auto";
 
   # WM-specific commands for power-refresh-toggle
   getModesCmd = if systemSettings.wm == "hyprland" then
@@ -10,12 +9,12 @@ let
     ''swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .modes[] | \"\(.width)x\(.height)@\(.refresh / 1000 | floor)Hz\""'';
 
   setHighRefreshCmd = if systemSettings.wm == "hyprland" then
-    ''hyprctl keyword monitor "${lapt}, highrr, auto-down, 1.25, ${hypr_config}"''
+    ''hyprctl eval 'hl.monitor({output="${lapt}", mode="highrr", position="auto-down", scale="1.25", vrr=1, cm="auto", disabled=false})' ''
   else
     ''swaymsg output "${lapt}" mode "$power_mode"'';
 
   setLowRefreshCmd = if systemSettings.wm == "hyprland" then
-    ''hyprctl keyword monitor "${lapt}, $batt_mode, auto-down, 1, ${hypr_config}"''
+    ''hyprctl eval 'hl.monitor({output="${lapt}", mode="'"$batt_mode"'", position="auto-down", scale="1", vrr=1, cm="auto",disabled=false})' ''
   else
     ''swaymsg output "${lapt}" mode "$batt_mode" scale 1'';
 in
@@ -46,7 +45,7 @@ in
         if [[ "$lid_state" == "open" ]]; then
           power-refresh-toggle
         else
-          hyprctl keyword monitor "${lapt}, disable"
+          hyprctl eval 'hl.monitor({output="${lapt}", disabled=true})'
         fi
       else
         echo "External monitor not plugged in, keeping laptop display enabled"
@@ -124,45 +123,51 @@ in
   };
 
   # laptop-specific Hyprland settings (merged with main config)
-  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
-    # laptop monitor config
-    monitor = [
-      ("${lapt}, highrr, auto-down, 1.25, ${hypr_config}")
-    ];
+  wayland.windowManager.hyprland = {
+    settings = lib.mkIf (systemSettings.wm == "hyprland") {
+      # laptop monitor config
+      monitor = [
+        {
+          output = "desc:${lapt}";
+          mode = "highrr";
+          position = "auto-down";
+          scale = 1.25;
+          vrr = 1;
+          cm = "auto";
+        }
+      ];
 
-    # run on every reload
-    exec = [
-      "power-refresh-toggle"
-      "clamshell-toggle"
-    ];
-
-    # laptop lid switch binding
-    bindl = [
-      ", switch:Lid Switch, exec, clamshell-toggle"
-    ];
-
-    input = {
-      touchpad = {
-        natural_scroll = true;
-      };
+      # touchpad gets adaptive accel
+      device = [
+        {
+          name = "asue120b:00-04f3:31c0-touchpad";
+          accel_profile = "adaptive";
+        }
+        {
+          name = "apple-spi-trackpad";
+          accel_profile = "adaptive";
+        }
+        {
+          name = "apple-spi-keyboard";
+          kb_layout = "us";
+          kb_options = "caps:super, altwin:swap_alt_win";
+        }
+      ];
     };
 
-    # touchpad gets adaptive accel
-    device = [
-      {
-        name = "asue120b:00-04f3:31c0-touchpad";
-        accel_profile = "adaptive";
-      }
-      {
-        name = "apple-spi-trackpad";
-        accel_profile = "adaptive";
-      }
-      {
-        name = "apple-spi-keyboard";
-        kb_layout = "us";
-        kb_options = "caps:super, altwin:swap_alt_win";
-      }
-    ];
+    extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
+      "laptop" = {
+        content = ''
+          -- run on every reload
+          hl.on("config.reloaded", function()
+            hl.exec_cmd("power-refresh-toggle")
+            hl.exec_cmd("clamshell-toggle")
+          end)
+          hl.bind("switch:Lid Switch", hl.dsp.exec_cmd("clamshell-toggle"))
+        '';
+        autoLoad = true;
+      };
+    };
   };
 
   # laptop-specific Sway settings (merged with main config)

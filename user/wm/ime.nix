@@ -2,14 +2,26 @@
 
 {
   # Hyprland specific startup and rule
-  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
-    exec-once = [
-      "fcitx5 -d -r"
-      "fcitx5-remote -r"
-    ];
-    windowrule = [
-      "match:class ^fcitx$, pseudo on"
-    ];
+  wayland.windowManager.hyprland = {
+    extraLuaFiles = {
+      "ime" = {
+        content = ''
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("fcitx5 -d -r")
+            hl.exec_cmd("fcitx5-remote -r")
+          end)
+        '';
+        autoLoad = true;
+      };
+    };
+    settings = {
+      window_rule = [
+        {
+          match.class = "^fcitx$";
+          pseudo = true;
+        }
+      ];
+    };
   };
 
   # Sway specific startup
