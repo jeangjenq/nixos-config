@@ -8,7 +8,8 @@
     ];
     config = {
       loop-file = "inf";
-      hwdec="auto";
+      hwdec = "auto";
+      target-colorspace-hint-mode = "source";
     };
   };
 }
