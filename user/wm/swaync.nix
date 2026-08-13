@@ -15,7 +15,7 @@ in
   };
 
   # Hyprland startup and keybinding
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = lib.mkIf (systemSettings.wm == "hyprland") {
     extraLuaFiles = {
       "swaync" = {
         content = ''
