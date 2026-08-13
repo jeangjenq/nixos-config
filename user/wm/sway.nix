@@ -19,11 +19,11 @@
 
     config = let
       terminal = userSettings.term;
-      menu = "fuzzel";
+      menu = "pkill fuzzel || fuzzel";
       mod = "Mod4";
 
       # window rule presets
-      gameRule = "inhibit_idle focus; floating enable; border none; fullscreen enable; shadows disable";
+      gameRule = "inhibit_idle fullsreen; border none; fullscreen enable; shadows disable; allow_tearing yes; max_render_time off";
       popupRule = "floating enable; border pixel 1; sticky enable; shadows enable";
       floatRule = "floating enable; border pixel 1; shadows enable";
       videoRule = "inhibit_idle fullscreen; border none; max_render_time off";
@@ -272,7 +272,7 @@
         { command = "MANGOHUD=1 steam"; }
         { command = "discord"; }
         { command = "signal-desktop"; }
-        { command = "sleep 5 && thunderbird"; }
+        { command = "sleep 10 && thunderbird"; }
         { command = "feishin"; }
       ];
 
