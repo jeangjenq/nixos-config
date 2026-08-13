@@ -9,7 +9,7 @@ hl.bind(
 )
 hl.bind(
   mod .. " + SPACE",
-  hl.dsp.window.cycle_next({ floating = true })
+  hl.dsp.window.cycle_next()
 )
 hl.bind(
   mod .. " + SHIFT + Q",
