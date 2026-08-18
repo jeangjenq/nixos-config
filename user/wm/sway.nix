@@ -4,6 +4,7 @@
   imports = [
     ./commons.nix
     ./workstyle.nix
+    ./swayfx.nix
     ./swaylock.nix
     ./swayidle.nix
     ./laptop.nix
@@ -35,8 +36,8 @@
       # Style
       defaultWorkspace = "workspace number 1";
       gaps = {
-        inner = 2;
-        outer = 2;
+        inner = 4;
+        outer = 4;
       };
       output = {
         "*" = {
