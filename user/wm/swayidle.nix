@@ -4,8 +4,8 @@ let
   # DPMS commands differ between window managers
   dpmsCommands = {
     hyprland = {
-      off = "hyprctl dispatch dpms off";
-      on = "hyprctl dispatch dpms on";
+      off = "hyprctl dispatch 'hl.dsp.dpms({action=\"disable\"})'";
+      on = "hyprctl dispatch 'hl.dsp.dpms({action=\"disable\"})'";
     };
     sway = {
       off = "swaymsg output \"*\" dpms off";
