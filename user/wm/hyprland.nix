@@ -62,7 +62,7 @@ in
 
             -- preferences
             hl.exec_cmd("[workspace 1] firefox")
-            hl.exec_cmd("[workspace 5 silent] gamescope --mangohud -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam -tenfoot"")
+            hl.exec_cmd("[workspace 5 silent] gamescope --mangoapp -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam -tenfoot")
             hl.exec_cmd("[workspace 6 silent] discord")
             hl.exec_cmd("[workspace 7 silent] signal-desktop")
             hl.exec_cmd("[workspace 8 silent] sleep 10 && thunderbird")
