@@ -11,9 +11,10 @@
         cursor-shape = {
           insert = "bar";
         };
-        # indent-guides = {
-        #   render = true;
-        # };
+        indent-guides = {
+          render = true;
+          character = "╎";
+        };
         whitespace = {
           render = {
             space = "all";
@@ -33,6 +34,67 @@
         "ui.background" = { };
       };
     };
+
+    languages = {
+      language = [
+        {
+          name = "nix";
+          auto-format = false;
+          formatter = {
+            command = "nixfmt";
+          };
+        }
+        {
+          name = "python";
+          language-servers = [ "pyright" "ruff" ];
+          auto-format = true;
+          formatter = {
+            command = "ruff";
+            args = [ "format" "--line-length" "79" "-" ];
+          };
+        }
+        {
+          name = "lua";
+          auto-format = true;
+          formatter = {
+            command = "stylua";
+            args = [ "-" ];
+          };
+        }
+        {
+          name = "css";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = [ "--parser" "css" ];
+          };
+        }
+        {
+          name = "json";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = [ "--parser" "json" ];
+          };
+        }
+        {
+          name = "yaml";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = [ "--parser" "yaml" ];
+          };
+        }
+        {
+          name = "markdown";
+          auto-format = false;
+          formatter = {
+            command = "prettier";
+            args = [ "--parser" "markdown" ];
+          };
+        }
+      ];
+    };
   };
 
   programs.ruff = {
@@ -42,36 +104,22 @@
     };
   };
 
+  programs.stylua = {
+    enable = true;
+    settings = {
+      indent_type = "Spaces";
+    };
+  };
+
   home.packages = with pkgs; [
     nil
     nixfmt
     pyright
+    marksman
     lua-language-server
-    stylua
+    yaml-language-server
+    ansible-language-server
+    vscode-langservers-extracted
+    prettier
   ];
-
-  # Manually write languages.toml to get inline table format for formatter.
-  # home-manager's TOML serializer generates [language.formatter] table format
-  # instead of the inline format (formatter = { command = "nixfmt" }) shown in
-  # Helix documentation.
-  xdg.configFile."helix/languages.toml" = {
-    text = ''
-    [[language]]
-    name = "nix"
-    auto-format = false
-    formatter = { command = "nixfmt" }
-
-    [[language]]
-    name = "python"
-    language-servers = [ "pyright", "ruff" ]
-    formatter = { command = "ruff", args = ["format", "--line-length", "79", "-"] }
-    auto-format = true
-
-    [[language]]
-    name = "lua"
-    formatter = { command = "stylua", args = [ "-" ] }
-    '';
-    force = true;
-  };
-
 }
