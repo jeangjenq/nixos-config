@@ -270,7 +270,7 @@
 
         # Applications
         { command = "firefox"; }
-        { command = "gamescope --mangoapp -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam -tenfoot"; }
+        { command = "gamescope --mangoapp -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam"; }
         { command = "discord"; }
         { command = "signal-desktop"; }
         { command = "sleep 10 && thunderbird"; }
