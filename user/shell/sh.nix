@@ -11,9 +11,11 @@ let
     weather = "curl wttr.in/akl";
   };
   extra = ''
-    cbonsai -p
     if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
       tmux attach-session -t default || tmux new-session -s default
+    fi
+    if [ -n "$TMUX" ]; then
+      cbonsai -p
     fi
   '';
 in
@@ -40,9 +42,8 @@ in
     keyMode = "vi";
     escapeTime = 5;
   };
-  
-  home.packages = with pkgs;[
+
+  home.packages = with pkgs; [
     cbonsai
   ];
 }
-
