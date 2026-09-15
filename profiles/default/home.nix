@@ -8,8 +8,8 @@
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
     ../../user/shell/yazi.nix
-    ../../user/shell/helix.nix
     ../../user/virtualization/virtualization.nix
+    ../../user/app/editor/helix.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/media/mpv.nix
     ../../user/app/media/docs.nix

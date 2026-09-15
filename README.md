@@ -13,7 +13,7 @@ This is my Nix(OS) config at home. I have several profiles depending on what mac
     - `user/wm/gnome.nix` - dconf settings for dark mode, flat mouse accel, privacy settings, and power management
 - **[Waybar](https://github.com/Alexays/Waybar)** with a recorder button that toggles recording a selected region on screen
 - **[Kitty](https://sw.kovidgoyal.net/kitty/)** terminal with shell [preferences](./user/shell/sh.nix)
-- **[Helix](https://helix-editor.com/)** editor with some [preferences](./user/shell/helix.nix)
+- **[Helix](https://helix-editor.com/)** editor with some [preferences](./user/app/editor/helix.nix)
 - **[Firefox](https://www.mozilla.org/firefox/)** with custom policies via home-manager
 - **[Laptop module](./user/wm/laptop.nix)**: power-aware display mode (uses a lower-res mode on battery by picking the 3rd available mode), clamshell support, touchpad tuning, and a user-level systemd timer to keep it in sync
 - Modular structure separating system and user configurations, controlled by `flake.nix` variables:

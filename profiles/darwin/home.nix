@@ -3,11 +3,11 @@
 {
   imports = [
     ( ./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
-    ../../user/app/git/git.nix
-    ../../user/app/browser/firefox.nix
     ../../user/shell/sh.nix
     ../../user/shell/yazi.nix
-    ../../user/shell/helix.nix
+    ../../user/app/git/git.nix
+    ../../user/app/editor/helix.nix
+    ../../user/app/browser/firefox.nix
   ];
 
   programs.firefox.package = null;
