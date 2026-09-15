@@ -36,21 +36,37 @@
     };
 
     languages = {
+      language-server.uwu = {
+        command = "${pkgs.uwu-colors}/bin/uwu_colors";
+      };
       language = [
         {
           name = "nix";
-          auto-format = false;
+          auto-format = true;
+          language-servers = [
+            "nil"
+            "uwu"
+          ];
           formatter = {
             command = "nixfmt";
           };
         }
         {
           name = "python";
-          language-servers = [ "pyright" "ruff" ];
           auto-format = true;
+          language-servers = [
+            "pyright"
+            "ruff"
+            "uwu"
+          ];
           formatter = {
             command = "ruff";
-            args = [ "format" "--line-length" "79" "-" ];
+            args = [
+              "format"
+              "--line-length"
+              "79"
+              "-"
+            ];
           };
         }
         {
@@ -62,11 +78,29 @@
           };
         }
         {
+          name = "toml";
+          auto-format = true;
+          language-servers = [
+            "tombi"
+            "uwu"
+          ];
+          formatter = {
+            command = "prettier";
+            args = [
+              "--parser"
+              "toml"
+            ];
+          };
+        }
+        {
           name = "css";
           auto-format = true;
           formatter = {
             command = "prettier";
-            args = [ "--parser" "css" ];
+            args = [
+              "--parser"
+              "css"
+            ];
           };
         }
         {
@@ -74,15 +108,25 @@
           auto-format = true;
           formatter = {
             command = "prettier";
-            args = [ "--parser" "json" ];
+            args = [
+              "--parser"
+              "json"
+            ];
           };
         }
         {
           name = "yaml";
           auto-format = true;
+          language-servers = [
+            "yaml-language-server"
+            "uwu"
+          ];
           formatter = {
             command = "prettier";
-            args = [ "--parser" "yaml" ];
+            args = [
+              "--parser"
+              "yaml"
+            ];
           };
         }
         {
@@ -90,7 +134,10 @@
           auto-format = false;
           formatter = {
             command = "prettier";
-            args = [ "--parser" "markdown" ];
+            args = [
+              "--parser"
+              "markdown"
+            ];
           };
         }
       ];
@@ -120,6 +167,7 @@
     yaml-language-server
     ansible-language-server
     vscode-langservers-extracted
+    tombi
     prettier
   ];
 }
