@@ -20,27 +20,52 @@ let
   '';
 in
 {
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    shellAliases = aliases;
-    initExtra = extra;
-  };
-  
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    shellAliases = aliases;
-    initContent = extra;
-  };
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      shellAliases = aliases;
+      initExtra = extra;
+    };
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      shellAliases = aliases;
+      initContent = extra;
 
-  programs.bat.enable = true;
-  programs.btop.enable = true;
-  programs.tmux = {
-    enable = true;
-    mouse = true;
-    keyMode = "vi";
-    escapeTime = 5;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      history = {
+        ignoreDups = true;
+        ignoreAllDups = true;
+        saveNoDups = true;
+        ignoreSpace = true;
+        ignorePatterns = [
+          "rm *"
+          "git *"
+          "mpv *"
+          "echo *"
+          "print *"
+        ];
+      };
+    };
+
+    tmux = {
+      enable = true;
+      mouse = true;
+      keyMode = "vi";
+      escapeTime = 5;
+    };
+
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      tmux.enableShellIntegration = true;
+    };
+
+    bat.enable = true;
+    btop.enable = true;
   };
 
   home.packages = with pkgs; [

@@ -9,6 +9,7 @@
       ../../system/hardware/printing.nix
       ../../system/hardware/automount.nix
       ../../system/hardware/vial.nix
+      ../../system/hardware/tlp.nix
       ../../system/network/wireguard.nix
       
       ../../system/game/steam.nix
@@ -67,6 +68,10 @@
     variant = "";
   };
 
+  # bash and zsh
+  programs.zsh.enable = true;
+  programs.bash.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
     isNormalUser = true;
@@ -74,6 +79,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = [];
     uid = 1000;
+    shell = pkgs.zsh;
   };
 
   environment.systemPackages = with pkgs; [
