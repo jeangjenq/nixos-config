@@ -11,11 +11,8 @@ let
     weather = "curl wttr.in/akl";
   };
   extra = ''
-    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-      tmux attach-session -t default || tmux new-session -s default
-    fi
-    if [ -n "$TMUX" ]; then
-      cbonsai -p
+    if [ -z "$TMUX" ]; then
+      tmux new -As default
     fi
   '';
 in
@@ -59,6 +56,7 @@ in
       mouse = true;
       keyMode = "vi";
       escapeTime = 5;
+      terminal = "screen-256color";
     };
 
     fzf = {
@@ -71,8 +69,4 @@ in
     bat.enable = true;
     btop.enable = true;
   };
-
-  home.packages = with pkgs; [
-    cbonsai
-  ];
 }
