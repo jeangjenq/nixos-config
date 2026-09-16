@@ -20,6 +20,10 @@ let
   '';
 in
 {
+  imports = [
+    ./starship.nix
+  ];
+
   programs = {
     bash = {
       enable = true;

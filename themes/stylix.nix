@@ -18,6 +18,7 @@
     ];
     targets.fuzzel.enable = true;
     targets.helix.enable = true;
+    targets.starship.enable = true;
 
     cursor = {
       package = pkgs.bibata-cursors;
