@@ -81,14 +81,14 @@
           name = "toml";
           auto-format = true;
           language-servers = [
-            "tombi"
+            "taplo"
             "uwu"
           ];
           formatter = {
-            command = "prettier";
+            command = "taplo";
             args = [
-              "--parser"
-              "toml"
+              "format"
+              "-"
             ];
           };
         }
@@ -167,7 +167,7 @@
     yaml-language-server
     ansible-language-server
     vscode-langservers-extracted
-    tombi
+    taplo
     prettier
   ];
 }
