@@ -65,7 +65,7 @@
     in
     {
       nixosConfigurations = {
-        system = nixpkgs.lib.nixosSystem {
+        default = nixpkgs.lib.nixosSystem {
           system = systemSettings.system;
           modules = [
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
@@ -114,7 +114,7 @@
       };
 
       darwinConfigurations = {
-        system = nix-darwin.lib.darwinSystem {
+        default = nix-darwin.lib.darwinSystem {
           system = systemSettings.system;
           modules = [
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
