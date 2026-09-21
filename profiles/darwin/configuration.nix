@@ -1,4 +1,9 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
+{
+  pkgs,
+  lib,
+  userSettings,
+  ...
+}:
 let
   firefoxConfig = import ../../user/app/browser/firefox.nix { inherit lib pkgs userSettings; };
   firefoxJson = builtins.toJSON firefoxConfig.programs.firefox.policies;
@@ -26,7 +31,7 @@ in
       terminal = 0.85;
     };
   };
-  
+
   # actual packages
   environment.systemPackages = with pkgs; [
     neovim
@@ -92,7 +97,7 @@ in
     dock.autohide = true;
     dock.static-only = false;
     dock.show-recents = false;
-    dock.persistent-apps = [];
+    dock.persistent-apps = [ ];
     finder.ShowPathbar = true;
     menuExtraClock.Show24Hour = true;
     menuExtraClock.ShowSeconds = true;
@@ -129,7 +134,7 @@ in
   nix.settings.experimental-features = "nix-command flakes";
 
   # use TouchID for sudo
-  security.pam.services.sudo_local.touchIdAuth = true; 
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

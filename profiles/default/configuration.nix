@@ -1,26 +1,32 @@
-{ config, pkgs, systemSettings, userSettings, ... }:
+{
+  config,
+  pkgs,
+  systemSettings,
+  userSettings,
+  ...
+}:
 
 {
-  imports =
-    [ # hardwares
-      ../../system/hardware-configuration.nix
-      ../../system/hardware/opengl.nix
-      ../../system/hardware/bluetooth.nix
-      ../../system/hardware/printing.nix
-      ../../system/hardware/automount.nix
-      ../../system/hardware/vial.nix
-      ../../system/hardware/tlp.nix
-      ../../system/network/wireguard.nix
-      
-      ../../system/game/steam.nix
-      ../../system/game/heroic.nix
-      ../../system/app/llm.nix
-      ../../system/app/rnnoise.nix
+  imports = [
+    # hardwares
+    ../../system/hardware-configuration.nix
+    ../../system/hardware/opengl.nix
+    ../../system/hardware/bluetooth.nix
+    ../../system/hardware/printing.nix
+    ../../system/hardware/automount.nix
+    ../../system/hardware/vial.nix
+    ../../system/hardware/tlp.nix
+    ../../system/network/wireguard.nix
 
-      ( ./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix" )
-      
-      ../../system/virtualization/virtualization.nix
-    ];
+    ../../system/game/steam.nix
+    ../../system/game/heroic.nix
+    ../../system/app/llm.nix
+    ../../system/app/rnnoise.nix
+
+    (./. + "../../../system/wm" + ("/" + systemSettings.wm) + ".nix")
+
+    ../../system/virtualization/virtualization.nix
+  ];
 
   # latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -76,8 +82,11 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.username;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = [ ];
     uid = 1000;
     shell = pkgs.zsh;
   };
@@ -99,6 +108,9 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   # enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
 }

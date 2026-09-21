@@ -1,9 +1,15 @@
-{ pkgs, pkgs-stable, systemSettings, userSettings, ... }:
+{
+  pkgs,
+  pkgs-stable,
+  systemSettings,
+  userSettings,
+  ...
+}:
 
 {
 
   imports = [
-    ( ./. + "../../../user/wm" + ( "/" + systemSettings.wm + ".nix") )
+    (./. + "../../../user/wm" + ("/" + systemSettings.wm + ".nix"))
     (./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
@@ -28,57 +34,55 @@
   programs.home-manager.enable = true;
 
   programs.firefox.enable = true;
-  
-  home.packages = (with pkgs; [
-    # core
-    adwaita-icon-theme
-    speedcrunch
-    mission-center
-    nextcloud-client
-    protonmail-bridge
-    scrcpy
-    timr-tui
-    seahorse
 
-    # comms
-    # signal-desktop covered by electron wrapper
-    discord
-    newsflash
-    proton-vpn
-    moonlight-qt
+  home.packages =
+    (with pkgs; [
+      # core
+      adwaita-icon-theme
+      speedcrunch
+      mission-center
+      nextcloud-client
+      protonmail-bridge
+      scrcpy
+      timr-tui
+      seahorse
 
-    # create
-    gimp
-    shotcut
-    kdePackages.kdenlive
-    digikam
-    (
-      darktable.override {
+      # comms
+      # signal-desktop covered by electron wrapper
+      discord
+      newsflash
+      proton-vpn
+      moonlight-qt
+
+      # create
+      gimp
+      shotcut
+      kdePackages.kdenlive
+      digikam
+      (darktable.override {
         withAi = true;
-      }
-    )
-    siril
-    hugin
-    exiftool
-    openscad
-    orca-slicer
+      })
+      siril
+      hugin
+      exiftool
+      openscad
+      orca-slicer
 
-    # media
-    yt-dlp
-    ffmpeg
-    feishin
+      # media
+      yt-dlp
+      ffmpeg
+      feishin
 
-    # dev
-    remmina
-    mediawriter
-    veracrypt
-    obsidian
-  ])
-  ++
-  (with pkgs-stable ;[
-    signal-desktop
-    jellyfin-media-player
-  ]);
+      # dev
+      remmina
+      mediawriter
+      veracrypt
+      obsidian
+    ])
+    ++ (with pkgs-stable; [
+      signal-desktop
+      jellyfin-media-player
+    ]);
 
   home.sessionVariables = {
   };

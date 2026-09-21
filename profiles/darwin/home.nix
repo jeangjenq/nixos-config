@@ -1,8 +1,12 @@
-{ configs, pkgs, systemSettings, userSettings, ... }:
+{
+  pkgs,
+  userSettings,
+  ...
+}:
 
 {
   imports = [
-    ( ./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
+    (./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
     ../../user/shell/sh.nix
     ../../user/shell/yazi.nix
     ../../user/app/git/git.nix
@@ -12,7 +16,7 @@
 
   programs.firefox.package = null;
   programs.joplin-desktop.package = pkgs.emptyDirectory;
-  
+
   home.stateVersion = "24.11";
   home.username = userSettings.username;
   home.homeDirectory = "/Users/" + userSettings.username;
