@@ -34,6 +34,12 @@ in
     imv
   ];
 
+  dconf.settings = {
+    "org/blueman/general" = {
+      plugin-list = [ "!ConnectionNotifier" ];
+    };
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = lib.genAttrs [
