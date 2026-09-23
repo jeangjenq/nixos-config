@@ -14,8 +14,7 @@
   };
 
   outputs =
-    inputs@{
-      self,
+    {
       nixpkgs,
       nixpkgs-stable,
       stylix,
@@ -47,21 +46,8 @@
         };
       };
       # ---------- VARIABLES ---------- #
-
-      # pkgs = nixpkgs.legacyPackages.${system};
-      pkgs = import nixpkgs {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-        };
-      };
-      pkgs-stable = import nixpkgs-stable {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-        };
-      };
-
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+      pkgs-stable = nixpkgs-stable.legacyPackages.${systemSettings.system};
     in
     {
       nixosConfigurations = {
@@ -74,14 +60,13 @@
             {
               home-manager = {
                 useGlobalPkgs = true;
-                useUserPackages = false;
+                useUserPackages = true;
                 users.${userSettings.username} = import (
                   ./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix"
                 );
                 extraSpecialArgs = {
                   inherit systemSettings;
                   inherit userSettings;
-                  inherit pkgs-stable;
                 };
                 sharedModules = [
                   stylix.homeModules.stylix
@@ -90,22 +75,6 @@
             }
           ];
           specialArgs = {
-            inherit inputs;
-            inherit systemSettings;
-            inherit userSettings;
-            inherit pkgs-stable;
-          };
-        };
-      };
-
-      homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-            stylix.homeModules.stylix
-          ];
-          extraSpecialArgs = {
             inherit systemSettings;
             inherit userSettings;
             inherit pkgs-stable;
@@ -122,12 +91,11 @@
             {
               home-manager = {
                 useGlobalPkgs = true;
-                useUserPackages = false;
+                useUserPackages = true;
                 users."${userSettings.username}" = import ./profiles/darwin/home.nix;
                 extraSpecialArgs = {
                   inherit systemSettings;
                   inherit userSettings;
-                  inherit pkgs-stable;
                 };
               };
             }

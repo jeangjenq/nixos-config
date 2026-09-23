@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  pkgs-stable,
   systemSettings,
   userSettings,
   ...
@@ -86,7 +86,10 @@
       "networkmanager"
       "wheel"
     ];
-    packages = [ ];
+    packages = [
+      pkgs-stable.signal-desktop
+      pkgs-stable.jellyfin-media-player
+    ];
     uid = 1000;
     shell = pkgs.zsh;
   };
@@ -96,7 +99,6 @@
     neovim
     wget
     git
-    home-manager
   ];
 
   # This value determines the NixOS release from which the default
@@ -112,5 +114,4 @@
     "nix-command"
     "flakes"
   ];
-
 }

@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   systemSettings,
   userSettings,
   ...
@@ -31,12 +30,12 @@
   home.homeDirectory = "/home/" + userSettings.username;
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
-  programs.home-manager.enable = true;
 
   programs.firefox.enable = true;
 
-  home.packages =
-    (with pkgs; [
+  home.packages = (
+    with pkgs;
+    [
       # core
       adwaita-icon-theme
       speedcrunch
@@ -48,7 +47,6 @@
       seahorse
 
       # comms
-      # signal-desktop covered by electron wrapper
       discord
       newsflash
       proton-vpn
@@ -78,11 +76,8 @@
       mediawriter
       veracrypt
       obsidian
-    ])
-    ++ (with pkgs-stable; [
-      signal-desktop
-      jellyfin-media-player
-    ]);
+    ]
+  );
 
   home.sessionVariables = {
   };

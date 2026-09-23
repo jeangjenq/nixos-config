@@ -37,7 +37,6 @@ in
     neovim
     wget
     git
-    home-manager
   ];
 
   # dumping firefox policies to /etc/firefox/policies.json

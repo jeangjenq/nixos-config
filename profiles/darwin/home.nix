@@ -21,8 +21,6 @@
   home.username = userSettings.username;
   home.homeDirectory = "/Users/" + userSettings.username;
 
-  programs.home-manager.enable = true;
-
   home.packages = with pkgs; [
     # create
     yt-dlp
