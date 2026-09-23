@@ -24,7 +24,7 @@
       mod = "Mod4";
 
       # window rule presets
-      gameRule = "inhibit_idle fullsreen; border none; fullscreen enable; shadows disable; allow_tearing yes; max_render_time off";
+      gameRule = "inhibit_idle visible; border none; fullscreen enable; shadows disable; allow_tearing yes; max_render_time off";
       popupRule = "floating enable; border pixel 1; sticky enable; shadows enable";
       floatRule = "floating enable; border pixel 1; shadows enable";
       videoRule = "inhibit_idle fullscreen; border none; max_render_time off";
@@ -122,6 +122,7 @@
       assigns = {
         "number 1" = [{ app_id = "firefox"; }];
         "number 5" = [
+          { title = "^Steam Big Picture Mode$"; app_id = "gamescope"; }
           { title = "^Steam$"; class = "steam"; }
           { title = "^Friends List"; class = "steam"; }
           { title = "^Sign in to Steam"; class = "steam"; }
