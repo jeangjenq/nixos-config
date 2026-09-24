@@ -7,5 +7,8 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
+    settings = {
+      enable_audio_bell = false;
+    };
   };
 }
