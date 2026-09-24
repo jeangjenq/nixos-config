@@ -58,7 +58,7 @@
           Windows = "";
         };
         directory = {
-          format = "[$read_only](bold red)$path";
+          format = "[$read_only](bg:green fg:bold red)$path";
           read_only = "";
           truncation_length = 3;
           truncation_symbol = ".../";
