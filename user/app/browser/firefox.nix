@@ -1,4 +1,9 @@
-{ pkgs, config, userSettings, ... }:
+{
+  pkgs,
+  config,
+  userSettings,
+  ...
+}:
 
 {
   programs.firefox = {
@@ -9,25 +14,39 @@
         force = true;
         default = "ddg";
         privateDefault = "Searx";
-        order = [ "Searx" "ddg" "NixPkgs" "MyNixOS" "google" ];
+        order = [
+          "Searx"
+          "ddg"
+          "NixPkgs"
+          "MyNixOS"
+          "google"
+        ];
         engines = {
           "NixPkgs" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@np" ];
           };
           "MyNixOS" = {
-            urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
+            urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
             icon = "https://mynixos.com/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = [ "@nw" ];
-          "Bing".metaData.hidden = true;
+            "Bing".metaData.hidden = true;
           };
         };
       };
@@ -128,6 +147,13 @@
           default_area = "navbar";
         };
       };
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
     };
   };
 }
