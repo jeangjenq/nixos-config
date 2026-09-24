@@ -14,6 +14,7 @@
     ../../system/hardware/bluetooth.nix
     ../../system/hardware/printing.nix
     ../../system/hardware/automount.nix
+    ../../system/hardware/mounts.nix
     ../../system/hardware/vial.nix
     ../../system/hardware/tlp.nix
     ../../system/network/wireguard.nix
