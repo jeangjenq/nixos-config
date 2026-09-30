@@ -44,6 +44,8 @@
           vertical = "Dell Inc. DELL P2416D 3RKPR6BH1C0S"; # secondary monitor
           lapt = "eDP-1"; # laptop monitor
         };
+        steamCmd = "gamescope --mangoapp -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam";
+        steamRemote = "gamescope --mangoapp -e -w 2560 -W 2560 -h 1600 -H 1600 -r 90 -- steam";
       };
       # ---------- VARIABLES ---------- #
       pkgs = nixpkgs.legacyPackages.${systemSettings.system};

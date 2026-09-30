@@ -30,18 +30,26 @@ hl.window_rule({
         title = "^(notificationtoasts_.*_desktop)$",
     },
     no_focus = true,
-    -- pin = true,
     opacity = 0.6,
 })
 hl.window_rule({
-    match = { class = "^(steam_app_.*)|^(gamescope)" },
+    match = { class = "^(steam_app_).*" },
     monitor = 0,
     fullscreen = true,
     immediate = true,
     decorate = false,
     no_anim = true,
-    idle_inhibit = "always",
+    idle_inhibit = "focus",
     render_unfocused = true,
+})
+hl.window_rule({
+    match = { class = "^gamescope" },
+    monitor = 0,
+    float = true,
+    immediate = true,
+    decorate = false,
+    no_anim = true,
+    idle_inhibit = "focus",
 })
 
 -- pop ups

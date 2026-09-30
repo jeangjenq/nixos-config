@@ -1,4 +1,4 @@
-{ pkgs, lib, systemSettings, ... }:
+{ pkgs, lib, systemSettings, userSettings, ... }:
 
 let
   screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/satty-$(date '+%Y%m%d-%H:%M:%S').png";
@@ -73,6 +73,31 @@ in
     ] (_: "imv-dir.desktop") //
     {
       "inode/directory" = "org.gnome.Nautilus.desktop";
+    };
+  };
+
+  xdg.desktopEntries = {
+    steam-gamescope = {
+      name = "Steam (gamescope)";
+      comment = "Launch steam in gamescope Big Picture mode";
+      categories = [
+        "Game"
+      ];
+      exec = "${userSettings.steamCmd}";
+      icon = "steam";
+      terminal = false;
+      type = "Application";
+    };
+    steam-remote = {
+      name = "Steam (remote play)";
+      comment = "Launch steam in smaller res gamescope for streaming to Deck";
+      categories = [
+        "Game"
+      ];
+      exec = "${userSettings.steamRemote}";
+      icon = "steam";
+      terminal = false;
+      type = "Application";
     };
   };
 

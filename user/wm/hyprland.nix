@@ -35,7 +35,7 @@ in
             menu = "${menu}";
             mod = "${mod}";
           }
-          '';
+        '';
         autoLoad = false;
       };
       "keybinds" = {
@@ -62,7 +62,7 @@ in
 
             -- preferences
             hl.exec_cmd("[workspace 1] firefox")
-            hl.exec_cmd("[workspace 5 silent] gamescope --mangoapp -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam")
+            hl.exec_cmd("[workspace 5 silent] ${userSettings.steamCmd}")
             hl.exec_cmd("[workspace 6 silent] discord")
             hl.exec_cmd("[workspace 7 silent] signal-desktop")
             hl.exec_cmd("[workspace 8 silent] sleep 10 && thunderbird")
@@ -182,7 +182,7 @@ in
           kb_layout = "us";
           kb_options = "caps:super";
           follow_mouse = 1;
-        
+
           numlock_by_default = true;
           accel_profile = "flat";
 

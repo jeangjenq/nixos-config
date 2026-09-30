@@ -30,7 +30,7 @@
         mod = "Mod4";
 
         # window rule presets
-        gameRule = "inhibit_idle visible; border none; fullscreen enable; shadows disable; allow_tearing yes";
+        gameRule = "floating enable; inhibit_idle visible; border none; shadows disable; allow_tearing yes";
         popupRule = "floating enable; border pixel 1; sticky enable; shadows enable";
         floatRule = "floating enable; border pixel 1; shadows enable";
         videoRule = "inhibit_idle fullscreen; border none";
@@ -451,7 +451,7 @@
 
           # Applications
           { command = "firefox"; }
-          { command = "gamescope --mangoapp -e -w 3840 -W 3840 -h 1600 -H 1600 -r 120 -f -- steam"; }
+          { command = "${userSettings.steamCmd}"; }
           { command = "discord"; }
           { command = "signal-desktop"; }
           { command = "sleep 10 && thunderbird"; }
