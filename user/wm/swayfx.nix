@@ -12,6 +12,7 @@
       blur_radius 8
       corner_radius 6
       animation_duration_ms 250
+      layer_effects "logout_dialog" blur enable
     '';
   };
 }
