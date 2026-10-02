@@ -1,7 +1,6 @@
 { pkgs, userSettings, ... }:
 let
   terminal = userSettings.term;
-  menu = "pkill fuzzel || fuzzel";
   mod = "SUPER";
 
   # monitors
@@ -31,7 +30,6 @@ in
         content = ''
           return {
             terminal = "${terminal}",
-            menu = "${menu}";
             mod = "${mod}";
           }
         '';

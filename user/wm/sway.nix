@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   userSettings,
   ...
 }:
@@ -23,9 +22,8 @@
 
     config =
       let
+        modifier = "Mod4";
         terminal = userSettings.term;
-        menu = "pkill fuzzel || fuzzel";
-        mod = "Mod4";
 
         # window rule presets
         gameRule = "floating enable; inhibit_idle visible; border none; shadows disable; allow_tearing yes";
@@ -34,9 +32,8 @@
         videoRule = "inhibit_idle fullscreen; border none";
       in
       {
-        modifier = mod;
-        menu = menu;
-        terminal = terminal;
+        inherit modifier;
+        inherit terminal;
 
         # Style
         defaultWorkspace = "workspace number 1";
@@ -331,78 +328,77 @@
         };
 
         # Keybindings
-        keybindings = lib.mkOptionDefault {
+        keybindings = {
           # Basics
-          "${mod}+Return" = "exec ${terminal}";
-          "${mod}+Shift+q" = "kill";
-          "${mod}+d" = "exec ${menu}";
-          "${mod}+Shift+c" = "reload";
+          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Shift+q" = "kill";
+          "${modifier}+Shift+c" = "reload";
 
           # Focus movement with vim keys
-          "${mod}+h" = "focus left";
-          "${mod}+j" = "focus down";
-          "${mod}+k" = "focus up";
-          "${mod}+l" = "focus right";
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
 
           # Focus movement with arrow keys
-          "${mod}+Left" = "focus left";
-          "${mod}+Down" = "focus down";
-          "${mod}+Up" = "focus up";
-          "${mod}+Right" = "focus right";
+          "${modifier}+Left" = "focus left";
+          "${modifier}+Down" = "focus down";
+          "${modifier}+Up" = "focus up";
+          "${modifier}+Right" = "focus right";
 
           # Move windows with vim keys
-          "${mod}+Shift+h" = "move left";
-          "${mod}+Shift+j" = "move down";
-          "${mod}+Shift+k" = "move up";
-          "${mod}+Shift+l" = "move right";
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+k" = "move up";
+          "${modifier}+Shift+l" = "move right";
 
           # Move windows with arrow keys
-          "${mod}+Shift+Left" = "move left";
-          "${mod}+Shift+Down" = "move down";
-          "${mod}+Shift+Up" = "move up";
-          "${mod}+Shift+Right" = "move right";
+          "${modifier}+Shift+Left" = "move left";
+          "${modifier}+Shift+Down" = "move down";
+          "${modifier}+Shift+Up" = "move up";
+          "${modifier}+Shift+Right" = "move right";
 
           # Workspaces
-          "${mod}+1" = "workspace number 1";
-          "${mod}+2" = "workspace number 2";
-          "${mod}+3" = "workspace number 3";
-          "${mod}+4" = "workspace number 4";
-          "${mod}+5" = "workspace number 5";
-          "${mod}+6" = "workspace number 6";
-          "${mod}+7" = "workspace number 7";
-          "${mod}+8" = "workspace number 8";
-          "${mod}+9" = "workspace number 9";
-          "${mod}+0" = "workspace number 10";
+          "${modifier}+1" = "workspace number 1";
+          "${modifier}+2" = "workspace number 2";
+          "${modifier}+3" = "workspace number 3";
+          "${modifier}+4" = "workspace number 4";
+          "${modifier}+5" = "workspace number 5";
+          "${modifier}+6" = "workspace number 6";
+          "${modifier}+7" = "workspace number 7";
+          "${modifier}+8" = "workspace number 8";
+          "${modifier}+9" = "workspace number 9";
+          "${modifier}+0" = "workspace number 10";
 
           # Move to workspaces
-          "${mod}+Shift+1" = "move container to workspace number 1";
-          "${mod}+Shift+2" = "move container to workspace number 2";
-          "${mod}+Shift+3" = "move container to workspace number 3";
-          "${mod}+Shift+4" = "move container to workspace number 4";
-          "${mod}+Shift+5" = "move container to workspace number 5";
-          "${mod}+Shift+6" = "move container to workspace number 6";
-          "${mod}+Shift+7" = "move container to workspace number 7";
-          "${mod}+Shift+8" = "move container to workspace number 8";
-          "${mod}+Shift+9" = "move container to workspace number 9";
-          "${mod}+Shift+0" = "move container to workspace number 10";
+          "${modifier}+Shift+1" = "move container to workspace number 1";
+          "${modifier}+Shift+2" = "move container to workspace number 2";
+          "${modifier}+Shift+3" = "move container to workspace number 3";
+          "${modifier}+Shift+4" = "move container to workspace number 4";
+          "${modifier}+Shift+5" = "move container to workspace number 5";
+          "${modifier}+Shift+6" = "move container to workspace number 6";
+          "${modifier}+Shift+7" = "move container to workspace number 7";
+          "${modifier}+Shift+8" = "move container to workspace number 8";
+          "${modifier}+Shift+9" = "move container to workspace number 9";
+          "${modifier}+Shift+0" = "move container to workspace number 10";
 
           # Layout
-          "${mod}+b" = "splith";
-          "${mod}+v" = "splitv";
-          "${mod}+s" = "layout stacking";
-          "${mod}+w" = "layout tabbed";
-          "${mod}+e" = "layout toggle split";
-          "${mod}+f" = "fullscreen";
-          "${mod}+Shift+space" = "floating toggle";
-          "${mod}+space" = "focus mode_toggle";
+          "${modifier}+b" = "splith";
+          "${modifier}+v" = "splitv";
+          "${modifier}+s" = "layout stacking";
+          "${modifier}+w" = "layout tabbed";
+          "${modifier}+e" = "layout toggle split";
+          "${modifier}+f" = "fullscreen";
+          "${modifier}+Shift+space" = "floating toggle";
+          "${modifier}+space" = "focus mode_toggle";
 
           # Scratchpad
-          "${mod}+Shift+minus" = "move scratchpad";
-          "${mod}+minus" = "scratchpad show";
+          "${modifier}+Shift+minus" = "move scratchpad";
+          "${modifier}+minus" = "scratchpad show";
 
           # Modes
-          "${mod}+r" = "mode resize";
-          "${mod}+Shift+z" = ''mode "No hotkeys: mod+Shift+z to exit"'';
+          "${modifier}+r" = "mode resize";
+          "${modifier}+Shift+z" = ''mode "No hotkeys: mod+Shift+z to exit"'';
 
           # Media controls (--locked equivalent handled via extraConfig)
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
@@ -412,7 +408,7 @@
           "XF86AudioPlay" = "exec playerctl play-pause";
           "XF86AudioNext" = "exec playerctl next";
           "XF86AudioPrev" = "exec playerctl previous";
-          "${mod}+c" = "exec wpctl set-mute @DEFAULT_SOURCE@ toggle";
+          "${modifier}+c" = "exec wpctl set-mute @DEFAULT_SOURCE@ toggle";
 
           # Brightness
           "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
@@ -434,7 +430,7 @@
             "Escape" = "mode default";
           };
           "No hotkeys: mod+Shift+z to exit" = {
-            "${mod}+Shift+z" = "mode default";
+            "${modifier}+Shift+z" = "mode default";
           };
         };
 
@@ -457,7 +453,7 @@
         ];
 
         floating = {
-          modifier = mod;
+          inherit modifier;
           criteria = [
             { app_id = "galculator"; }
             { app_id = "pavucontrol"; }

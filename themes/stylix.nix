@@ -16,7 +16,7 @@
     targets.firefox.profileNames = [
       userSettings.username
     ];
-    targets.fuzzel.enable = true;
+    targets.rofi.enable = true;
     targets.helix.enable = true;
     targets.starship.enable = true;
 
@@ -46,7 +46,7 @@
       terminal = 12;
       popups = 10;
     };
-  
+
     opacity = {
       popups = 0.8;
       terminal = 0.85;

@@ -24,7 +24,7 @@
       settings = {
         screencast = {
           chooser_type = "dmenu";
-          chooser_cmd = "${pkgs.fuzzel}/bin/fuzzel -d";
+          chooser_cmd = "${pkgs.rofi}/bin/rofi -dmenu";
         };
       };
     };

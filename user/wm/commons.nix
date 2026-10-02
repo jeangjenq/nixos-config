@@ -1,4 +1,10 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
+{
+  pkgs,
+  lib,
+  systemSettings,
+  userSettings,
+  ...
+}:
 
 let
   screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/satty-$(date '+%Y%m%d-%H:%M:%S').png";
@@ -10,11 +16,8 @@ in
     ./swaync.nix
     ./waybar.nix
     ./ime.nix
+    ./rofi.nix
   ];
-
-  programs.fuzzel = {
-    enable = true;
-  };
 
   home.packages = with pkgs; [
     # core
@@ -42,38 +45,39 @@ in
 
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = lib.genAttrs [
-      # Common raster formats
-      "image/jpeg"
-      "image/png"
-      "image/gif"
-      "image/webp"
-      "image/bmp"
-      "image/tiff"
-      "image/x-tiff"
+    defaultApplications =
+      lib.genAttrs [
+        # Common raster formats
+        "image/jpeg"
+        "image/png"
+        "image/gif"
+        "image/webp"
+        "image/bmp"
+        "image/tiff"
+        "image/x-tiff"
 
-      # Vector formats
-      "image/svg+xml"
-      "image/svg"
+        # Vector formats
+        "image/svg+xml"
+        "image/svg"
 
-      # Icons
-      "image/x-icon"
-      "image/vnd.microsoft.icon"
+        # Icons
+        "image/x-icon"
+        "image/vnd.microsoft.icon"
 
-      # Modern formats
-      "image/heic"
-      "image/heif"
-      "image/avif"
-      "image/jxl"
+        # Modern formats
+        "image/heic"
+        "image/heif"
+        "image/avif"
+        "image/jxl"
 
-      # Editor formats
-      "image/x-xcf"
-      "image/x-psd"
-      "image/x-krita"
-    ] (_: "imv-dir.desktop") //
-    {
-      "inode/directory" = "org.gnome.Nautilus.desktop";
-    };
+        # Editor formats
+        "image/x-xcf"
+        "image/x-psd"
+        "image/x-krita"
+      ] (_: "imv-dir.desktop")
+      // {
+        "inode/directory" = "org.gnome.Nautilus.desktop";
+      };
   };
 
   xdg.desktopEntries = {
@@ -102,11 +106,10 @@ in
   };
 
   # Screenshot keybindings for Sway
-  wayland.windowManager.sway.config.keybindings = lib.mkIf (systemSettings.wm == "sway") (lib.mkOptionDefault {
+  wayland.windowManager.sway.config.keybindings = lib.mkIf (systemSettings.wm == "sway") ({
     "print" = "exec ${screengrab}";
     "Alt+print" = "exec ${screenshot}";
   });
-
 
   # Screenshot keybindings for Hyprland
   wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
