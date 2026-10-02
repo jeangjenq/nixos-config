@@ -16,6 +16,8 @@
     };
   };
 
+  security.pam.services.hyprlock = { };
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [

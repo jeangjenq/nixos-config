@@ -12,8 +12,7 @@ in
 {
   imports = [
     ./commons.nix
-    ./hyprlock.nix
-    ./hypridle.nix
+    ./idle-lock.nix
     ./hyprpaper.nix
     ./laptop.nix
   ];
@@ -24,7 +23,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
     configType = "lua";
 
     extraLuaFiles = {

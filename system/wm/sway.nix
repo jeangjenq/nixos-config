@@ -15,6 +15,7 @@
   };
 
   security.polkit.enable = true;
+  security.pam.services.hyprlock = { };
 
   xdg.portal = {
     enable = true;
