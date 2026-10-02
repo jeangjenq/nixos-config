@@ -9,8 +9,7 @@
   imports = [
     ./commons.nix
     ./workstyle.nix
-    ./swaylock.nix
-    ./swayidle.nix
+    ./idle-lock.nix
     ./laptop.nix
   ];
 

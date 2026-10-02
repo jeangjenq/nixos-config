@@ -6,7 +6,7 @@
     ./dbus.nix
     ./fonts.nix
     ./ime.nix
-    ./ly.nix
+    ./sddm.nix
   ];
 
   programs.hyprland = {
