@@ -88,8 +88,6 @@
       "wheel"
     ];
     packages = [
-      pkgs-stable.signal-desktop
-      pkgs-stable.jellyfin-media-player
     ];
     uid = 1000;
     shell = pkgs.zsh;

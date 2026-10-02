@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   systemSettings,
   userSettings,
   ...
@@ -33,15 +34,15 @@
 
   programs.firefox.enable = true;
 
-  home.packages = (
-    with pkgs;
-    [
+  home.packages =
+    (with pkgs; [
       # core
       adwaita-icon-theme
       speedcrunch
       mission-center
       nextcloud-client
       protonmail-bridge
+      proton-vpn
       scrcpy
       timr-tui
       seahorse
@@ -76,8 +77,11 @@
       mediawriter
       veracrypt
       obsidian
-    ]
-  );
+    ])
+    ++ (with pkgs-stable; [
+      signal-desktop
+      jellyfin-media-player
+    ]);
 
   home.sessionVariables = {
   };

@@ -69,6 +69,7 @@
                 extraSpecialArgs = {
                   inherit systemSettings;
                   inherit userSettings;
+                  inherit pkgs-stable;
                 };
                 sharedModules = [
                   stylix.homeModules.stylix
