@@ -1,6 +1,5 @@
 local vars = require("nixvars")
 local mod = vars.mod
-local menu = vars.menu
 local terminal = vars.terminal
 
 hl.bind(mod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
@@ -42,7 +41,6 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic",
 
 -- applications
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
-hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(
     "CTRL + SHIFT + M",
     hl.dsp.pass({
