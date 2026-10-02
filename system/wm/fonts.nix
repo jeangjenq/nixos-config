@@ -3,6 +3,7 @@
 {
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    nerd-fonts.terminess-ttf
     dejavu_fonts
     font-awesome # waybar default
     roboto-mono # waybar theme at this time

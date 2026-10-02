@@ -17,6 +17,7 @@ let
   };
   screen = dpms.${systemSettings.wm};
   lock = "pgrep hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+  font = "Terminess Nerd Font";
 in
 
 {
@@ -61,9 +62,10 @@ in
       label = [
         {
           # weather
-          text = "cmd[update:60000] ${pkgs.curl}/bin/curl --silent --connect-timeout 3 --max-time 3 wttr.in/?format=3";
-          position = "0, 400";
-          font_size = 8;
+          text = "cmd[update:900000] ${pkgs.curl}/bin/curl --silent --connect-timeout 3 --max-time 3 'wttr.in/?format=3'";
+          position = "0, -25%";
+          font_family = font;
+          font_size = 12;
           halign = "center";
           valign = "top";
         }
@@ -71,14 +73,16 @@ in
           # time
           text = "$TIME";
           position = "0, 50";
+          font_family = font;
           font_size = 128;
           halign = "center";
           valign = "center";
         }
         {
           # date
-          text = "cmd[update:1000] echo -e \"$(${pkgs.coreutils}/bin/date +\"%A %d %b %Y\")\"";
+          text = "cmd[update:60000] echo -e \"$(${pkgs.coreutils}/bin/date +\"%A %d %b %Y\")\"";
           position = "0, -100";
+          font_family = font;
           font_size = 16;
           halign = "center";
           valign = "center";
