@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   systemSettings,
   ...
@@ -27,8 +28,10 @@ in
       modes = [
         "drun"
       ];
+      display-drun = "Applications:";
       show-icons = true;
       matching = "fuzzy";
+      font = "${config.stylix.fonts.monospace.name} 12";
     };
   };
 }
