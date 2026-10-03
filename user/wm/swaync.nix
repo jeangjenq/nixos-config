@@ -1,8 +1,5 @@
 { lib, systemSettings, ... }:
 
-let
-  mod = "Mod4";
-in
 {
   services.swaync = {
     enable = true;
@@ -19,9 +16,6 @@ in
     extraLuaFiles = {
       "swaync" = {
         content = ''
-          hl.on("hyprland.start", function()
-            hl.exec_cmd("swaync")
-          end)
           hl.bind(
             "SUPER + Tab",
             hl.dsp.exec_cmd("swaync-client -t -sw")
@@ -35,12 +29,9 @@ in
   # Sway startup and keybindings
   wayland.windowManager.sway = lib.mkIf (systemSettings.wm == "sway") {
     config = {
-      startup = [
-        { command = "swaync"; }
-      ];
-      keybindings = lib.mkOptionDefault {
-        "${mod}+q" = "exec swaync-client -C";      # clear all notifications
-        "${mod}+tab" = "exec swaync-client -t -sw";  # toggle notification panel
+      keybindings = {
+        "Mod4+q" = "exec swaync-client -C"; # clear all notifications
+        "Mod4+tab" = "exec swaync-client -t -sw"; # toggle notification panel
       };
     };
   };
