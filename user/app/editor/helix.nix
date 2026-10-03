@@ -41,6 +41,18 @@
       };
       language = [
         {
+          name = "bash";
+          auto-format = true;
+          formatter = {
+            command = "awk";
+            timeout = 1;
+            args = [
+              "--file=/dev/stdin"
+              "--pretty-print=/dev/stdout"
+            ];
+          };
+        }
+        {
           name = "nix";
           auto-format = true;
           language-servers = [
@@ -163,6 +175,7 @@
     nixfmt
     pyright
     marksman
+    bash-language-server
     lua-language-server
     yaml-language-server
     ansible-language-server
