@@ -1,7 +1,14 @@
 { pkgs, userSettings, ... }:
 
 {
+  imports = [
+    ./wallpapers.nix
+  ];
+
   home.pointerCursor.enable = true;
+  services.awww = {
+    enable = true;
+  };
 
   stylix = {
     enable = true;
