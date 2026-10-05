@@ -12,7 +12,6 @@ in
   imports = [
     ./commons.nix
     ./idle-lock.nix
-    ./hyprpaper.nix
     ./laptop.nix
   ];
 

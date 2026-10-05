@@ -12,10 +12,6 @@
 
   stylix = {
     enable = true;
-    image = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/d8/wallhaven-d8gjeg.png";
-      hash = "sha256-IsmiqjIfbpczUYYJb/BvwWCZjY6xIjHjR1HgtdSiA+A=";
-    };
     base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
     polarity = "dark";
 
