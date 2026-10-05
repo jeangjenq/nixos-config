@@ -1,13 +1,26 @@
 {
   config,
+  pkgs,
   lib,
   systemSettings,
   ...
 }:
 let
   launcher = "pkill rofi || rofi -show drun";
+  dmenu = "rofi -dmenu";
 in
 {
+  imports = [
+    (import ./dmenu.nix {
+      inherit
+        pkgs
+        lib
+        systemSettings
+        dmenu
+        ;
+    })
+  ];
+
   # window managers and their hotkeys
   wayland.windowManager.sway.config.keybindings = lib.mkIf (systemSettings.wm == "sway") {
     "Mod4+d" = "exec ${launcher}";
