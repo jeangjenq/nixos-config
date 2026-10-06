@@ -68,9 +68,10 @@ in
           # format for rofi icon preview
           # this also make rofi return file basename instead of fullpath
           printf '%s\0icon\x1f%s\n' "$pretty_name" "$file"
-      done | ${pkgs.rofi}/bin/rofi -dmenu -p "Select Wallpaper:" -show-icons -theme-str '${rofi-theme}' || exit 0)
+      done | ${pkgs.rofi}/bin/rofi -dmenu -i -p "Select Wallpaper:" -show-icons -theme-str '${rofi-theme}' || exit 0)
 
       if [[ -n "$wallpaper_name" ]]; then
+          # we have to refind the wallpaper with the matching name
           echo "Looking for wallpaper with the name of '$wallpaper_name'"
           wallpaper_path=$(find "$WALLPAPER_DIR" -name "$wallpaper_name.*" | head -n 1)
           if [[ -n "$wallpaper_path" ]]; then
