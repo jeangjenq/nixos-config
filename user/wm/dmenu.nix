@@ -20,7 +20,7 @@ let
   # name correspond to its command in bash case block
   commands = concatLines (
     map (script: ''
-      ${script.name})
+      "${script.name}")
           ${script.command}
           ;;
     '') scripts
