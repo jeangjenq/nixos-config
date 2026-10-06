@@ -186,7 +186,7 @@
             }
             {
               criteria = {
-                app_id = "steamlink";
+                app_id = "(steamlink)|(com.moonlight_stream.Moonlight)";
               };
               command = gameRule;
             }
