@@ -29,12 +29,18 @@ let
   packages = map (script: script.package) scripts;
 
   # the actual dmenu shell script that puts the initial dmenu together
-  menu = pkgs.writeShellScriptBin "menu" ''
-    choice=$(echo -en "${choices}" | ${dmenu} || exit 0)
-    case $choice in
-        ${commands}
-    esac
-  '';
+  menu = pkgs.writeShellApplication {
+    name = "menu";
+    runtimeInputs = [
+      dmenu.package
+    ];
+    text = ''
+      choice=$(echo -en "${choices}" | ${dmenu.command} || exit 0)
+      case $choice in
+          ${commands}
+      esac
+    '';
+  };
 in
 {
   home.packages = [
