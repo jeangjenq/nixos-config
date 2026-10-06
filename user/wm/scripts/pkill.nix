@@ -9,8 +9,11 @@ in
 
   package = pkgs.writeShellApplication {
     name = command;
+    runtimeInputs = [
+      dmenu.package
+    ];
     text = ''
-      ps -u "$USER" -o pid,comm | ${dmenu.command} -p "Kill:" | awk '{print $1}' | xargs -r kill
+      ps -u "$USER" -o pid,comm | ${dmenu.command} ${dmenu.prompt "Kill:"} | awk '{print $1}' | xargs -r kill
     '';
   };
 }

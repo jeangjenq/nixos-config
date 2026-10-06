@@ -35,7 +35,7 @@ let
       dmenu.package
     ];
     text = ''
-      choice=$(echo -en "${choices}" | ${dmenu.command} || exit 0)
+      choice=$(echo -en "${choices}" | ${dmenu.command} ${dmenu.prompt "Command:"} || exit 0)
       case $choice in
           ${commands}
       esac

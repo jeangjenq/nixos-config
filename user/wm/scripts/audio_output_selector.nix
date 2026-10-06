@@ -16,6 +16,7 @@ in
   package = pkgs.writeShellApplication {
     name = command;
     runtimeInputs = [
+      dmenu.package
       pkgs.wireplumber
     ];
     text = ''
@@ -24,7 +25,7 @@ in
           sed -n "/Sinks:/,/Sources:/p" |
           grep -E '[0-9]+\.' |
           sed -E 's/^[^0-9]*([0-9]+)\. (.*)$/\1\t\2/' |
-          ${dmenu.command} -p "Change audio output:")
+          ${dmenu.command} ${dmenu.prompt "Change audio output:"})
 
       if [[ -n "$choice" ]]; then
           sink="''${choice%%$'\t'*}"

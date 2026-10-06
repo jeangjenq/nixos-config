@@ -10,6 +10,7 @@ let
   dmenu = {
     package = pkgs.rofi;
     command = "${pkgs.rofi}/bin/rofi -dmenu -i";
+    prompt = p: "-p '${p}'";
   };
 in
 {
