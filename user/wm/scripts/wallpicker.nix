@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  dmenu,
   ...
 }:
 let
@@ -23,6 +22,22 @@ let
       "'*.${ext}'"
     ]) extensions
   );
+  rofi-theme = ''
+    window {
+        width: 1200px;
+        height: 800px;
+    }
+
+    element-icon {
+        size: 120px;
+        border-radius: 8px;
+        padding: 2px;
+    }
+
+    element-text {
+        vertical-align: 0.5;
+    }
+  '';
 in
 {
   name = "Wallpapers";
@@ -31,10 +46,42 @@ in
     Show available wallpapers in ~/Pictures/wallpapers and switch with `awww img`.
     Hardcoded rofi syntax.
   '';
-  package = pkgs.writeShellScriptBin "${command}" ''
-    wallpapers=$(find "$HOME/Pictures/wallpapers" -type f ${args})
-    choice=$(for a in $wallpapers; do echo -en "$a\0icon\x1f$a\n"; done | ${dmenu} -theme fullscreen-preview || exit 0)
-    [[ -n "$choice" ]] || exit 0
-    awww img "$choice" --transition-type any --transition-fps 90
-  '';
+  package = pkgs.writeShellApplication {
+    name = command;
+    runtimeInputs = with pkgs; [
+      libnotify
+      rofi
+    ];
+    text = ''
+      WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+
+      if [[ ! -d "$WALLPAPER_DIR" ]]; then
+          ${pkgs.libnotify}/bin/notify-send "Wallpaper directory not found: $WALLPAPER_DIR"
+          exit 0
+      fi
+
+      # present choices of wallpapers
+      wallpaper_name=$(find "$WALLPAPER_DIR" -type f ${args} | while IFS= read -r file; do
+          # show name without file extension
+          name="''${file##*/}"
+          pretty_name="''${name%.*}"
+          # format for rofi icon preview
+          # this also make rofi return file basename instead of fullpath
+          printf '%s\0icon\x1f%s\n' "$pretty_name" "$file"
+      done | ${pkgs.rofi}/bin/rofi -dmenu -p "Select Wallpaper:" -show-icons -theme-str '${rofi-theme}' || exit 0)
+
+      if [[ -n "$wallpaper_name" ]]; then
+          echo "Looking for wallpaper with the name of '$wallpaper_name'"
+          wallpaper_path=$(find "$WALLPAPER_DIR" -name "$wallpaper_name.*" | head -n 1)
+          if [[ -n "$wallpaper_path" ]]; then
+              echo "Wallpaper picked: '$wallpaper_path'"
+              awww img "$wallpaper_path" --transition-type any --transition-fps 90
+          else
+              ${pkgs.libnotify}/bin/notify-send "Wallpaper picker error: Could not locate '$wallpaper_name'"
+          fi
+      else
+          exit 0
+      fi
+    '';
+  };
 }
