@@ -5,7 +5,6 @@
 }:
 let
   command = "wallpaper-picker";
-  inherit (lib) concatStringsSep concatMap;
   # list of extensions we might use and awww supports
   extensions = [
     "jpg"
@@ -15,13 +14,7 @@ let
     "webp"
   ];
   # build the `find` args that filter out files with supported extensions
-  args = concatStringsSep " " (
-    concatMap (ext: [
-      "-o"
-      "-iname"
-      "'*.${ext}'"
-    ]) extensions
-  );
+  args = lib.concatStringsSep " -o " (map (ext: "-iname '*.${ext}'") extensions);
   rofi-theme = ''
     window {
         width: 1200px;
@@ -61,7 +54,7 @@ in
       fi
 
       # present choices of wallpapers
-      wallpaper_name=$(find "$WALLPAPER_DIR" -type f ${args} | while IFS= read -r file; do
+      wallpaper_name=$(find "$WALLPAPER_DIR" \( -type f -o -type l \) \( ${args} \) | while IFS= read -r file; do
           # show name without file extension
           name="''${file##*/}"
           pretty_name="''${name%.*}"
@@ -73,7 +66,7 @@ in
       if [[ -n "$wallpaper_name" ]]; then
           # we have to refind the wallpaper with the matching name
           echo "Looking for wallpaper with the name of '$wallpaper_name'"
-          wallpaper_path=$(find "$WALLPAPER_DIR" -name "$wallpaper_name.*" | head -n 1)
+          wallpaper_path=$(find "$WALLPAPER_DIR" \( -type f -o -type l \) \( ${args} \) -name "$wallpaper_name.*" | head -n 1)
           if [[ -n "$wallpaper_path" ]]; then
               echo "Wallpaper picked: '$wallpaper_path'"
               awww img "$wallpaper_path" --transition-type any --transition-fps 90
