@@ -54,7 +54,7 @@ in
   wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
     "dmenu" = {
       content = ''
-        hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd(menu))
+        hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("menu"))
       '';
       autoLoad = true;
     };

@@ -46,7 +46,7 @@ in
   wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
     "launcher" = {
       content = ''
-        hl.bind("SUPER + D", hl.dsp.exec_cmd(${launcher}))
+        hl.bind("SUPER + D", hl.dsp.exec_cmd("${launcher}"))
       '';
       autoLoad = true;
     };
