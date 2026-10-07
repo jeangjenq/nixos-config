@@ -1,11 +1,12 @@
-{ lib, systemSettings, ... }:
+{ systemSettings, ... }:
 
-let
-  workstyleExec = "workstyle &> /tmp/workstyle.log";
-in
 {
   programs.workstyle = {
     enable = true;
+    systemd = {
+      enable = true;
+      target = if systemSettings.wm == "sway" then "sway-session.target" else "hyprland-session.target";
+    };
     settings = {
       discord = "";
       vesktop = "";
@@ -36,18 +37,4 @@ in
     };
   };
   xdg.configFile."workstyle/config.toml".force = true;
-
-  # Hyprland startup
-  wayland.windowManager.hyprland.settings = lib.mkIf (systemSettings.wm == "hyprland") {
-    exec-once = [ workstyleExec ];
-  };
-
-  # Sway startup
-  wayland.windowManager.sway = lib.mkIf (systemSettings.wm == "sway") {
-    config = {
-      startup = [
-        { command = workstyleExec; }
-      ];
-    };
-  };
 }

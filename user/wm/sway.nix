@@ -119,7 +119,7 @@
             }
             {
               criteria = {
-                app_id = "io.missioncenter.MissionCenter";
+                app_id = "(io.missioncenter.MissionCenter)|(com.system76.CosmicMonitor)";
               };
               command = floatRule;
             }

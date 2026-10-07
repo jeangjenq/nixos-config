@@ -1,46 +1,40 @@
-{ lib, pkgs, systemSettings, ... }:
+{
+  pkgs,
+  lib,
+  systemSettings,
+  ...
+}:
 
 let
   # wm specific changes
   workspaces = (systemSettings.wm + "/workspaces");
   window = (systemSettings.wm + "/window");
-  mode =  if (systemSettings.wm == "hyprland" )
-            then "hyprland/submap"
-          else "sway/mode";
-  
-  # styling
-  margin = "12";
-
-  # color
-  unfocused = "alpha(shade(@theme_base_color, 1.25), 0.5)";
-  focused = "alpha(@theme_selected_fg_color, 0.5)";
-  border = "shade(@borders, 1.5)";
-  text = "@theme_text_color";
-  success = "alpha(@success_color, 0.6)";
-  error = "alpha(@error_color, 0.6)";
+  mode = if (systemSettings.wm == "hyprland") then "hyprland/submap" else "sway/mode";
 in
 {
   programs.waybar = {
     enable = true;
+    systemd = {
+      enable = true;
+      targets = lib.concatLists [
+        (lib.optional (systemSettings.wm == "sway") "sway-session.target")
+        (lib.optional (systemSettings.wm == "hyprland") "hyprland-session.target")
+      ];
+    };
     settings = {
       top_bar = {
         "position" = "top";
-        "spacing" = 16;
+        "spacing" = 12;
         modules-left = [
-          workspaces
-          "group/sys"
+          "idle_inhibitor"
           mode
         ];
 
         modules-center = [
-          window
-          "clock"
-          "idle_inhibitor"
+          workspaces
         ];
 
         modules-right = [
-          "mpris"
-          "group/control"
           "tray"
           "custom/notification"
         ];
@@ -50,12 +44,52 @@ in
           icon-size = 16;
         };
 
-        ${window} = {
-          "icon" = true;
-          "icon-size" = 16;
-          "format" = "";
-          "separate-outputs"= true;
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰅶";
+            deactivated = "󰾪";
+          };
         };
+
+        "tray" = {
+          "spacing" = 8;
+        };
+
+        "custom/notification" = {
+          "tooltip" = false;
+          "format" = "{icon}";
+          "format-icons" = {
+            "notification" = "<span foreground='red'><sup></sup></span>";
+            "none" = "";
+            "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+            "dnd-none" = "";
+            "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+            "inhibited-none" = "";
+            "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+            "dnd-inhibited-none" = "";
+          };
+          "return-type" = "json";
+          "exec-if" = "which swaync-client";
+          "exec" = "swaync-client -swb";
+          "on-click" = "swaync-client -t -sw";
+          "on-click-right" = "swaync-client -d -sw";
+          "escape" = true;
+        };
+      };
+      bottom_bar = {
+        position = "bottom";
+        spacing = 12;
+        modules-left = [
+          "group/sys"
+        ];
+        modules-center = [
+          "clock"
+        ];
+        modules-right = [
+          "mpris"
+          "group/control"
+        ];
 
         "group/sys" = {
           orientation = "horizontal";
@@ -66,17 +100,42 @@ in
           ];
         };
 
-        "group/control" = {
-          orientation = "horizontal";
-          modules = [
-            "pulseaudio"
-            "backlight"
-            "battery"
+        "cpu" = {
+          "interval" = 2;
+          "format" = " {icon} {usage}%";
+          "format-icons" = [
+            "▁"
+            "▂"
+            "▃"
+            "▄"
+            "▅"
+            "▆"
+            "▇"
+            "█"
           ];
+          "on-click" = "${pkgs.cosmic-monitor}/bin/cosmic-monitor";
+        };
+
+        "memory" = {
+          "interval" = 2;
+          "format" = " {}%";
+          "on-click" = "${pkgs.cosmic-monitor}/bin/cosmic-monitor";
+        };
+
+        "network" = {
+          format-wifi = "<span color=\"SteelBlue\"></span>";
+          tooltip-format-wifi = " {essid} {signalStrength}%";
+          format-ethernet = "<span color=\"SteelBlue\"></span>";
+          tooltip-format-ethernet = " {ipaddr}/{cidr}";
+          format-alt = " {ipaddr}/{cidr}";
+          format-linked = "<span color=\"Tomato\"></span>";
+          tooltip-format-linked = "{ifname} (No IP)";
+          format-disconnected = "<span color=\"Tomato\">⚠</span>";
+          tooltip-format-disconnected = "{ifname} (Disconnected)";
         };
 
         "clock" = {
-          "interval"= 30;
+          "interval" = 30;
           "timezone" = systemSettings.timezone;
           "format" = "{:%a, %d %b %Y | %H:%M}";
           "tooltip-format" = "<tt><big>{calendar}</big></tt>";
@@ -87,8 +146,16 @@ in
           };
         };
 
+        ${window} = {
+          "icon" = true;
+          "icon-size" = 16;
+          "format" = "";
+          "separate-outputs" = true;
+        };
+
         "mpd" = {
-          "format" = "{stateIcon}{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})";
+          "format" =
+            "{stateIcon}{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})";
           "format-disconnected" = "MPD Disconnected";
           "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} Stopped";
           "interval" = 10;
@@ -132,12 +199,13 @@ in
           };
         };
 
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "󰅶";
-            deactivated = "󰾪";
-          };
+        "group/control" = {
+          orientation = "horizontal";
+          modules = [
+            "pulseaudio"
+            "backlight"
+            "battery"
+          ];
         };
 
         "pulseaudio" = {
@@ -147,28 +215,28 @@ in
           "format-muted" = "   {format_source}";
           "format-source" = "{volume}% ";
           "format-source-muted" = "";
-          "format-icons"= {
+          "format-icons" = {
             "headphone" = "";
             "hands-free" = "";
             "headset" = "";
             "phone" = "";
             "portable" = "";
             "car" = "";
-            "default" = ["" "" ""];
+            "default" = [
+              ""
+              ""
+              ""
+            ];
           };
           "on-click" = "pavucontrol";
         };
 
-        "cpu" = {
-          "interval" = 1;
-          "format" = "{usage}% ";
-          "on-click" = "missioncenter";
-        };
-
-        "memory" = {
-          "interval" = 1;
-          "format" = "{}% ";
-          "on-click" = "missioncenter";
+        "backlight" = {
+          "format" = "{percent}% {icon}";
+          "format-icons" = [
+            "🔅"
+            "🔆"
+          ];
         };
 
         "battery" = {
@@ -181,149 +249,18 @@ in
           "format-charging" = "{capacity}% ";
           "format-plugged" = "{capacity}% ";
           "format-alt" = "{time} {icon}";
-          "format-icons" = ["" "" "" "" ""];
-        };
-        
-        "backlight" = {
-          "format" = "{percent}% {icon}";
-          "format-icons" = ["🔅" "🔆"];
-        };
-
-        "network" = {
-          format-wifi = "<span color=\"SteelBlue\"></span>";
-          tooltip-format-wifi = "{essid} {signalStrength}% ";
-          format-ethernet = "<span color=\"SteelBlue\"></span>";
-          tooltip-format-ethernet = "{ipaddr}/{cidr} ";
-          format-alt = "{ipaddr}/{cidr} ";
-          format-linked = "<span color=\"Tomato\"></span>";
-          tooltip-format-linked = "{ifname} (No IP)";
-          format-disconnected = "<span color=\"Tomato\">⚠</span>";
-          tooltip-format-disconnected = "{ifname} (Disconnected)";
-        };
-
-        "tray" = {
-          "spacing" = 8;
-        };
-
-        "custom/notification" = {
-          "tooltip" = false;
-          "format" = "{icon}";
-          "format-icons" = {
-            "notification" = "<span foreground='red'><sup></sup></span>";
-            "none" = "";
-            "dnd-notification" = "<span foreground='red'><sup></sup></span>";
-            "dnd-none" = "";
-            "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
-            "inhibited-none" = "";
-            "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
-            "dnd-inhibited-none" = "";
-          };
-          "return-type" = "json";
-          "exec-if" = "which swaync-client";
-          "exec" = "swaync-client -swb";
-          "on-click" = "swaync-client -t -sw";
-          "on-click-right" = "swaync-client -d -sw";
-          "escape" = true;
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
       };
     };
-
-    style = ''
-      * {
-          padding: 0.1em 0.1em;
-          border: none;
-          border-radius: 8px;
-          font-size: 12px;
-      }
-
-      tooltip {
-          background: ${unfocused};
-          color: ${text};
-      }
-      
-      window#waybar {
-          background: transparent;
-      }
-
-      .module {
-          padding: 0 ${margin}px;
-          background-color: ${unfocused};
-          box-shadow: inset -0.05em -0.05em ${border};
-      }
-
-      .modules-right {
-          margin: ${margin}px ${margin}px 0 0;
-      }
-      .modules-center {
-          margin: ${margin}px 0 0 0;
-      }
-      .modules-left {
-          margin: ${margin}px 0 0 ${margin}px;
-      }
-
-      #workspaces button {
-          padding: 0em 0.25em;
-          margin: 0.5em;
-      }
-      #workspaces button.active {
-          background-color: ${success};
-          border-color: ${border};
-          color: ${text};
-      }
-
-      #custom-record {
-        color: #FF6347;
-      }
-
-      @keyframes blink {
-          to {
-              background-color: ${error};
-              color: ${text};
-              /* font-size: larger; */
-          }
-      }
-
-      #workspaces button.urgent {
-          border-radius: 1em;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: steps(12);
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
-
-      #battery.warning:not(.charging) {
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: steps(12);
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
-
-      #battery.critical:not(.charging) {
-          animation-name: blink;
-          animation-duration: 0.25s;
-          animation-timing-function: steps(12);
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
-    '';
   };
 
-  # Sway bar configuration
-  wayland.windowManager.sway.config.bars = lib.mkIf (systemSettings.wm == "sway") [{
-    command = "waybar";
-  }];
-
-  # Hyprland waybar startup
-  wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
-    "waybar" = {
-      content = ''
-        hl.on("hyprland.start", function()
-          hl.exec_cmd("waybar")
-        end)
-      '';
-      autoLoad = true;
-    };
-  };
+  # sway comes with a default bar, set to empty when not needed
+  wayland.windowManager.sway.config.bars = lib.mkIf (systemSettings.wm == "sway") [ ];
 }

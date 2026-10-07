@@ -12,16 +12,12 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
 
-    targets.waybar.enable = false;
     targets.firefox.profileNames = [
       userSettings.username
     ];
-    targets.rofi.enable = true;
-    targets.helix.enable = true;
-    targets.starship.enable = true;
 
     cursor = {
       package = pkgs.bibata-cursors;
@@ -51,6 +47,7 @@
     };
 
     opacity = {
+      desktop = 0.65;
       popups = 0.8;
       terminal = 0.85;
     };

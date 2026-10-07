@@ -139,7 +139,7 @@ hl.window_rule({
     stay_focused = true,
 })
 hl.window_rule({
-    match = { class = "^(io.missioncenter.MissionCenter)$" },
+    match = { class = "(io.missioncenter.MissionCenter)|(com.system76.CosmicMonitor)" },
     float = true,
     opacity = 0.85,
 })
