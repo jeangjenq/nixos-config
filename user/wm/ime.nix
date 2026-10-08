@@ -13,6 +13,7 @@
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-gtk
+        fcitx5-fluent
         qt6Packages.fcitx5-chinese-addons
       ];
       settings = {
@@ -35,6 +36,10 @@
           "Hotkey/AltTriggerKeys" = {
             "0" = "Shift_L";
           };
+        };
+        addons.classicui.globalSection = lib.mkForce {
+          DarkTheme = "FluentDark";
+          UseDarkTheme = true;
         };
       };
     };

@@ -18,6 +18,7 @@
     targets.firefox.profileNames = [
       userSettings.username
     ];
+    targets.fcitx5.enable = false;
 
     cursor = {
       package = pkgs.bibata-cursors;
