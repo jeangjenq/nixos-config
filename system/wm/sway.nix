@@ -5,7 +5,6 @@
     ./pipewire.nix
     ./dbus.nix
     ./fonts.nix
-    ./ime.nix
     ./sddm.nix
   ];
 
