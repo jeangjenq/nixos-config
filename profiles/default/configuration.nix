@@ -44,6 +44,7 @@
   # boot.loader.grub.enable = true;
   # boot.loader.grub.device = "/dev/sda";
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -113,4 +114,15 @@
     "nix-command"
     "flakes"
   ];
+
+  # hardlink identical files on new build
+  # same as `nix-store --optimise`
+  nix.settings.auto-optimise-store = true;
+
+  # automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 }
