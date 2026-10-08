@@ -1,61 +1,38 @@
-{ pkgs, lib, userSettings, systemSettings, ... }:
+{
+  pkgs,
+  lib,
+  userSettings,
+  systemSettings,
+  ...
+}:
 let
   lapt = userSettings.monitors.lapt;
 
   # WM-specific commands for power-refresh-toggle
-  getModesCmd = if systemSettings.wm == "hyprland" then
-    ''hyprctl monitors -j | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .availableModes[]"''
-  else
-    ''swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .modes[] | \"\(.width)x\(.height)@\(.refresh / 1000 | floor)Hz\""'';
+  getModesCmd =
+    if systemSettings.wm == "hyprland" then
+      ''hyprctl monitors -j | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .availableModes[]"''
+    else
+      ''swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r ".[] | select(.name == \"${lapt}\") | .modes[] | \"\(.width)x\(.height)@\(.refresh / 1000 | floor)Hz\""'';
 
-  setHighRefreshCmd = if systemSettings.wm == "hyprland" then
-    ''hyprctl eval 'hl.monitor({output="${lapt}", mode="highrr", position="auto-down", scale="1.25", vrr=1, cm="auto", disabled=false})' ''
-  else
-    ''swaymsg output "${lapt}" mode "$power_mode"'';
+  setHighRefreshCmd =
+    if systemSettings.wm == "hyprland" then
+      ''hyprctl eval 'hl.monitor({output="${lapt}", mode="highrr", position="auto-down", scale="1.25", vrr=1, cm="auto", disabled=false})' ''
+    else
+      ''swaymsg output "${lapt}" mode "$power_mode"'';
 
-  setLowRefreshCmd = if systemSettings.wm == "hyprland" then
-    ''hyprctl eval 'hl.monitor({output="${lapt}", mode="'"$batt_mode"'", position="auto-down", scale="1", vrr=1, cm="auto",disabled=false})' ''
-  else
-    ''swaymsg output "${lapt}" mode "$batt_mode" scale 1'';
-in
-{
-  home.packages = lib.optionals (systemSettings.wm == "hyprland") [
-    # clamshell script (Hyprland only - Sway handles this via bindswitch)
-    (pkgs.writeShellScriptBin "clamshell-toggle" ''
-      #!/usr/bin/env bash
+  setLowRefreshCmd =
+    if systemSettings.wm == "hyprland" then
+      ''hyprctl eval 'hl.monitor({output="${lapt}", mode="'"$batt_mode"'", position="auto-down", scale="1", vrr=1, cm="auto",disabled=false})' ''
+    else
+      ''swaymsg output "${lapt}" mode "$batt_mode" scale 1'';
 
-      # Read lid state from ACPI
-      lid_file="/proc/acpi/button/lid/LID0/state"
-      [[ -f "$lid_file" ]] || lid_file="/proc/acpi/button/lid/LID/state"
-      if [[ ! -f "$lid_file" ]]; then
-        echo "Cannot determine lid state"
-        exit 1
-      fi
-
-      if grep -q "closed" "$lid_file"; then
-        lid_state="closed"
-      else
-        lid_state="open"
-      fi
-
-      echo "Clamshell toggle: lid is $lid_state"
-
-      if [[ "$(hyprctl monitors)" =~ [[:space:]](DP|HDMI)-[A-Za-z0-9]+(-[0-9]+)? ]]; then
-        echo "External monitor plugged in."
-        if [[ "$lid_state" == "open" ]]; then
-          power-refresh-toggle
-        else
-          hyprctl eval 'hl.monitor({output="${lapt}", disabled=true})'
-        fi
-      else
-        echo "External monitor not plugged in, keeping laptop display enabled"
-      fi
-    '')
-  ] ++ [
-    # power-aware refresh rate script (works with both Hyprland and Sway)
-    (pkgs.writeShellScriptBin "power-refresh-toggle" ''
-      #!/usr/bin/env bash
-
+  power-refresh-toggle = pkgs.writeShellApplication {
+    name = "power-refresh-toggle";
+    runtimeInputs = [
+      pkgs.libnotify
+    ];
+    text = ''
       # Exit early if no power supply exists (likely a desktop)
       shopt -s nullglob
       power_supplies=(/sys/class/power_supply/AC* /sys/class/power_supply/ADP*)
@@ -92,8 +69,52 @@ in
         echo "On battery - using $batt_mode"
         ${setLowRefreshCmd}
       fi
-    '')
-  ];
+    '';
+  };
+
+  clamshell = pkgs.writeShellApplication {
+    name = "clamshell-toggle";
+    runtimeInputs = [
+      pkgs.libnotify
+    ];
+    text = ''
+      # Read lid state from ACPI
+      lid_file="/proc/acpi/button/lid/LID0/state"
+      [[ -f "$lid_file" ]] || lid_file="/proc/acpi/button/lid/LID/state"
+      if [[ ! -f "$lid_file" ]]; then
+        echo "Cannot determine lid state"
+        exit 1
+      fi
+
+      if grep -q "closed" "$lid_file"; then
+        lid_state="closed"
+      else
+        lid_state="open"
+      fi
+
+      echo "Clamshell toggle: lid is $lid_state"
+
+      if [[ "$(hyprctl monitors)" =~ [[:space:]](DP|HDMI)-[A-Za-z0-9]+(-[0-9]+)? ]]; then
+        echo "External monitor plugged in."
+        if [[ "$lid_state" == "open" ]]; then
+          power-refresh-toggle
+        else
+          hyprctl eval "hl.monitor({output="${lapt}", disabled=true})"
+        fi
+      else
+        echo "External monitor not plugged in, keeping laptop display enabled"
+      fi
+    '';
+  };
+in
+{
+  home.packages =
+    lib.optionals (systemSettings.wm == "hyprland") [
+      clamshell
+    ]
+    ++ [
+      power-refresh-toggle
+    ];
 
   # systemd user service for power-aware refresh rate
   systemd.user.services.power-refresh = {
@@ -103,8 +124,7 @@ in
     };
     Service = {
       Type = "oneshot";
-      Environment = [ "PATH=/etc/profiles/per-user/${userSettings.username}/bin:%h/.nix-profile/bin:/run/current-system/sw/bin" ];
-      ExecStart = "${pkgs.bash}/bin/bash -c 'power-refresh-toggle'";
+      ExecStart = "${power-refresh-toggle}/bin/power-refresh-toggle";
     };
   };
 
@@ -115,7 +135,7 @@ in
     };
     Timer = {
       OnBootSec = "5s";
-      OnUnitActiveSec = "30s";  # check every 30 seconds
+      OnUnitActiveSec = "30s"; # check every 30 seconds
     };
     Install = {
       WantedBy = [ "timers.target" ];
@@ -172,6 +192,9 @@ in
 
   # laptop-specific Sway settings (merged with main config)
   wayland.windowManager.sway.config.startup = lib.mkIf (systemSettings.wm == "sway") [
-    { command = "power-refresh-toggle"; always = true; }
+    {
+      command = "power-refresh-toggle";
+      always = true;
+    }
   ];
 }
