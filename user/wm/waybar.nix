@@ -41,7 +41,7 @@ in
 
         ${workspaces} = {
           format = "{icon}";
-          icon-size = 16;
+          icon-size = 14;
         };
 
         "idle_inhibitor" = {
@@ -259,6 +259,19 @@ in
         };
       };
     };
+
+    # stylix override
+    style = lib.mkAfter ''
+      window#waybar {
+          background: alpha(@base00, 0.25);
+      }
+      tooltip {
+          background: alpha(@base00, 0.85);
+      }
+      #workspaces button {
+          background: alpha(@base01, 0.5);
+      }
+    '';
   };
 
   # sway comes with a default bar, set to empty when not needed
