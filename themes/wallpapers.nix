@@ -18,8 +18,8 @@ let
     }
     {
       name = "Sheperd.jpg";
-      url = "https://www.deepsilver.com/media/akobvqnn/kcd2-shepherd-wallpaper-fullhd.jpg";
-      hash = "sha256-WZ3AGaB/gQF2ts8cT7KsTDcR0OkQmolRxrfYnzPnsrU=";
+      url = "https://w.wallhaven.cc/full/yx/wallhaven-yxy3ld.png";
+      hash = "sha256-jzqAApeLJZC+MLxgSOxuBVkeI89JwmLrKDjlpZ6ExgM=";
     }
     {
       name = "Brushes with Death.jpg";
@@ -50,6 +50,31 @@ let
       name = "A Storm in The Rocky Mountains.jpg";
       url = "https://www.arthistoryproject.com/site/assets/files/21882/albert_bierstadt-a_storm_in_the_rocky_mountains-_mt._rosalie-1866-trivium-art-history.jpg";
       hash = "sha256-SVz2Ee1gyU/GzDEHJf6qkB6AEOlADUipnOwdZU4cQSQ=";
+    }
+    {
+      name = "A New View of the Moon.jpg";
+      url = "https://images-assets.nasa.gov/image/art002e009287/art002e009287~orig.jpg";
+      hash = "sha256-YCgIh6JPLp4pEzdZ9hlWIIYtQrjznf07gMGOFq0ey9U=";
+    }
+    {
+      name = "Eyes on Earth.jpg";
+      url = "https://images-assets.nasa.gov/image/art002e009166/art002e009166~orig.jpg";
+      hash = "sha256-W64sC7wd/Q9VHsH1045QzSM9XXszZH4WZQhwtg+TRFI=";
+    }
+    {
+      name = "Earthset Views";
+      url = "https://images-assets.nasa.gov/image/art002e021007/art002e021007~orig.jpg";
+      hash = "sha256-Hy/CkHdqGgtYSEeKNpRa7J2Im8rFjCAAWyIcRYF9W6k=";
+    }
+    {
+      name = "Solar Eclipse Emergence from Orion.jpg";
+      url = "https://images-assets.nasa.gov/image/art002e009299/art002e009299~orig.jpg";
+      hash = "sha256-T1mi44LNuTVexEO96X4D5vnzVloT2StG+b0ggrAbtjU=";
+    }
+    {
+      name = "Garden of Thorns.png";
+      url = "https://w.wallhaven.cc/full/e8/wallhaven-e82j6o.png";
+      hash = "sha256-QiyT2W4QvPJOmBReDQ45wB98k6pFXtUgq0FWusAdXzY=";
     }
   ];
   inherit (lib) listToAttrs;
