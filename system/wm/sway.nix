@@ -12,6 +12,8 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
+  # fix an issue with svg render as red block in some places
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
   security.polkit.enable = true;
   security.pam.services.hyprlock = { };
