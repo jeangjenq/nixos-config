@@ -1,14 +1,17 @@
-{ pkgs, dmenu, ... }:
-let
-  command = "pkiller";
-in
 {
-  name = "Kill process";
-  inherit command;
+  pkgs,
+  dmenu,
+  name ? "pkiller",
+  label ? "Kill process",
+  ...
+}:
+
+{
+  inherit name label;
   description = "Provide a list of running procceses and offer to kill selected.";
 
   package = pkgs.writeShellApplication {
-    name = command;
+    inherit name;
     runtimeInputs = [
       dmenu.package
     ];

@@ -3,18 +3,15 @@
   dmenu,
   ...
 }:
-let
-  command = "audio-output-selector";
-in
-{
-  name = "Change Audio Output";
-  inherit command;
+rec {
+  name = "audio-output-selector";
+  label = "Change Audio Output";
   description = ''
     Utilize `wpctl` to change pipewire audio output.
   '';
 
   package = pkgs.writeShellApplication {
-    name = command;
+    inherit name;
     runtimeInputs = [
       dmenu.package
       pkgs.wireplumber

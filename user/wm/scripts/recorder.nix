@@ -5,7 +5,14 @@
   ...
 }:
 let
-  command = "record-screen";
+  notify = {
+    send = "${pkgs.libnotify}/bin/notify-send -a wf-recorder";
+    icon = {
+      start = ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/apps/simplescreenrecorder.svg"'';
+      stop = ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/apps/green-recorder.svg"'';
+      error = ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/panel/simplescreenrecorder-error.svg"'';
+    };
+  };
   regions = lib.concatLines [
     "Whole screen"
     "Selected region"
@@ -16,22 +23,23 @@ let
     "h264_vaapi"
   ];
 in
-{
-  name = "Start/stop screen record";
-  inherit command;
+rec {
+  name = "record-screen";
+  label = "Start/stop screen record";
   description = ''
     Starts or stop a screen recording session,
     with prompt to screen record whole screen or a region.
   '';
 
   package = pkgs.writeShellApplication {
-    name = command;
+    inherit name;
     runtimeInputs = [
       dmenu.package
       pkgs.wf-recorder
       pkgs.ffmpeg
       pkgs.slurp
       pkgs.libnotify
+      pkgs.papirus-icon-theme
     ];
     text = ''
       # check for existing wf-recorder
@@ -40,16 +48,16 @@ in
           filename="$HOME/Videos/$(date +'recording_%Y-%m-%d_%H%M%S')"
           case "$choice" in
               "Whole screen")
-                  ${pkgs.libnotify}/bin/notify-send "Recording started on '$choice'"
+                  ${notify.send} ${notify.icon.start} -- "Recording started."
                   ${pkgs.wf-recorder}/bin/wf-recorder ${flags} -f "$filename.mp4"
                   ;;
               "Selected region")
                   region="$(${pkgs.slurp}/bin/slurp)"
                   if [[ -n "$region" ]]; then
-                      ${pkgs.libnotify}/bin/notify-send "Recording started on '$choice'"
+                      ${notify.send} ${notify.icon.start} -- "Recording started."
                       ${pkgs.wf-recorder}/bin/wf-recorder -g "$region" ${flags} -f "$filename.mp4"
                   else
-                      ${pkgs.libnotify}/bin/notify-send "Recording region not selected!"
+                      ${notify.send} ${notify.icon.error} -- "Recording region not selected."
                       exit 1
                   fi
                   ;;
@@ -57,7 +65,7 @@ in
       else
           # send a gentle SIGINT like pressing CTRL+C on terminal
           pkill -2 wf-recorder
-          ${pkgs.libnotify}/bin/notify-send "Recording stopped."
+          ${notify.send} ${notify.icon.stop} -- "Recording stopped."
       fi
     '';
   };

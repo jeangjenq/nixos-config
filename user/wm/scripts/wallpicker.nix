@@ -4,7 +4,15 @@
   ...
 }:
 let
-  command = "wallpaper-picker";
+  notify = {
+    send = lib.concatStringsSep " " [
+      "${pkgs.libnotify}/bin/notify-send"
+      "-a wallpicker"
+      ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/emblems/emblem-unreadable.svg"''
+      "--"
+    ];
+  };
+
   # list of extensions we might use and awww supports
   extensions = [
     "jpg"
@@ -32,16 +40,17 @@ let
     }
   '';
 in
-{
-  name = "Wallpapers";
-  inherit command;
+rec {
+  name = "wallpaper-picker";
+  label = "Wallpapers";
   description = ''
     Show available wallpapers in ~/Pictures/wallpapers and switch with `awww img`.
     Hardcoded rofi syntax.
   '';
   package = pkgs.writeShellApplication {
-    name = command;
+    inherit name;
     runtimeInputs = with pkgs; [
+      papirus-icon-theme
       libnotify
       rofi
     ];
@@ -71,7 +80,7 @@ in
               echo "Wallpaper picked: '$wallpaper_path'"
               awww img "$wallpaper_path" --transition-type any --transition-fps 90
           else
-              ${pkgs.libnotify}/bin/notify-send "Wallpaper picker error: Could not locate '$wallpaper_name'"
+              ${notify.send} "Wallpaper error" "Could not locate $wallpaper_name."
           fi
       else
           exit 0

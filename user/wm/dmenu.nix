@@ -16,12 +16,12 @@ let
     filter (name: hasSuffix ".nix" name) (listFilesRecursive ./scripts)
   );
   # name attribute from each script forms menu choices
-  choices = concatLines (map (script: script.name) scripts);
+  choices = concatLines (map (script: script.label) scripts);
   # name correspond to its command in bash case block
   commands = concatLines (
     map (script: ''
-      "${script.name}")
-          ${script.command}
+      "${script.label}")
+          ${script.name}
           ;;
     '') scripts
   );
