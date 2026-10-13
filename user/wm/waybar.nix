@@ -23,8 +23,9 @@ in
     };
     settings = {
       top_bar = {
-        "position" = "top";
-        "spacing" = 12;
+        position = "top";
+        spacing = 12;
+        height = 25;
         modules-left = [
           "idle_inhibitor"
           mode
@@ -58,7 +59,7 @@ in
 
         "custom/notification" = {
           "tooltip" = false;
-          "format" = "{icon}";
+          "format" = " {icon} ";
           "format-icons" = {
             "notification" = "<span foreground='red'><sup></sup></span>";
             "none" = "";
@@ -80,6 +81,7 @@ in
       bottom_bar = {
         position = "bottom";
         spacing = 12;
+        height = 25;
         modules-left = [
           "group/sys"
         ];
@@ -263,13 +265,14 @@ in
     # stylix override
     style = lib.mkAfter ''
       window#waybar {
-          background: alpha(@base00, 0.25);
+          background: alpha(@base00, 0.10);
       }
       tooltip {
-          background: alpha(@base00, 0.85);
+          background: alpha(@base00, 0.75);
       }
       #workspaces button {
           background: alpha(@base01, 0.5);
+          border-radius: 100px;
       }
     '';
   };
