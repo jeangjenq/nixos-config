@@ -29,6 +29,7 @@
       openscad = "";
       obsidian = "";
       feishin = "";
+      gamescope = "";
       other = {
         fallback_icon = "";
         deduplicate_icons = true;
