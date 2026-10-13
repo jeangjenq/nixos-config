@@ -7,11 +7,6 @@
 }:
 
 let
-  lockCommands = {
-    hyprland = "hyprlock";
-    sway = "swaylock -f";
-  };
-  lockCommand = lockCommands.${systemSettings.wm} or "swaylock -f";
   inherit (config.lib.stylix.colors.withHashtag)
     base00
     base02
@@ -48,7 +43,7 @@ in
       }
       {
         label = "lock";
-        action = lockCommand;
+        action = "${pkgs.hyprlock}/bin/hyprlock";
         text = "Lock";
         keybind = "l";
       }
