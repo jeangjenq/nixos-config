@@ -13,7 +13,7 @@ let
 
   # import each scripts stored in ./scripts
   scripts = map (script: import script { inherit pkgs lib dmenu; }) (
-    filter (name: hasSuffix ".nix" name) (listFilesRecursive ./scripts)
+    filter (name: hasSuffix ".nix" name) (listFilesRecursive ../scripts)
   );
   # name attribute from each script forms menu choices
   choices = concatLines (map (script: script.label) scripts);
