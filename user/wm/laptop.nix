@@ -99,7 +99,7 @@ let
         if [[ "$lid_state" == "open" ]]; then
           power-refresh-toggle
         else
-          hyprctl eval "hl.monitor({output="${lapt}", disabled=true})"
+          hyprctl eval 'hl.monitor({output="${lapt}", disabled=true})'
         fi
       else
         echo "External monitor not plugged in, keeping laptop display enabled"

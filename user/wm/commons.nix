@@ -5,10 +5,10 @@
   userSettings,
   ...
 }:
-
 let
-  screenshot = "grim - | satty --filename - --fullscreen --output-filename ~/Pictures/satty-$(date '+%Y%m%d-%H:%M:%S').png";
-  screengrab = "grim -g \"$(slurp)\" - | satty --filename - --fullscreen --output-filename ~/Pictures/satty-$(date '+%Y%m%d-%H:%M:%S').png";
+  screenshot = import ./screenshot.nix { inherit pkgs; };
+  grab = "${screenshot.grab}/bin/screengrab";
+  shot = "${screenshot.shot}/bin/screenshot";
 in
 {
   imports = [
@@ -107,16 +107,16 @@ in
 
   # Screenshot keybindings for Sway
   wayland.windowManager.sway.config.keybindings = lib.mkIf (systemSettings.wm == "sway") ({
-    "print" = "exec ${screengrab}";
-    "Alt+print" = "exec ${screenshot}";
+    "print" = "exec ${grab}";
+    "Alt+print" = "exec ${shot}";
   });
 
   # Screenshot keybindings for Hyprland
   wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
     "screenshot" = {
       content = ''
-        hl.bind("print", hl.dsp.exec_cmd([[${screengrab}]]))
-        hl.bind("ALT + print", hl.dsp.exec_cmd([[${screenshot}]]))
+        hl.bind("print", hl.dsp.exec_cmd([[${grab}]]))
+        hl.bind("ALT + print", hl.dsp.exec_cmd([[${shot}]]))
       '';
       autoLoad = true;
     };
