@@ -18,6 +18,9 @@ let
   screen = dpms.${systemSettings.wm};
   lock = "pgrep hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
   font = "Terminess Nerd Font";
+  ac = "${pkgs.systemd}/bin/systemd-ac-power";
+  brightness_dim = "${ac} || ${pkgs.brightnessctl}/bin/brightnessctl s 30%";
+  brightness_restore = "${ac} || ${pkgs.brightnessctl}/bin/brightnessctl -r";
 in
 
 {
@@ -31,18 +34,40 @@ in
       };
 
       listener = [
+        # battery powered
         {
-          timeout = 595;
-          on-timeout = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
+          timeout = 300;
+          on-timeout = "${brightness_dim}";
+          on-resume = "${brightness_restore}";
         }
         {
           timeout = 600;
-          on-timeout = "loginctl lock-session";
+          on-timeout = "${ac} || loginctl lock-session";
         }
         {
           timeout = 900;
-          on-timeout = screen.off;
-          on-resume = screen.on;
+          on-timeout = "${ac} || ${screen.off}";
+          on-resume = "${screen.on}";
+        }
+        {
+          timeout = 1200;
+          on-timeout = "${ac} || systemctl suspend";
+          on-resume = "${brightness_restore}";
+        }
+        # ac powered
+        {
+          timeout = 900;
+          on-timeout = "${ac} && loginctl lock-session";
+        }
+        {
+          timeout = 1200;
+          on-timeout = "${ac} && ${screen.off}";
+          on-resume = "${screen.on}";
+        }
+        {
+          timeout = 1800;
+          on-timeout = "${ac} && systemctl suspend";
+          on-resume = "${brightness_restore}";
         }
       ];
     };
@@ -54,7 +79,7 @@ in
       background = {
         path = "screenshot";
         blur_passes = 2;
-        blur_size = 4;
+        blur_size = 8;
       };
       general = {
         hide_cursor = true;
