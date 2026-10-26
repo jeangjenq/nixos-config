@@ -41,9 +41,15 @@
             "0" = "clipboard";
           };
         };
-        addons.classicui.globalSection = lib.mkForce {
-          DarkTheme = "FluentDark";
-          UseDarkTheme = true;
+        addons = {
+          classicui.globalSection = lib.mkForce {
+            DarkTheme = "FluentDark";
+            UseDarkTheme = true;
+          };
+          pinyin.globalSection = {
+            FirstRun = false;
+            CloudPinyinEnabled = false;
+          };
         };
       };
     };
