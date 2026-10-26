@@ -36,6 +36,9 @@
           "Hotkey/AltTriggerKeys" = {
             "0" = "Shift_L";
           };
+          "Behavior/DisabledAddons" = {
+            "0" = "clipboard";
+          };
         };
         addons.classicui.globalSection = lib.mkForce {
           DarkTheme = "FluentDark";

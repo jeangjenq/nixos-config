@@ -12,6 +12,7 @@ let
 in
 {
   imports = [
+    ./cliphist.nix
     ./wlogout.nix
     ./swaync.nix
     ./waybar.nix
