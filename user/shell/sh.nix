@@ -1,8 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 
 let
   aliases = {
-    ll = "ls -lh";
     htop = "btop";
     cat = "bat";
     # human readable is always nice
@@ -64,6 +63,12 @@ in
       enableBashIntegration = true;
       enableZshIntegration = true;
       tmux.enableShellIntegration = true;
+    };
+
+    lsd = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
 
     bat.enable = true;
