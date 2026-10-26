@@ -38,6 +38,10 @@
     HandleLidSwitchExternalPower = "ignore";
   };
 
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
+  '';
+
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
