@@ -6,7 +6,7 @@
 let
   notify = {
     send = lib.concatStringsSep " " [
-      "${pkgs.libnotify}/bin/notify-send"
+      "notify-send"
       "-a wallpicker"
       ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/emblems/emblem-unreadable.svg"''
       "--"
@@ -50,15 +50,15 @@ rec {
   package = pkgs.writeShellApplication {
     inherit name;
     runtimeInputs = with pkgs; [
-      papirus-icon-theme
-      libnotify
       rofi
+      awww
+      libnotify
     ];
     text = ''
       WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 
       if [[ ! -d "$WALLPAPER_DIR" ]]; then
-          ${pkgs.libnotify}/bin/notify-send "Wallpaper directory not found: $WALLPAPER_DIR"
+          notify-send "Wallpaper error!" "Directory not found: $WALLPAPER_DIR"
           exit 0
       fi
 
@@ -70,7 +70,7 @@ rec {
           # format for rofi icon preview
           # this also make rofi return file basename instead of fullpath
           printf '%s\0icon\x1f%s\n' "$pretty_name" "$file"
-      done | ${pkgs.rofi}/bin/rofi -dmenu -i -p "Select Wallpaper:" -show-icons -theme-str '${rofi-theme}' || exit 0)
+      done | rofi -dmenu -i -p "Select Wallpaper:" -show-icons -theme-str '${rofi-theme}' || exit 0)
 
       if [[ -n "$wallpaper_name" ]]; then
           # we have to refind the wallpaper with the matching name

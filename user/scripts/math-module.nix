@@ -24,7 +24,7 @@
 let
   notify = {
     send = lib.concatStringsSep " " [
-      "${pkgs.libnotify}/bin/notify-send"
+      "notify-send"
       "-a quick-math"
       ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/apps/gnome-calculator.svg"''
       "--"
@@ -58,7 +58,7 @@ rec {
             num=$(${dmenu.command} ${dmenu.prompt "Enter number:"})
             # make sure number is valid int or float
             if [[ $num =~ ^\.?[0-9]+(\.[0-9]+)?$ ]]; then
-                result=$(echo "scale=${scale}; ${formular}" | ${pkgs.bc}/bin/bc)
+                result=$(echo "scale=${scale}; ${formular}" | bc)
                 ${notify.send} "$result"
             else
                 ${notify.send} "$num is not a number."
@@ -75,7 +75,6 @@ rec {
       dmenu.package
       pkgs.bc
       pkgs.libnotify
-      pkgs.papirus-icon-theme
     ];
     text = ''
       choice=$(printf "%s" "${choices}" | ${dmenu.command} ${dmenu.prompt "Pick a conversion:"} || exit 0)

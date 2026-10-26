@@ -9,7 +9,7 @@ let
   launcher = "pkill rofi || rofi -show drun";
   dmenu = {
     package = pkgs.rofi;
-    command = "${pkgs.rofi}/bin/rofi -dmenu -i";
+    command = "rofi -dmenu -i";
     prompt = p: "-p '${p}'";
   };
 in

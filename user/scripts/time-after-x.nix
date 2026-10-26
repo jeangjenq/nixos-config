@@ -7,7 +7,7 @@
 let
   notify = {
     send = lib.concatStringsSep " " [
-      "${pkgs.libnotify}/bin/notify-send"
+      "notify-send"
       "-a time-after-x"
       ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/apps/preferences-system-time.svg"''
       "--"
@@ -27,7 +27,6 @@ rec {
     runtimeInputs = [
       dmenu.package
       pkgs.libnotify
-      pkgs.papirus-icon-theme
     ];
     text = ''
       hours=$(${dmenu.command} ${dmenu.prompt "Time after how many hours?"})

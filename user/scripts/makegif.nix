@@ -24,7 +24,7 @@
 let
   notify = {
     send = lib.concatStringsSep " " [
-      "${pkgs.libnotify}/bin/notify-send"
+      "notify-send"
       ''-a "${name}"''
       ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/mimetypes/image-x-gif.svg"''
       "--"
@@ -48,7 +48,6 @@ in
       pkgs.libnotify
       pkgs.ffmpeg
       pkgs.wl-clipboard
-      pkgs.papirus-icon-theme
     ];
     text = ''
       # list of files but output with timestamp, each file separated by null character
@@ -64,10 +63,10 @@ in
 
       if [[ -n "$choice" ]]; then
           output="''${choice%.*}.gif"
-          ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$choice" -vf "${gifArgs}" "$output"
+          ffmpeg -y -i "$choice" -vf "${gifArgs}" "$output"
           # copy output to clipboard
           # but as a text uri so electron apps interpret it as a file
-          ${pkgs.wl-clipboard}/bin/wl-copy --type text/uri-list "file://$output"
+          wl-copy --type text/uri-list "file://$output"
           ${notify.send} "$(basename "$output")" "GIF Conversion done."
       else
           exit 0

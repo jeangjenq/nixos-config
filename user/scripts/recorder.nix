@@ -6,7 +6,7 @@
 }:
 let
   notify = {
-    send = "${pkgs.libnotify}/bin/notify-send -a wf-recorder";
+    send = "notify-send -a wf-recorder";
     icon = {
       start = ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/apps/simplescreenrecorder.svg"'';
       stop = ''-i "${pkgs.papirus-icon-theme}/share/icons/Papirus/16x16/apps/green-recorder.svg"'';
@@ -36,10 +36,8 @@ rec {
     runtimeInputs = [
       dmenu.package
       pkgs.wf-recorder
-      pkgs.ffmpeg
       pkgs.slurp
       pkgs.libnotify
-      pkgs.papirus-icon-theme
     ];
     text = ''
       # check for existing wf-recorder
@@ -49,13 +47,13 @@ rec {
           case "$choice" in
               "Whole screen")
                   ${notify.send} ${notify.icon.start} -- "Recording started."
-                  ${pkgs.wf-recorder}/bin/wf-recorder ${flags} -f "$filename.mp4"
+                  wf-recorder ${flags} -f "$filename.mp4"
                   ;;
               "Selected region")
-                  region="$(${pkgs.slurp}/bin/slurp)"
+                  region="$(slurp)"
                   if [[ -n "$region" ]]; then
                       ${notify.send} ${notify.icon.start} -- "Recording started."
-                      ${pkgs.wf-recorder}/bin/wf-recorder -g "$region" ${flags} -f "$filename.mp4"
+                      wf-recorder -g "$region" ${flags} -f "$filename.mp4"
                   else
                       ${notify.send} ${notify.icon.error} -- "Recording region not selected."
                       exit 1
