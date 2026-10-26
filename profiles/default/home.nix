@@ -52,6 +52,7 @@
       newsflash
       proton-vpn
       moonlight-qt
+      signal-desktop
 
       # create
       gimp
@@ -71,6 +72,7 @@
       yt-dlp
       ffmpeg
       feishin
+      jellyfin-media-player
 
       # dev
       remmina
@@ -79,8 +81,6 @@
       obsidian
     ])
     ++ (with pkgs-stable; [
-      signal-desktop
-      jellyfin-media-player
     ]);
 
   home.sessionVariables = {
