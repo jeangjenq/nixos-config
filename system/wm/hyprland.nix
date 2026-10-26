@@ -3,6 +3,7 @@
 {
   imports = [
     ./pipewire.nix
+    ./stylix.nix
     ./dbus.nix
     ./fonts.nix
     ./sddm.nix

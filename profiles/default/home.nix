@@ -11,6 +11,7 @@
   imports = [
     (./. + "../../../user/wm" + ("/" + systemSettings.wm + ".nix"))
     (./. + "../../../user/shell" + ("/" + userSettings.term) + ".nix")
+    ../../user/wm/wallpapers.nix
     ../../user/app/git/git.nix
     ../../user/shell/sh.nix
     ../../user/shell/yazi.nix
@@ -22,7 +23,6 @@
     ../../user/app/browser/firefox.nix
     ../../user/app/browser/thunderbird.nix
     ../../system/app/obs.nix
-    ../../themes/stylix.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

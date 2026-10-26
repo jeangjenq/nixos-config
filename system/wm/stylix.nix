@@ -1,24 +1,10 @@
-{ pkgs, userSettings, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    ./wallpapers.nix
-  ];
-
-  home.pointerCursor.enable = true;
-  services.awww = {
-    enable = true;
-  };
-
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
-
-    targets.firefox.profileNames = [
-      userSettings.username
-    ];
-    targets.fcitx5.enable = false;
 
     cursor = {
       package = pkgs.bibata-cursors;
@@ -39,13 +25,12 @@
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
       };
-    };
-
-    fonts.sizes = {
-      desktop = 12;
-      applications = 10;
-      terminal = 12;
-      popups = 10;
+      sizes = {
+        desktop = 12;
+        applications = 10;
+        terminal = 12;
+        popups = 10;
+      };
     };
 
     opacity = {

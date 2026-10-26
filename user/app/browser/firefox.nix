@@ -6,6 +6,9 @@
 }:
 
 {
+  stylix.targets.firefox.profileNames = [
+    userSettings.username
+  ];
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";

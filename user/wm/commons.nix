@@ -20,6 +20,10 @@ in
     ./rofi.nix
   ];
 
+  services.awww = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     # core
     foot # backup terminal

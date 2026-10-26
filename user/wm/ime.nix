@@ -6,6 +6,7 @@
 }:
 
 {
+  stylix.targets.fcitx5.enable = false;
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
