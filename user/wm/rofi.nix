@@ -34,7 +34,7 @@ in
       ];
       display-drun = "Applications:";
       show-icons = true;
-      matching = "fuzzy";
+      # matching = "fuzzy";
       font = "${config.stylix.fonts.monospace.name} 12";
     };
   };
