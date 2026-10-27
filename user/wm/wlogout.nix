@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  systemSettings,
   ...
 }:
 
@@ -100,14 +99,14 @@ in
   };
 
   # Sway keybinding for wlogout
-  wayland.windowManager.sway.config = lib.mkIf (systemSettings.wm == "sway") {
+  wayland.windowManager.sway.config = {
     keybindings = {
       "Mod4+Shift+e" = "exec wlogout -p layer-shell";
     };
   };
 
   # Hyprland keybinding for wlogout
-  wayland.windowManager.hyprland.settings.bind = lib.mkIf (systemSettings.wm == "hyprland") [
+  wayland.windowManager.hyprland.settings.bind = [
     {
       _args = [
         "SUPER + SHIFT + E"

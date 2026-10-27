@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  systemSettings,
   ...
 }:
 
@@ -56,12 +55,12 @@
   };
 
   # Sway specific startup
-  wayland.windowManager.sway.config.startup = lib.mkIf (systemSettings.wm == "sway") [
+  wayland.windowManager.sway.config.startup = [
     { command = "fcitx5 -d -r"; }
   ];
 
   # Hyprland specific startup and rule
-  wayland.windowManager.hyprland = lib.mkIf (systemSettings.wm == "sway") {
+  wayland.windowManager.hyprland = {
     extraLuaFiles = {
       "ime" = {
         content = ''

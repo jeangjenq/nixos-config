@@ -144,7 +144,7 @@ in
 
   # laptop-specific Hyprland settings (merged with main config)
   wayland.windowManager.hyprland = {
-    settings = lib.mkIf (systemSettings.wm == "hyprland") {
+    settings = {
       # laptop monitor config
       monitor = [
         {
@@ -175,7 +175,7 @@ in
       ];
     };
 
-    extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
+    extraLuaFiles = {
       "laptop" = {
         content = ''
           -- run on every reload
@@ -191,7 +191,7 @@ in
   };
 
   # laptop-specific Sway settings (merged with main config)
-  wayland.windowManager.sway.config.startup = lib.mkIf (systemSettings.wm == "sway") [
+  wayland.windowManager.sway.config.startup = [
     {
       command = "power-refresh-toggle";
       always = true;

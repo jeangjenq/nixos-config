@@ -278,5 +278,5 @@ in
   };
 
   # sway comes with a default bar, set to empty when not needed
-  wayland.windowManager.sway.config.bars = lib.mkIf (systemSettings.wm == "sway") [ ];
+  wayland.windowManager.sway.config.bars = [ ];
 }

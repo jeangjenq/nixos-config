@@ -40,10 +40,10 @@ in
   };
 
   # window managers and their hotkeys
-  wayland.windowManager.sway.config.keybindings = lib.mkIf (systemSettings.wm == "sway") {
+  wayland.windowManager.sway.config.keybindings = {
     "Mod4+d" = "exec ${launcher}";
   };
-  wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
+  wayland.windowManager.hyprland.extraLuaFiles = {
     "launcher" = {
       content = ''
         hl.bind("SUPER + D", hl.dsp.exec_cmd("${launcher}"))

@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  systemSettings,
   ...
 }:
 let
@@ -85,7 +84,7 @@ in
   };
 
   # Hyprland startup and keybinding
-  wayland.windowManager.hyprland = lib.mkIf (systemSettings.wm == "hyprland") {
+  wayland.windowManager.hyprland = {
     extraLuaFiles = {
       "swaync" = {
         content = ''
@@ -100,7 +99,7 @@ in
   };
 
   # Sway startup and keybindings
-  wayland.windowManager.sway = lib.mkIf (systemSettings.wm == "sway") {
+  wayland.windowManager.sway = {
     config = {
       keybindings = {
         "Mod4+tab" = "exec swaync-client -t -sw"; # toggle notification panel

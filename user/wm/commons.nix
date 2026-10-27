@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  systemSettings,
   userSettings,
   ...
 }:
@@ -111,13 +110,13 @@ in
   };
 
   # Screenshot keybindings for Sway
-  wayland.windowManager.sway.config.keybindings = lib.mkIf (systemSettings.wm == "sway") ({
+  wayland.windowManager.sway.config.keybindings = ({
     "print" = "exec ${grab}";
     "Alt+print" = "exec ${shot}";
   });
 
   # Screenshot keybindings for Hyprland
-  wayland.windowManager.hyprland.extraLuaFiles = lib.mkIf (systemSettings.wm == "hyprland") {
+  wayland.windowManager.hyprland.extraLuaFiles = {
     "screenshot" = {
       content = ''
         hl.bind("print", hl.dsp.exec_cmd([[${grab}]]))
