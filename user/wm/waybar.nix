@@ -10,6 +10,64 @@ let
   workspaces = (systemSettings.wm + "/workspaces");
   window = (systemSettings.wm + "/window");
   mode = if (systemSettings.wm == "hyprland") then "hyprland/submap" else "sway/mode";
+
+  spacing = 12; # gaps between modules
+  margin = "6px 8px"; # margins around waybar
+  height = 25; # fixed height of bars, best set to avoid dynamic adjustment
+
+  side_modules = lib.concatStringsSep ", " (
+    map (module: "#${module}") [
+      "window"
+      "mode"
+      "idle_inhibitor"
+      "tray"
+      "custom-notification"
+      "cpu"
+      "memory"
+      "network"
+      "mpris"
+      "pulseaudio"
+      "backlight"
+      "battery"
+    ]
+  );
+  stylix_override = ''
+    window#waybar {
+        background: transparent;
+    }
+    tooltip {
+        background: alpha(@base00, 0.75);
+    }
+    #workspaces button {
+        background: alpha(@base07, 0.3);
+        color: @base00;
+        border-radius: 50px;
+    }
+    #workspaces button.active,
+    #workspaces button.focused {
+        background: alpha(@base06, 0.5);
+        color: @base00;
+        border-radius: 100px;
+    }
+    #clock {
+        background: alpha(@base07, 0.5);
+        color: @base00;
+        border-radius: 100px;
+        padding: 0 10px;
+    }
+    #tray {
+        background-color: alpha(@base01, 0.5);
+        color: @base00;
+        border-radius: 100px;
+        padding: 0 10px;
+    }
+    ${side_modules} {
+        background-color: alpha(@base0A, 0.5);
+        color: @base00;
+        border-radius: 100px;
+        padding: 0 10px;
+    }
+  '';
 in
 {
   programs.waybar = {
@@ -24,8 +82,7 @@ in
     settings = {
       top_bar = {
         position = "top";
-        spacing = 12;
-        height = 25;
+        inherit spacing margin height;
         modules-left = [
           "idle_inhibitor"
           mode
@@ -80,8 +137,7 @@ in
       };
       bottom_bar = {
         position = "bottom";
-        spacing = 12;
-        height = 25;
+        inherit spacing margin height;
         modules-left = [
           "group/sys"
         ];
@@ -264,16 +320,7 @@ in
 
     # stylix override
     style = lib.mkAfter ''
-      window#waybar {
-          background: alpha(@base00, 0.10);
-      }
-      tooltip {
-          background: alpha(@base00, 0.75);
-      }
-      #workspaces button {
-          background: alpha(@base01, 0.5);
-          border-radius: 100px;
-      }
+      ${stylix_override}
     '';
   };
 
