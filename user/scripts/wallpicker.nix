@@ -16,6 +16,7 @@ let
   # list of extensions we might use and awww supports
   extensions = [
     "jpg"
+    "jpeg"
     "png"
     "gif"
     "svg"
