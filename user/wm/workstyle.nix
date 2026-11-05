@@ -8,17 +8,19 @@
       target = if systemSettings.wm == "sway" then "sway-session.target" else "hyprland-session.target";
     };
     settings = {
-      discord = "";
-      vesktop = "";
+      discord = "";
+      vesktop = "";
       steam = "";
       Steam = "";
+      gamescope = "";
       signal = "";
       mpv = "";
       Gimp = "";
       darktable = "";
-      "org.kde.digikam" = "";
+      digikam = "";
+      kdenlive = "󰴘";
       thunderbird = "";
-      "org.gnome.Nautilus" = "";
+      nautilus = "";
       pavucontrol = "";
       Chromium = "";
       Slack = "";
@@ -27,11 +29,10 @@
       Alacritty = "";
       kitty = "";
       openscad = "";
-      obsidian = "";
+      obsidian = "";
       feishin = "";
-      gamescope = "";
       other = {
-        fallback_icon = "";
+        fallback_icon = "󰣆";
         deduplicate_icons = true;
         separator = " ";
       };
