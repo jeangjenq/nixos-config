@@ -17,6 +17,7 @@
     ../../user/shell/yazi.nix
     ../../user/virtualization/virtualization.nix
     ../../user/app/editor/helix.nix
+    ../../user/app/editor/obsidian.nix
     ../../user/app/editor/libreoffice.nix
     ../../user/app/media/mpv.nix
     ../../user/app/media/docs.nix
@@ -78,7 +79,6 @@
       remmina
       mediawriter
       veracrypt
-      obsidian
     ])
     ++ (with pkgs-stable; [
     ]);
