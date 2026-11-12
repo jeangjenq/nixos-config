@@ -77,7 +77,7 @@
 
       # dev
       remmina
-      mediawriter
+      gnome-disk-utility
       veracrypt
     ])
     ++ (with pkgs-stable; [
