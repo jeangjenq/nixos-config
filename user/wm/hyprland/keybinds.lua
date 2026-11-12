@@ -80,8 +80,8 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.config({
     binds = { drag_threshold = 10 },
 })
-hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, drag = true })
-hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, drag = true })
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("mouse:275", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
 hl.bind("mouse:276", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("mouse:278", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
